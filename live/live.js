@@ -30,13 +30,13 @@ function resetTickets() {
   for (const id of ['outboundTicket', 'returnTicket']) $(id).innerHTML = '<option value="">请重新查询车次</option>';
   $('railDetails').innerHTML = ''; $('weather').innerHTML = ''; changed();
 }
-for (const id of ['originCity', 'destinationCity']) $(id).addEventListener('change', () => {
+for (const id of ['originCity', 'destinationCity']) $(id).addEventListener('input', () => {
   for (const target of ['fromStation', 'toStation']) $(target).innerHTML = '<option value="">请重新读取车站</option>';
   if (id === 'destinationCity') { station = null; lodging = null; places = []; $('placeCandidates').innerHTML = ''; renderPlaces(); }
   resetTickets();
 });
-for (const id of ['departureDate', 'returnDate', 'fromStation', 'toStation']) $(id).addEventListener('change', () => { if (id === 'toStation') { station = null; renderPlaces(); } resetTickets(); });
-for (const id of ['earliestLeaveTime', 'latestHomeTime', 'homeTransferMinutes', 'budgetCny', 'foodDailyCny', 'hotelCny', 'transitDailyCny', 'outboundTicket', 'returnTicket']) $(id).addEventListener('change', changed);
+for (const id of ['departureDate', 'returnDate', 'fromStation', 'toStation']) $(id).addEventListener('input', () => { if (id === 'toStation') { station = null; renderPlaces(); } resetTickets(); });
+for (const id of ['earliestLeaveTime', 'latestHomeTime', 'homeTransferMinutes', 'budgetCny', 'foodDailyCny', 'hotelCny', 'transitDailyCny', 'outboundTicket', 'returnTicket']) $(id).addEventListener('input', changed);
 
 $('loadStations').addEventListener('click', () => busy('loadStations', 'stationStatus', async () => {
   const version = revision;
@@ -113,7 +113,7 @@ function renderPlaces() {
   $('stationAnchor').textContent = station ? `${station.name} · ${station.address}` : '尚未选择';
   $('lodgingAnchor').textContent = lodging ? `${lodging.name} · ${lodging.address}` : '尚未选择';
   $('selectedPlaces').innerHTML = places.length ? places.map((row, index) => `<article class="picked-place"><div class="picked-top"><div><strong>${escape(row.name)}</strong><p>${escape(row.address)} · ${escape(row.id)}<br>${evidence(row)}</p></div><button class="remove-place" data-remove="${index}">移除</button></div><div class="picked-fields"><label><input type="checkbox" data-place="${index}" data-field="required" ${row.required ? 'checked' : ''}>必去</label><label>游览分钟<input type="number" min="15" max="240" value="${escape(row.durationMinutes)}" data-place="${index}" data-field="durationMinutes"></label><label>门票预留（元）<input type="number" min="0" placeholder="未知" value="${escape(row.admissionCny)}" data-place="${index}" data-field="admissionCny"></label></div></article>`).join('') : '<p class="empty">请添加 1–6 个具体景点。门票留空会标为待确认。</p>';
-  for (const input of $('selectedPlaces').querySelectorAll('[data-field]')) input.addEventListener('change', () => { places[Number(input.dataset.place)][input.dataset.field] = input.dataset.field === 'required' ? input.checked : input.value; changed(); });
+  for (const input of $('selectedPlaces').querySelectorAll('[data-field]')) input.addEventListener('input', () => { places[Number(input.dataset.place)][input.dataset.field] = input.dataset.field === 'required' ? input.checked : input.value; changed(); });
   for (const button of $('selectedPlaces').querySelectorAll('[data-remove]')) button.addEventListener('click', () => { places.splice(Number(button.dataset.remove), 1); changed(); renderPlaces(); });
 }
 $('generatePlan').addEventListener('click', () => busy('generatePlan', 'planStatus', async () => {
