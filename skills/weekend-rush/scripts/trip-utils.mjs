@@ -1,8 +1,5 @@
 #!/usr/bin/env node
 
-import { resolve } from 'node:path';
-import { pathToFileURL } from 'node:url';
-
 const datePattern = /^\d{4}-\d{2}-\d{2}$/;
 
 function assertDate(value, label = 'date') {
@@ -241,4 +238,9 @@ async function main() {
   if (command === 'compare-plans' && !output.valid) process.exitCode = 1;
 }
 
-if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) await main();
+// Keep the shared helpers loadable by a browser; Node modules belong to the CLI branch.
+if (typeof process !== 'undefined' && process.versions?.node && process.argv[1]) {
+  const { resolve } = await import('node:path');
+  const { pathToFileURL } = await import('node:url');
+  if (import.meta.url === pathToFileURL(resolve(process.argv[1])).href) await main();
+}

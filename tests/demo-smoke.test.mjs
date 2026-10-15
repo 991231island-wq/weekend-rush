@@ -21,7 +21,7 @@ globalThis.document = {
     const attr = selector === '[data-plan]' ? 'data-plan' : 'data-done';
     return [...html.matchAll(new RegExp(`${attr}="([^"]+)"`, 'g'))].map(match => {
       const result = new FakeElement(`${selector}:${match[1]}`);
-      result.dataset = { [attr.slice(5, -1)]: match[1] };
+      result.dataset = { [attr.slice(5)]: match[1] };
       return result;
     });
   },
@@ -57,4 +57,12 @@ test('allows budget and arrive-home constraints to be edited and redisplayed', (
   assert.equal(element('#budgetDisplay').textContent, '700');
   assert.equal(element('#homeDisplay').textContent, '18:30');
   assert.match(element('#plans').innerHTML, /需要调整/);
+});
+
+test('rejects a deadline earlier than the sample arrival home independently of budget', () => {
+  element('#budgetInput').value = '1000';
+  element('#homeInput').value = '18:00';
+  element('#saveConstraints').click('click', {});
+  assert.equal(element('#homeDisplay').textContent, '18:00');
+  assert.equal((element('#plans').innerHTML.match(/需要调整/g) ?? []).length, 2);
 });

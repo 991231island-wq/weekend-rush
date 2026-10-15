@@ -6,7 +6,7 @@ const train = (id, day, start, end, title, detail, cost) => event(id, day, start
 
 const plans = [
   {
-    id: 'dense', name: '经典多逛', tagline: '趁着周末，多留下一些风景。', mark: 'A', tint: 'coral',
+    id: 'dense', name: '经典多逛', tagline: '趁着周末，多留下一些风景。', mark: 'A', tint: 'coral', arrivalHomeAt: stamp('08', '18:20'),
     highlights: ['上海博物馆', '豫园', '外滩夜色'],
     events: [
       train('outbound', '07', '06:02', '06:52', '杭州东 → 上海虹桥', '高铁 · 模拟 G900', 87),
@@ -28,7 +28,7 @@ const plans = [
     ],
   },
   {
-    id: 'gentle', name: '慢一点也好', tagline: '走少一点，把时间留给停下来。', mark: 'B', tint: 'sage',
+    id: 'gentle', name: '慢一点也好', tagline: '走少一点，把时间留给停下来。', mark: 'B', tint: 'sage', arrivalHomeAt: stamp('08', '18:20'),
     highlights: ['上海博物馆', '外滩', '咖啡休息'],
     events: [
       train('outbound', '07', '06:02', '06:52', '杭州东 → 上海虹桥', '高铁 · 模拟 G900', 87),
