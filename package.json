@@ -1,13 +1,21 @@
 {
   "name": "weekend-rush",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": false,
   "type": "module",
-  "description": "周末短途高密度旅行规划 Skill、确定性校验器与离线演示",
-  "engines": { "node": ">=22" },
+  "description": "周末短途旅行规划 Skill、本机真实 MCP 查询与离线演示",
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
+    "start": "node scripts/serve-live.mjs",
     "test": "node --test",
     "demo": "node scripts/serve-demo.mjs",
     "check:secrets": "node scripts/check-secrets.mjs"
+  },
+  "dependencies": {
+    "@amap/amap-maps-mcp-server": "0.0.8",
+    "@modelcontextprotocol/sdk": "1.32.1",
+    "12306-mcp": "0.3.10"
   }
 }

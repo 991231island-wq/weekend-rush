@@ -1,0 +1,881 @@
+{
+  "scenario": "开发者公开地点联调样例；非用户实际出行安排",
+  "input": {
+    "originCity": "杭州",
+    "destinationCity": "上海",
+    "fromStationCode": "HGH",
+    "toStationCode": "AOH",
+    "departureDate": "2026-10-17",
+    "returnDate": "2026-10-18",
+    "outboundTicketId": "2026-10-17:G7530:HGH:AOH",
+    "returnTicketId": "2026-10-18:G231:AOH:HGH",
+    "outboundSeat": "二等座",
+    "returnSeat": "二等座",
+    "stationPoiId": "B00155MPRL",
+    "overnightPoiId": "B0FFKGW7A6",
+    "places": [
+      {
+        "id": "B00155FXB3",
+        "required": true,
+        "durationMinutes": 90,
+        "admissionCny": ""
+      },
+      {
+        "id": "B00157917M",
+        "required": false,
+        "durationMinutes": 60,
+        "admissionCny": ""
+      }
+    ],
+    "budgetCny": 1000,
+    "foodDailyCny": 120,
+    "hotelCny": 260,
+    "transitDailyCny": 30,
+    "homeTransferMinutes": 45,
+    "earliestLeaveTime": "06:00",
+    "latestHomeTime": "21:00"
+  },
+  "status": 200,
+  "data": {
+    "generatedAt": "2026-10-15T14:01:10.149Z",
+    "engine": "真实 MCP 数据＋确定性规则规划",
+    "variants": [
+      {
+        "id": "coverage",
+        "name": "多覆盖方案",
+        "events": [
+          {
+            "id": "cover-1",
+            "title": "住处 → 出发站（用户估算）",
+            "kind": "transfer",
+            "startAt": "2026-10-17T07:08:00+08:00",
+            "endAt": "2026-10-17T07:53:00+08:00",
+            "costCents": null,
+            "costStatus": "unknown",
+            "walkingMeters": 0,
+            "bookingStatus": "not-required",
+            "openingStatus": "verified",
+            "source": "用户接驳时间估算",
+            "note": "本段费用未计入市内预留，请单独核实。"
+          },
+          {
+            "id": "cover-2",
+            "title": "进站与候车",
+            "kind": "rest",
+            "startAt": "2026-10-17T07:53:00+08:00",
+            "endAt": "2026-10-17T08:38:00+08:00",
+            "costCents": 0,
+            "costStatus": "known",
+            "walkingMeters": 0,
+            "bookingStatus": "not-required",
+            "openingStatus": "verified",
+            "source": "规划预留 45 分钟"
+          },
+          {
+            "id": "cover-3",
+            "title": "G7530 · 杭州东 → 上海虹桥",
+            "kind": "train",
+            "startAt": "2026-10-17T08:38:00+08:00",
+            "endAt": "2026-10-17T09:38:00+08:00",
+            "costCents": 8700,
+            "costStatus": "known",
+            "walkingMeters": 0,
+            "bookingStatus": "not-required",
+            "openingStatus": "verified",
+            "source": "12306 MCP",
+            "queriedAt": "2026-10-15T14:01:00.069Z",
+            "note": "二等座 · 查询时有票，尚未购买"
+          },
+          {
+            "id": "cover-4",
+            "title": "出站缓冲",
+            "kind": "rest",
+            "startAt": "2026-10-17T09:38:00+08:00",
+            "endAt": "2026-10-17T10:08:00+08:00",
+            "costCents": 0,
+            "costStatus": "known",
+            "walkingMeters": 0,
+            "bookingStatus": "not-required",
+            "openingStatus": "verified",
+            "source": "规划预留 30 分钟"
+          },
+          {
+            "id": "cover-5",
+            "title": "上海虹桥站 → 外滩",
+            "kind": "transfer",
+            "startAt": "2026-10-17T10:08:00+08:00",
+            "endAt": "2026-10-17T11:13:00+08:00",
+            "costCents": 3000,
+            "costStatus": "estimate",
+            "walkingMeters": 1431,
+            "bookingStatus": "not-required",
+            "openingStatus": "verified",
+            "placeId": "B00155FXB3",
+            "distanceMeters": 20759,
+            "mode": "transit",
+            "source": "高德 MCP 0.0.8",
+            "queriedAt": "2026-10-15T14:01:01.397Z",
+            "cacheHit": false,
+            "note": "本项计入当天全部市内交通预留，实际公交票价未取得。"
+          },
+          {
+            "id": "cover-6",
+            "title": "外滩",
+            "kind": "visit",
+            "startAt": "2026-10-17T11:13:00+08:00",
+            "endAt": "2026-10-17T12:43:00+08:00",
+            "costCents": null,
+            "costStatus": "unknown",
+            "walkingMeters": 0,
+            "bookingStatus": "unknown",
+            "openingStatus": "unknown",
+            "placeId": "B00155FXB3",
+            "required": true,
+            "source": "高德 MCP 0.0.8",
+            "queriedAt": "2026-10-15T14:00:56.299Z",
+            "note": "地点与坐标已查；游览时长及门票预留由用户填写。营业时段和预约须核实。"
+          },
+          {
+            "id": "cover-7",
+            "title": "附近用餐（餐厅待选择）",
+            "kind": "rest",
+            "startAt": "2026-10-17T12:43:00+08:00",
+            "endAt": "2026-10-17T13:28:00+08:00",
+            "costCents": 12000,
+            "costStatus": "estimate",
+            "walkingMeters": 0,
+            "bookingStatus": "not-required",
+            "openingStatus": "verified",
+            "placeId": "B00155FXB3",
+            "source": "用户餐饮预算与用餐时长估算",
+            "note": "此金额覆盖当天全部餐饮，餐厅与实际价格待确认。"
+          },
+          {
+            "id": "cover-8",
+            "title": "外滩 → 上海人民广场",
+            "kind": "transfer",
+            "startAt": "2026-10-17T13:28:00+08:00",
+            "endAt": "2026-10-17T13:56:00+08:00",
+            "costCents": 0,
+            "costStatus": "estimate",
+            "walkingMeters": 2047,
+            "bookingStatus": "not-required",
+            "openingStatus": "verified",
+            "placeId": "B00157917M",
+            "distanceMeters": 2047,
+            "mode": "walking",
+            "source": "高德 MCP 0.0.8",
+            "queriedAt": "2026-10-15T14:01:03.446Z",
+            "cacheHit": false,
+            "note": "市内费用已计入当天交通预留；景区内步行未计入。"
+          },
+          {
+            "id": "cover-9",
+            "title": "上海人民广场",
+            "kind": "visit",
+            "startAt": "2026-10-17T13:56:00+08:00",
+            "endAt": "2026-10-17T14:56:00+08:00",
+            "costCents": null,
+            "costStatus": "unknown",
+            "walkingMeters": 0,
+            "bookingStatus": "unknown",
+            "openingStatus": "unknown",
+            "placeId": "B00157917M",
+            "required": false,
+            "source": "高德 MCP 0.0.8",
+            "queriedAt": "2026-10-15T14:00:57.379Z",
+            "note": "地点与坐标已查；游览时长及门票预留由用户填写。营业时段和预约须核实。"
+          },
+          {
+            "id": "cover-10",
+            "title": "上海人民广场 → 全季酒店(上海人民广场店)",
+            "kind": "transfer",
+            "startAt": "2026-10-17T14:56:00+08:00",
+            "endAt": "2026-10-17T15:11:00+08:00",
+            "costCents": 0,
+            "costStatus": "estimate",
+            "walkingMeters": 1101,
+            "bookingStatus": "not-required",
+            "openingStatus": "verified",
+            "placeId": "B0FFKGW7A6",
+            "distanceMeters": 1101,
+            "mode": "walking",
+            "source": "高德 MCP 0.0.8",
+            "queriedAt": "2026-10-15T14:01:04.543Z",
+            "cacheHit": true,
+            "note": "市内费用已计入当天交通预留；景区内步行未计入。"
+          },
+          {
+            "id": "cover-11",
+            "title": "住宿参考点自由休息",
+            "kind": "rest",
+            "startAt": "2026-10-17T15:11:00+08:00",
+            "endAt": "2026-10-17T18:00:00+08:00",
+            "costCents": 0,
+            "costStatus": "known",
+            "walkingMeters": 0,
+            "bookingStatus": "not-required",
+            "openingStatus": "verified",
+            "placeId": "B0FFKGW7A6",
+            "source": "自由缓冲时段，住宿未预订"
+          },
+          {
+            "id": "cover-12",
+            "title": "晚餐预留（餐厅待选择）",
+            "kind": "rest",
+            "startAt": "2026-10-17T18:00:00+08:00",
+            "endAt": "2026-10-17T18:45:00+08:00",
+            "costCents": 0,
+            "costStatus": "estimate",
+            "walkingMeters": 0,
+            "bookingStatus": "not-required",
+            "openingStatus": "verified",
+            "placeId": "B0FFKGW7A6",
+            "source": "用餐时长估算",
+            "note": "已计入当天餐饮预留。"
+          },
+          {
+            "id": "cover-13",
+            "title": "住宿参考：全季酒店(上海人民广场店)",
+            "kind": "stay",
+            "startAt": "2026-10-17T18:45:00+08:00",
+            "endAt": "2026-10-18T08:30:00+08:00",
+            "costCents": 26000,
+            "costStatus": "estimate",
+            "walkingMeters": 0,
+            "bookingStatus": "required-unconfirmed",
+            "openingStatus": "verified",
+            "placeId": "B0FFKGW7A6",
+            "source": "高德地点＋用户住宿预算",
+            "queriedAt": "2026-10-15T14:00:58.470Z",
+            "note": "仅为路线参考点，未查询房价或预订。"
+          },
+          {
+            "id": "cover-14",
+            "title": "早餐与全天餐饮预留",
+            "kind": "rest",
+            "startAt": "2026-10-18T08:30:00+08:00",
+            "endAt": "2026-10-18T09:15:00+08:00",
+            "costCents": 12000,
+            "costStatus": "estimate",
+            "walkingMeters": 0,
+            "bookingStatus": "not-required",
+            "openingStatus": "verified",
+            "placeId": "B0FFKGW7A6",
+            "source": "用户餐饮预算与用餐时长估算",
+            "note": "此金额覆盖当天全部餐饮，餐厅与实际价格待确认。"
+          },
+          {
+            "id": "cover-15",
+            "title": "自由休息与机动时间（休息点待确认）",
+            "kind": "rest",
+            "startAt": "2026-10-18T09:15:00+08:00",
+            "endAt": "2026-10-18T11:30:00+08:00",
+            "costCents": 0,
+            "costStatus": "known",
+            "walkingMeters": 0,
+            "bookingStatus": "not-required",
+            "openingStatus": "verified",
+            "placeId": "B0FFKGW7A6",
+            "source": "规划机动时间"
+          },
+          {
+            "id": "cover-16",
+            "title": "附近用餐（餐厅待选择）",
+            "kind": "rest",
+            "startAt": "2026-10-18T11:30:00+08:00",
+            "endAt": "2026-10-18T12:15:00+08:00",
+            "costCents": 0,
+            "costStatus": "estimate",
+            "walkingMeters": 0,
+            "bookingStatus": "not-required",
+            "openingStatus": "verified",
+            "placeId": "B0FFKGW7A6",
+            "source": "用户餐饮预算与用餐时长估算",
+            "note": "已计入当天餐饮预留，餐厅与绕行待确认。"
+          },
+          {
+            "id": "cover-17",
+            "title": "全季酒店(上海人民广场店) → 上海虹桥站",
+            "kind": "transfer",
+            "startAt": "2026-10-18T12:15:00+08:00",
+            "endAt": "2026-10-18T13:03:00+08:00",
+            "costCents": 3000,
+            "costStatus": "estimate",
+            "walkingMeters": 638,
+            "bookingStatus": "not-required",
+            "openingStatus": "verified",
+            "placeId": "B00155MPRL",
+            "distanceMeters": 19390,
+            "mode": "transit",
+            "source": "高德 MCP 0.0.8",
+            "queriedAt": "2026-10-15T14:01:06.854Z",
+            "cacheHit": false,
+            "note": "本项计入当天全部市内交通预留，实际公交票价未取得。"
+          },
+          {
+            "id": "cover-18",
+            "title": "进站、安检与候车",
+            "kind": "rest",
+            "startAt": "2026-10-18T13:03:00+08:00",
+            "endAt": "2026-10-18T17:13:00+08:00",
+            "costCents": 0,
+            "costStatus": "known",
+            "walkingMeters": 0,
+            "bookingStatus": "not-required",
+            "openingStatus": "verified",
+            "source": "至少预留 60 分钟"
+          },
+          {
+            "id": "cover-19",
+            "title": "G231 · 上海虹桥 → 杭州东",
+            "kind": "train",
+            "startAt": "2026-10-18T17:13:00+08:00",
+            "endAt": "2026-10-18T17:58:00+08:00",
+            "costCents": 8700,
+            "costStatus": "known",
+            "walkingMeters": 0,
+            "bookingStatus": "not-required",
+            "openingStatus": "verified",
+            "source": "12306 MCP",
+            "queriedAt": "2026-10-15T14:00:59.931Z",
+            "note": "二等座 · 查询时有票，尚未购买"
+          },
+          {
+            "id": "cover-20",
+            "title": "出站与回家（用户估算）",
+            "kind": "transfer",
+            "startAt": "2026-10-18T17:58:00+08:00",
+            "endAt": "2026-10-18T19:13:00+08:00",
+            "costCents": null,
+            "costStatus": "unknown",
+            "walkingMeters": 0,
+            "bookingStatus": "not-required",
+            "openingStatus": "verified",
+            "source": "30 分钟出站预留＋用户接驳估算",
+            "note": "住处接驳费用未知，不包含在目的城市交通预留内。"
+          }
+        ],
+        "omitted": [],
+        "arrivalHomeAt": "2026-10-18T19:13:00+08:00",
+        "totalWalkingMeters": 5217,
+        "walkingNotice": "仅汇总地图路线中的步行；景区内、车站内与住处接驳步行未完整计入。",
+        "status": "draft",
+        "validation": {
+          "valid": true,
+          "feasible": false,
+          "errors": [],
+          "warnings": [
+            {
+              "code": "cost-unknown",
+              "eventId": "cover-1"
+            },
+            {
+              "code": "cost-estimated",
+              "eventId": "cover-5"
+            },
+            {
+              "code": "cost-unknown",
+              "eventId": "cover-6"
+            },
+            {
+              "code": "booking-unconfirmed",
+              "eventId": "cover-6"
+            },
+            {
+              "code": "opening-hours-unknown",
+              "eventId": "cover-6"
+            },
+            {
+              "code": "cost-estimated",
+              "eventId": "cover-7"
+            },
+            {
+              "code": "cost-estimated",
+              "eventId": "cover-8"
+            },
+            {
+              "code": "cost-unknown",
+              "eventId": "cover-9"
+            },
+            {
+              "code": "booking-unconfirmed",
+              "eventId": "cover-9"
+            },
+            {
+              "code": "opening-hours-unknown",
+              "eventId": "cover-9"
+            },
+            {
+              "code": "cost-estimated",
+              "eventId": "cover-10"
+            },
+            {
+              "code": "cost-estimated",
+              "eventId": "cover-12"
+            },
+            {
+              "code": "cost-estimated",
+              "eventId": "cover-13"
+            },
+            {
+              "code": "booking-unconfirmed",
+              "eventId": "cover-13"
+            },
+            {
+              "code": "cost-estimated",
+              "eventId": "cover-14"
+            },
+            {
+              "code": "cost-estimated",
+              "eventId": "cover-16"
+            },
+            {
+              "code": "cost-estimated",
+              "eventId": "cover-17"
+            },
+            {
+              "code": "cost-unknown",
+              "eventId": "cover-20"
+            },
+            {
+              "code": "budget-not-fully-verifiable"
+            }
+          ],
+          "totalCostCents": null,
+          "knownCostCents": 73400
+        },
+        "budgetCents": 100000,
+        "costNotice": "已知票价＋用户预留小计；未知费用尚未计全，不代表总预算满足。"
+      },
+      {
+        "id": "gentle",
+        "name": "少步行方案",
+        "events": [
+          {
+            "id": "gentle-1",
+            "title": "住处 → 出发站（用户估算）",
+            "kind": "transfer",
+            "startAt": "2026-10-17T07:08:00+08:00",
+            "endAt": "2026-10-17T07:53:00+08:00",
+            "costCents": null,
+            "costStatus": "unknown",
+            "walkingMeters": 0,
+            "bookingStatus": "not-required",
+            "openingStatus": "verified",
+            "source": "用户接驳时间估算",
+            "note": "本段费用未计入市内预留，请单独核实。"
+          },
+          {
+            "id": "gentle-2",
+            "title": "进站与候车",
+            "kind": "rest",
+            "startAt": "2026-10-17T07:53:00+08:00",
+            "endAt": "2026-10-17T08:38:00+08:00",
+            "costCents": 0,
+            "costStatus": "known",
+            "walkingMeters": 0,
+            "bookingStatus": "not-required",
+            "openingStatus": "verified",
+            "source": "规划预留 45 分钟"
+          },
+          {
+            "id": "gentle-3",
+            "title": "G7530 · 杭州东 → 上海虹桥",
+            "kind": "train",
+            "startAt": "2026-10-17T08:38:00+08:00",
+            "endAt": "2026-10-17T09:38:00+08:00",
+            "costCents": 8700,
+            "costStatus": "known",
+            "walkingMeters": 0,
+            "bookingStatus": "not-required",
+            "openingStatus": "verified",
+            "source": "12306 MCP",
+            "queriedAt": "2026-10-15T14:01:00.069Z",
+            "note": "二等座 · 查询时有票，尚未购买"
+          },
+          {
+            "id": "gentle-4",
+            "title": "出站缓冲",
+            "kind": "rest",
+            "startAt": "2026-10-17T09:38:00+08:00",
+            "endAt": "2026-10-17T10:08:00+08:00",
+            "costCents": 0,
+            "costStatus": "known",
+            "walkingMeters": 0,
+            "bookingStatus": "not-required",
+            "openingStatus": "verified",
+            "source": "规划预留 30 分钟"
+          },
+          {
+            "id": "gentle-5",
+            "title": "上海虹桥站 → 外滩",
+            "kind": "transfer",
+            "startAt": "2026-10-17T10:08:00+08:00",
+            "endAt": "2026-10-17T11:53:00+08:00",
+            "costCents": 3000,
+            "costStatus": "estimate",
+            "walkingMeters": 653,
+            "bookingStatus": "not-required",
+            "openingStatus": "verified",
+            "placeId": "B00155FXB3",
+            "distanceMeters": 20759,
+            "mode": "transit",
+            "source": "高德 MCP 0.0.8",
+            "queriedAt": "2026-10-15T14:01:01.397Z",
+            "cacheHit": true,
+            "note": "本项计入当天全部市内交通预留，实际公交票价未取得。"
+          },
+          {
+            "id": "gentle-6",
+            "title": "外滩",
+            "kind": "visit",
+            "startAt": "2026-10-17T11:53:00+08:00",
+            "endAt": "2026-10-17T13:23:00+08:00",
+            "costCents": null,
+            "costStatus": "unknown",
+            "walkingMeters": 0,
+            "bookingStatus": "unknown",
+            "openingStatus": "unknown",
+            "placeId": "B00155FXB3",
+            "required": true,
+            "source": "高德 MCP 0.0.8",
+            "queriedAt": "2026-10-15T14:00:56.299Z",
+            "note": "地点与坐标已查；游览时长及门票预留由用户填写。营业时段和预约须核实。"
+          },
+          {
+            "id": "gentle-7",
+            "title": "附近用餐（餐厅待选择）",
+            "kind": "rest",
+            "startAt": "2026-10-17T13:23:00+08:00",
+            "endAt": "2026-10-17T14:08:00+08:00",
+            "costCents": 12000,
+            "costStatus": "estimate",
+            "walkingMeters": 0,
+            "bookingStatus": "not-required",
+            "openingStatus": "verified",
+            "placeId": "B00155FXB3",
+            "source": "用户餐饮预算与用餐时长估算",
+            "note": "此金额覆盖当天全部餐饮，餐厅与实际价格待确认。"
+          },
+          {
+            "id": "gentle-8",
+            "title": "外滩 → 上海人民广场",
+            "kind": "transfer",
+            "startAt": "2026-10-17T14:08:00+08:00",
+            "endAt": "2026-10-17T14:33:00+08:00",
+            "costCents": 0,
+            "costStatus": "estimate",
+            "walkingMeters": 656,
+            "bookingStatus": "not-required",
+            "openingStatus": "verified",
+            "placeId": "B00157917M",
+            "distanceMeters": 2129,
+            "mode": "transit",
+            "source": "高德 MCP 0.0.8",
+            "queriedAt": "2026-10-15T14:01:09.094Z",
+            "cacheHit": false,
+            "note": "市内费用已计入当天交通预留；景区内步行未计入。"
+          },
+          {
+            "id": "gentle-9",
+            "title": "上海人民广场",
+            "kind": "visit",
+            "startAt": "2026-10-17T14:33:00+08:00",
+            "endAt": "2026-10-17T15:33:00+08:00",
+            "costCents": null,
+            "costStatus": "unknown",
+            "walkingMeters": 0,
+            "bookingStatus": "unknown",
+            "openingStatus": "unknown",
+            "placeId": "B00157917M",
+            "required": false,
+            "source": "高德 MCP 0.0.8",
+            "queriedAt": "2026-10-15T14:00:57.379Z",
+            "note": "地点与坐标已查；游览时长及门票预留由用户填写。营业时段和预约须核实。"
+          },
+          {
+            "id": "gentle-10",
+            "title": "上海人民广场 → 全季酒店(上海人民广场店)",
+            "kind": "transfer",
+            "startAt": "2026-10-17T15:33:00+08:00",
+            "endAt": "2026-10-17T15:57:00+08:00",
+            "costCents": 0,
+            "costStatus": "estimate",
+            "walkingMeters": 584,
+            "bookingStatus": "not-required",
+            "openingStatus": "verified",
+            "placeId": "B0FFKGW7A6",
+            "distanceMeters": 915,
+            "mode": "transit",
+            "source": "高德 MCP 0.0.8",
+            "queriedAt": "2026-10-15T14:01:10.147Z",
+            "cacheHit": true,
+            "note": "市内费用已计入当天交通预留；景区内步行未计入。"
+          },
+          {
+            "id": "gentle-11",
+            "title": "住宿参考点自由休息",
+            "kind": "rest",
+            "startAt": "2026-10-17T15:57:00+08:00",
+            "endAt": "2026-10-17T18:00:00+08:00",
+            "costCents": 0,
+            "costStatus": "known",
+            "walkingMeters": 0,
+            "bookingStatus": "not-required",
+            "openingStatus": "verified",
+            "placeId": "B0FFKGW7A6",
+            "source": "自由缓冲时段，住宿未预订"
+          },
+          {
+            "id": "gentle-12",
+            "title": "晚餐预留（餐厅待选择）",
+            "kind": "rest",
+            "startAt": "2026-10-17T18:00:00+08:00",
+            "endAt": "2026-10-17T18:45:00+08:00",
+            "costCents": 0,
+            "costStatus": "estimate",
+            "walkingMeters": 0,
+            "bookingStatus": "not-required",
+            "openingStatus": "verified",
+            "placeId": "B0FFKGW7A6",
+            "source": "用餐时长估算",
+            "note": "已计入当天餐饮预留。"
+          },
+          {
+            "id": "gentle-13",
+            "title": "住宿参考：全季酒店(上海人民广场店)",
+            "kind": "stay",
+            "startAt": "2026-10-17T18:45:00+08:00",
+            "endAt": "2026-10-18T08:30:00+08:00",
+            "costCents": 26000,
+            "costStatus": "estimate",
+            "walkingMeters": 0,
+            "bookingStatus": "required-unconfirmed",
+            "openingStatus": "verified",
+            "placeId": "B0FFKGW7A6",
+            "source": "高德地点＋用户住宿预算",
+            "queriedAt": "2026-10-15T14:00:58.470Z",
+            "note": "仅为路线参考点，未查询房价或预订。"
+          },
+          {
+            "id": "gentle-14",
+            "title": "早餐与全天餐饮预留",
+            "kind": "rest",
+            "startAt": "2026-10-18T08:30:00+08:00",
+            "endAt": "2026-10-18T09:15:00+08:00",
+            "costCents": 12000,
+            "costStatus": "estimate",
+            "walkingMeters": 0,
+            "bookingStatus": "not-required",
+            "openingStatus": "verified",
+            "placeId": "B0FFKGW7A6",
+            "source": "用户餐饮预算与用餐时长估算",
+            "note": "此金额覆盖当天全部餐饮，餐厅与实际价格待确认。"
+          },
+          {
+            "id": "gentle-15",
+            "title": "自由休息与机动时间（休息点待确认）",
+            "kind": "rest",
+            "startAt": "2026-10-18T09:15:00+08:00",
+            "endAt": "2026-10-18T11:30:00+08:00",
+            "costCents": 0,
+            "costStatus": "known",
+            "walkingMeters": 0,
+            "bookingStatus": "not-required",
+            "openingStatus": "verified",
+            "placeId": "B0FFKGW7A6",
+            "source": "规划机动时间"
+          },
+          {
+            "id": "gentle-16",
+            "title": "附近用餐（餐厅待选择）",
+            "kind": "rest",
+            "startAt": "2026-10-18T11:30:00+08:00",
+            "endAt": "2026-10-18T12:15:00+08:00",
+            "costCents": 0,
+            "costStatus": "estimate",
+            "walkingMeters": 0,
+            "bookingStatus": "not-required",
+            "openingStatus": "verified",
+            "placeId": "B0FFKGW7A6",
+            "source": "用户餐饮预算与用餐时长估算",
+            "note": "已计入当天餐饮预留，餐厅与绕行待确认。"
+          },
+          {
+            "id": "gentle-17",
+            "title": "全季酒店(上海人民广场店) → 上海虹桥站",
+            "kind": "transfer",
+            "startAt": "2026-10-18T12:15:00+08:00",
+            "endAt": "2026-10-18T13:03:00+08:00",
+            "costCents": 3000,
+            "costStatus": "estimate",
+            "walkingMeters": 638,
+            "bookingStatus": "not-required",
+            "openingStatus": "verified",
+            "placeId": "B00155MPRL",
+            "distanceMeters": 19390,
+            "mode": "transit",
+            "source": "高德 MCP 0.0.8",
+            "queriedAt": "2026-10-15T14:01:06.854Z",
+            "cacheHit": true,
+            "note": "本项计入当天全部市内交通预留，实际公交票价未取得。"
+          },
+          {
+            "id": "gentle-18",
+            "title": "进站、安检与候车",
+            "kind": "rest",
+            "startAt": "2026-10-18T13:03:00+08:00",
+            "endAt": "2026-10-18T17:13:00+08:00",
+            "costCents": 0,
+            "costStatus": "known",
+            "walkingMeters": 0,
+            "bookingStatus": "not-required",
+            "openingStatus": "verified",
+            "source": "至少预留 60 分钟"
+          },
+          {
+            "id": "gentle-19",
+            "title": "G231 · 上海虹桥 → 杭州东",
+            "kind": "train",
+            "startAt": "2026-10-18T17:13:00+08:00",
+            "endAt": "2026-10-18T17:58:00+08:00",
+            "costCents": 8700,
+            "costStatus": "known",
+            "walkingMeters": 0,
+            "bookingStatus": "not-required",
+            "openingStatus": "verified",
+            "source": "12306 MCP",
+            "queriedAt": "2026-10-15T14:00:59.931Z",
+            "note": "二等座 · 查询时有票，尚未购买"
+          },
+          {
+            "id": "gentle-20",
+            "title": "出站与回家（用户估算）",
+            "kind": "transfer",
+            "startAt": "2026-10-18T17:58:00+08:00",
+            "endAt": "2026-10-18T19:13:00+08:00",
+            "costCents": null,
+            "costStatus": "unknown",
+            "walkingMeters": 0,
+            "bookingStatus": "not-required",
+            "openingStatus": "verified",
+            "source": "30 分钟出站预留＋用户接驳估算",
+            "note": "住处接驳费用未知，不包含在目的城市交通预留内。"
+          }
+        ],
+        "omitted": [],
+        "arrivalHomeAt": "2026-10-18T19:13:00+08:00",
+        "totalWalkingMeters": 2531,
+        "walkingNotice": "仅汇总地图路线中的步行；景区内、车站内与住处接驳步行未完整计入。",
+        "status": "draft",
+        "validation": {
+          "valid": true,
+          "feasible": false,
+          "errors": [],
+          "warnings": [
+            {
+              "code": "cost-unknown",
+              "eventId": "gentle-1"
+            },
+            {
+              "code": "cost-estimated",
+              "eventId": "gentle-5"
+            },
+            {
+              "code": "cost-unknown",
+              "eventId": "gentle-6"
+            },
+            {
+              "code": "booking-unconfirmed",
+              "eventId": "gentle-6"
+            },
+            {
+              "code": "opening-hours-unknown",
+              "eventId": "gentle-6"
+            },
+            {
+              "code": "cost-estimated",
+              "eventId": "gentle-7"
+            },
+            {
+              "code": "cost-estimated",
+              "eventId": "gentle-8"
+            },
+            {
+              "code": "cost-unknown",
+              "eventId": "gentle-9"
+            },
+            {
+              "code": "booking-unconfirmed",
+              "eventId": "gentle-9"
+            },
+            {
+              "code": "opening-hours-unknown",
+              "eventId": "gentle-9"
+            },
+            {
+              "code": "cost-estimated",
+              "eventId": "gentle-10"
+            },
+            {
+              "code": "cost-estimated",
+              "eventId": "gentle-12"
+            },
+            {
+              "code": "cost-estimated",
+              "eventId": "gentle-13"
+            },
+            {
+              "code": "booking-unconfirmed",
+              "eventId": "gentle-13"
+            },
+            {
+              "code": "cost-estimated",
+              "eventId": "gentle-14"
+            },
+            {
+              "code": "cost-estimated",
+              "eventId": "gentle-16"
+            },
+            {
+              "code": "cost-estimated",
+              "eventId": "gentle-17"
+            },
+            {
+              "code": "cost-unknown",
+              "eventId": "gentle-20"
+            },
+            {
+              "code": "budget-not-fully-verifiable"
+            }
+          ],
+          "totalCostCents": null,
+          "knownCostCents": 73400
+        },
+        "budgetCents": 100000,
+        "costNotice": "已知票价＋用户预留小计；未知费用尚未计全，不代表总预算满足。"
+      }
+    ],
+    "railQueries": [
+      {
+        "source": "12306 MCP 0.3.10",
+        "queriedAt": "2026-10-15T14:01:00.069Z",
+        "cacheHit": false,
+        "rejectedCount": 230
+      },
+      {
+        "source": "12306 MCP 0.3.10",
+        "queriedAt": "2026-10-15T14:00:59.931Z",
+        "cacheHit": false,
+        "rejectedCount": 213
+      }
+    ],
+    "notices": [
+      "车票未购买；余票和价格可能随时变化。",
+      "地图提供常规路线估计，不保证出行日的班次或拥堵情况。",
+      "餐饮、住宿和交通预留为用户估算；门票、营业安排及预约仍需核实。",
+      "住处接驳和景区内部步行尚未查证，到家时间与步行总量均有估算边界。"
+    ]
+  }
+}

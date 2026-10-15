@@ -183,7 +183,7 @@ export function validatePlan(plan, constraints = {}) {
   ordered.sort((a, b) => a.start - b.start);
   for (let i = 1; i < ordered.length; i++) if (ordered[i].start < ordered[i - 1].end) errors.push({ code: 'event-overlap', eventId: ordered[i].id, overlapsWith: ordered[i - 1].id });
   const expected = constraints.mustVisitIds ?? [];
-  for (const id of expected) if (!events.some(event => event.placeId === id || event.id === id)) errors.push({ code: 'must-visit-missing', placeId: id });
+  for (const id of expected) if (!events.some(event => (!event.kind || event.kind === 'visit') && (event.placeId === id || event.id === id))) errors.push({ code: 'must-visit-missing', placeId: id });
   if (Number.isInteger(constraints.budgetCents) && totalCents > constraints.budgetCents) errors.push({ code: 'budget-exceeded', totalCents, budgetCents: constraints.budgetCents });
   if (constraints.latestHomeAt && plan.arrivalHomeAt) {
     if (parseInstant(plan.arrivalHomeAt, 'arrivalHomeAt') > parseInstant(constraints.latestHomeAt, 'latestHomeAt')) errors.push({ code: 'home-deadline-missed' });

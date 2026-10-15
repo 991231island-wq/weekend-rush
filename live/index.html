@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>周末快闪 · 真实数据规划</title><link rel="stylesheet" href="/live.css"><script type="module" src="/live.js"></script></head>
+<body>
+<header class="topbar"><a href="/" class="brand"><b>周</b><span>周末快闪<small>WEEKEND RUSH</small></span></a><nav><a href="#trip">出行条件</a><a href="#places">选择地点</a><a href="#results">行程方案</a><a href="/demo">模拟演示</a></nav><span class="live-badge">● 真实接口 · 本机运行</span></header>
+<main>
+  <section class="hero"><div><p class="eyebrow">REAL PLACES. REAL CONNECTIONS.</p><h1>让想去的地方，<br><em>成为走得通的周末。</em></h1><p>先选真实车次与具体地点，再核对时间、费用和取舍。</p></div><div class="status-box"><span>DATA CONNECTION</span><strong id="connectionStatus">正在检查本机配置…</strong><p>查询通过本机后端连接 12306 与高德，Key 不发送给浏览器。</p></div></section>
+  <div id="globalNotice" class="notice" role="status" aria-live="polite">本版支持一个目的城市、相邻两天一晚、同一对车站直达往返。餐宿等预留仍需你确认。</div>
+
+  <section class="panel" id="trip"><div class="section-title"><span class="step">01</span><div><p class="eyebrow">WHEN & HOW</p><h2>先把出发和返程定下来。</h2><p>车站列表与车次均为实际查询。每人金额按单人计算。</p></div></div>
+    <div class="form-grid">
+      <label>出发城市<input id="originCity" value="杭州" maxlength="20"></label><label>目的城市<input id="destinationCity" value="上海" maxlength="20"></label>
+      <label>出发日期<input id="departureDate" type="date" required></label><label>返程日期<input id="returnDate" type="date" required></label>
+    </div>
+    <div class="inline-actions"><button id="loadStations" class="secondary">读取真实车站</button><span id="stationStatus" class="muted">先读取城市车站，再选择精确区间。</span></div>
+    <div class="form-grid two"><label>出发站（往返相同）<select id="fromStation"><option value="">请先读取车站</option></select></label><label>目的地车站（往返相同）<select id="toStation"><option value="">请先读取车站</option></select></label></div>
+    <details class="constraint-details" open><summary>时间与预算约束 <span>所有预留金额均可修改</span></summary><div class="form-grid">
+      <label>最早离开住处<input id="earliestLeaveTime" type="time" value="06:00"></label><label>返程日最晚到家<input id="latestHomeTime" type="time" value="21:00"></label>
+      <label>住处↔出发站，单程分钟（估计）<input id="homeTransferMinutes" type="number" min="0" max="240" value="45"></label><label>每人总预算（元）<input id="budgetCny" type="number" min="1" max="100000" value="1000"></label>
+      <label>每人每天餐饮预留（元）<input id="foodDailyCny" type="number" min="0" value="120"></label><label>每人一晚住宿预留（元）<input id="hotelCny" type="number" min="0" value="260"></label>
+      <label>每天市内交通预留（元）<input id="transitDailyCny" type="number" min="0" value="30"></label>
+    </div><p class="muted">进站另预留 45 分钟；返程进站至少预留 60 分钟。住处接驳费用尚未知，不会被算成免费。</p></details>
+    <div class="inline-actions"><button id="queryTrains" class="primary">查询往返车次与天气</button><span id="railStatus" class="muted"></span></div>
+    <div class="form-grid two"><label>选择去程与有票席别<select id="outboundTicket"><option value="">查询后选择</option></select></label><label>选择返程与有票席别<select id="returnTicket"><option value="">查询后选择</option></select></label></div>
+    <div id="railDetails"></div><div id="weather" class="weather-strip"></div>
+  </section>
+
+  <section class="panel" id="places"><div class="section-title"><span class="step">02</span><div><p class="eyebrow">EXACT PLACES MATTER</p><h2>选具体地点，消除同名歧义。</h2><p>目的地车站地图点、住宿参考点和景点都需选择。住宿参考点只用于计算路线，不代表已订房。</p></div></div>
+    <div class="search-row"><label>添加为<select id="placeRole"><option value="visit">游览景点</option><option value="station">目的地火车站主体</option><option value="lodging">住宿参考点</option></select></label><label class="grow">搜索目的城市中的地点<input id="placeKeywords" placeholder="例如：外滩、上海虹桥站、具体酒店或住宿附近地标" maxlength="50"></label><button id="searchPlaces" class="secondary">搜索真实地点</button></div>
+    <p id="placeStatus" class="muted" role="status"></p><div id="placeCandidates" class="candidate-list"></div>
+    <div class="selected-anchors"><div><span>目的地火车站地图点</span><strong id="stationAnchor">尚未选择</strong></div><div><span>住宿参考点（未预订）</span><strong id="lodgingAnchor">尚未选择</strong></div></div>
+    <div id="selectedPlaces" class="selected-list"><p class="empty">添加 1–6 个游览地点，勾选必去点，并填写你的游览时长与门票预留。</p></div>
+  </section>
+
+  <section class="generate-band"><div><h2>用这些条件，计算两种节奏。</h2><p>以真实路线生成多覆盖与少步行方案；信息不全时保留待核实项，冲突会明确指出。</p></div><button id="generatePlan" class="primary">查询路线并生成方案</button></section>
+  <p id="planStatus" class="notice hidden" role="status" aria-live="polite"></p>
+  <section id="results" class="results hidden"><div class="results-heading"><div><p class="eyebrow">YOUR LIVE-DATA DRAFT</p><h2>有依据，也留有余地。</h2><p id="generationMeta"></p></div><button id="previousResult" class="secondary hidden">查看上一轮结果</button></div><div id="planCards" class="plan-grid"></div><div id="validation" class="validation"></div><div id="omitted"></div><div id="timeline"></div><div id="dataNotices" class="data-notices"></div></section>
+  <section class="boundary"><h3>哪些是实时查询，哪些仍需确认？</h3><p>车票席别、查询时票价、地点详情、地图路线和天气来自 MCP 查询，并展示时间。高德路线为常规估计；营业时间、门票、预约、餐厅、酒店实际房价、景区内部步行及住处接驳仍需确认。页面不购票、不预订，也不把待确认信息当作已完成。</p><p>本版以真实工具数据和规则生成草案。更改条件后可重新计算并查看上一轮结果；途中按当前时间、位置和已完成活动重排仍在后续范围内。</p></section>
+</main><footer>周末快闪 · 本机真实数据版 <span>工具数据可变，出发前请在原服务复核。</span></footer>
+</body></html>
