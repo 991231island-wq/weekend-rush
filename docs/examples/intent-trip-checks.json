@@ -1,0 +1,663 @@
+{
+  "generatedAt": "2026-10-15T15:10:03.401Z",
+  "scenario": "开发者公开地点样例；非用户试用结果",
+  "plans": [
+    {
+      "id": "gentle",
+      "validation": {
+        "valid": true,
+        "feasible": false,
+        "errors": [],
+        "warnings": [
+          {
+            "code": "cost-unknown",
+            "eventId": "home-out"
+          },
+          {
+            "code": "cost-estimated",
+            "eventId": "station-out"
+          },
+          {
+            "code": "cost-estimated",
+            "eventId": "exit-out"
+          },
+          {
+            "code": "cost-estimated",
+            "eventId": "d1-station-bund"
+          },
+          {
+            "code": "cost-unknown",
+            "eventId": "d1-bund"
+          },
+          {
+            "code": "booking-unconfirmed",
+            "eventId": "d1-bund"
+          },
+          {
+            "code": "opening-hours-unknown",
+            "eventId": "d1-bund"
+          },
+          {
+            "code": "cost-estimated",
+            "eventId": "d1-bund-food"
+          },
+          {
+            "code": "cost-estimated",
+            "eventId": "d1-lunch"
+          },
+          {
+            "code": "booking-unconfirmed",
+            "eventId": "d1-lunch"
+          },
+          {
+            "code": "opening-hours-unknown",
+            "eventId": "d1-lunch"
+          },
+          {
+            "code": "cost-estimated",
+            "eventId": "d1-after-lunch"
+          },
+          {
+            "code": "cost-estimated",
+            "eventId": "d1-food-hotel"
+          },
+          {
+            "code": "cost-estimated",
+            "eventId": "d1-checkin"
+          },
+          {
+            "code": "cost-estimated",
+            "eventId": "d1-snack"
+          },
+          {
+            "code": "cost-estimated",
+            "eventId": "d1-flex"
+          },
+          {
+            "code": "cost-estimated",
+            "eventId": "d1-dinner"
+          },
+          {
+            "code": "cost-estimated",
+            "eventId": "d1-evening"
+          },
+          {
+            "code": "cost-estimated",
+            "eventId": "stay"
+          },
+          {
+            "code": "booking-unconfirmed",
+            "eventId": "stay"
+          },
+          {
+            "code": "cost-estimated",
+            "eventId": "d2-breakfast"
+          },
+          {
+            "code": "cost-estimated",
+            "eventId": "d2-hotel-wukang"
+          },
+          {
+            "code": "cost-unknown",
+            "eventId": "d2-wukang"
+          },
+          {
+            "code": "booking-unconfirmed",
+            "eventId": "d2-wukang"
+          },
+          {
+            "code": "opening-hours-unknown",
+            "eventId": "d2-wukang"
+          },
+          {
+            "code": "cost-estimated",
+            "eventId": "d2-rest"
+          },
+          {
+            "code": "cost-estimated",
+            "eventId": "d2-flex-before-lunch"
+          },
+          {
+            "code": "cost-estimated",
+            "eventId": "d2-lunch"
+          },
+          {
+            "code": "cost-estimated",
+            "eventId": "d2-tea"
+          },
+          {
+            "code": "cost-estimated",
+            "eventId": "d2-return-flex"
+          },
+          {
+            "code": "cost-estimated",
+            "eventId": "d2-wukang-station"
+          },
+          {
+            "code": "cost-estimated",
+            "eventId": "station-back"
+          },
+          {
+            "code": "cost-unknown",
+            "eventId": "home-back"
+          },
+          {
+            "code": "budget-not-fully-verifiable"
+          }
+        ],
+        "totalCostCents": null,
+        "knownCostCents": 73400
+      },
+      "completeness": []
+    },
+    {
+      "id": "coverage",
+      "validation": {
+        "valid": true,
+        "feasible": false,
+        "errors": [],
+        "warnings": [
+          {
+            "code": "cost-unknown",
+            "eventId": "home-out"
+          },
+          {
+            "code": "cost-estimated",
+            "eventId": "station-out"
+          },
+          {
+            "code": "cost-estimated",
+            "eventId": "exit-out"
+          },
+          {
+            "code": "cost-estimated",
+            "eventId": "d1-station-bund"
+          },
+          {
+            "code": "cost-unknown",
+            "eventId": "d1-bund"
+          },
+          {
+            "code": "booking-unconfirmed",
+            "eventId": "d1-bund"
+          },
+          {
+            "code": "opening-hours-unknown",
+            "eventId": "d1-bund"
+          },
+          {
+            "code": "cost-estimated",
+            "eventId": "d1-bund-food"
+          },
+          {
+            "code": "cost-estimated",
+            "eventId": "d1-lunch"
+          },
+          {
+            "code": "booking-unconfirmed",
+            "eventId": "d1-lunch"
+          },
+          {
+            "code": "opening-hours-unknown",
+            "eventId": "d1-lunch"
+          },
+          {
+            "code": "cost-estimated",
+            "eventId": "d1-after-lunch"
+          },
+          {
+            "code": "cost-estimated",
+            "eventId": "d1-food-square"
+          },
+          {
+            "code": "cost-unknown",
+            "eventId": "d1-square"
+          },
+          {
+            "code": "booking-unconfirmed",
+            "eventId": "d1-square"
+          },
+          {
+            "code": "opening-hours-unknown",
+            "eventId": "d1-square"
+          },
+          {
+            "code": "cost-estimated",
+            "eventId": "d1-square-hotel"
+          },
+          {
+            "code": "cost-estimated",
+            "eventId": "d1-checkin"
+          },
+          {
+            "code": "cost-estimated",
+            "eventId": "d1-snack"
+          },
+          {
+            "code": "cost-estimated",
+            "eventId": "d1-flex"
+          },
+          {
+            "code": "cost-estimated",
+            "eventId": "d1-dinner"
+          },
+          {
+            "code": "cost-estimated",
+            "eventId": "d1-evening"
+          },
+          {
+            "code": "cost-estimated",
+            "eventId": "stay"
+          },
+          {
+            "code": "booking-unconfirmed",
+            "eventId": "stay"
+          },
+          {
+            "code": "cost-estimated",
+            "eventId": "d2-breakfast"
+          },
+          {
+            "code": "cost-estimated",
+            "eventId": "d2-hotel-wukang"
+          },
+          {
+            "code": "cost-unknown",
+            "eventId": "d2-wukang"
+          },
+          {
+            "code": "booking-unconfirmed",
+            "eventId": "d2-wukang"
+          },
+          {
+            "code": "opening-hours-unknown",
+            "eventId": "d2-wukang"
+          },
+          {
+            "code": "cost-estimated",
+            "eventId": "d2-rest"
+          },
+          {
+            "code": "cost-estimated",
+            "eventId": "d2-wukang-street"
+          },
+          {
+            "code": "cost-unknown",
+            "eventId": "d2-street"
+          },
+          {
+            "code": "booking-unconfirmed",
+            "eventId": "d2-street"
+          },
+          {
+            "code": "opening-hours-unknown",
+            "eventId": "d2-street"
+          },
+          {
+            "code": "cost-estimated",
+            "eventId": "d2-lunch"
+          },
+          {
+            "code": "cost-estimated",
+            "eventId": "d2-tea"
+          },
+          {
+            "code": "cost-estimated",
+            "eventId": "d2-return-flex"
+          },
+          {
+            "code": "cost-estimated",
+            "eventId": "d2-street-station"
+          },
+          {
+            "code": "cost-estimated",
+            "eventId": "station-back"
+          },
+          {
+            "code": "cost-unknown",
+            "eventId": "home-back"
+          },
+          {
+            "code": "budget-not-fully-verifiable"
+          }
+        ],
+        "totalCostCents": null,
+        "knownCostCents": 73400
+      },
+      "completeness": []
+    }
+  ],
+  "revision": {
+    "diff": {
+      "valid": true,
+      "violations": [],
+      "changes": [
+        {
+          "eventId": "home-out",
+          "change": "kept",
+          "reason": null
+        },
+        {
+          "eventId": "station-out",
+          "change": "kept",
+          "reason": null
+        },
+        {
+          "eventId": "train-out",
+          "change": "kept",
+          "reason": null
+        },
+        {
+          "eventId": "exit-out",
+          "change": "kept",
+          "reason": null
+        },
+        {
+          "eventId": "d1-station-bund",
+          "change": "kept",
+          "reason": null
+        },
+        {
+          "eventId": "d1-bund",
+          "change": "kept",
+          "reason": null
+        },
+        {
+          "eventId": "d1-bund-food",
+          "change": "kept",
+          "reason": null
+        },
+        {
+          "eventId": "d1-lunch",
+          "change": "kept",
+          "reason": null
+        },
+        {
+          "eventId": "d1-after-lunch",
+          "change": "kept",
+          "reason": null
+        },
+        {
+          "eventId": "d1-food-square",
+          "change": "kept",
+          "reason": null
+        },
+        {
+          "eventId": "d1-square",
+          "change": "kept",
+          "reason": null
+        },
+        {
+          "eventId": "d1-square-hotel",
+          "change": "kept",
+          "reason": null
+        },
+        {
+          "eventId": "d1-checkin",
+          "change": "kept",
+          "reason": null
+        },
+        {
+          "eventId": "d1-snack",
+          "change": "kept",
+          "reason": null
+        },
+        {
+          "eventId": "d1-flex",
+          "change": "kept",
+          "reason": null
+        },
+        {
+          "eventId": "d1-dinner",
+          "change": "kept",
+          "reason": null
+        },
+        {
+          "eventId": "d1-evening",
+          "change": "kept",
+          "reason": null
+        },
+        {
+          "eventId": "stay",
+          "change": "kept",
+          "reason": null
+        },
+        {
+          "eventId": "d2-breakfast",
+          "change": "kept",
+          "reason": null
+        },
+        {
+          "eventId": "d2-hotel-wukang",
+          "change": "changed",
+          "reason": "第二天轻松一点，减少武康路延伸并增加休息，第一天保持原样。"
+        },
+        {
+          "eventId": "d2-wukang",
+          "change": "moved",
+          "reason": "第二天轻松一点，减少武康路延伸并增加休息，第一天保持原样。"
+        },
+        {
+          "eventId": "d2-rest",
+          "change": "moved",
+          "reason": "第二天轻松一点，减少武康路延伸并增加休息，第一天保持原样。"
+        },
+        {
+          "eventId": "d2-wukang-street",
+          "change": "removed",
+          "reason": "第二天轻松一点，减少武康路延伸并增加休息，第一天保持原样。"
+        },
+        {
+          "eventId": "d2-street",
+          "change": "removed",
+          "reason": "第二天轻松一点，减少武康路延伸并增加休息，第一天保持原样。"
+        },
+        {
+          "eventId": "d2-lunch",
+          "change": "changed",
+          "reason": "第二天轻松一点，减少武康路延伸并增加休息，第一天保持原样。"
+        },
+        {
+          "eventId": "d2-tea",
+          "change": "changed",
+          "reason": "第二天轻松一点，减少武康路延伸并增加休息，第一天保持原样。"
+        },
+        {
+          "eventId": "d2-return-flex",
+          "change": "changed",
+          "reason": "第二天轻松一点，减少武康路延伸并增加休息，第一天保持原样。"
+        },
+        {
+          "eventId": "d2-street-station",
+          "change": "removed",
+          "reason": "第二天轻松一点，减少武康路延伸并增加休息，第一天保持原样。"
+        },
+        {
+          "eventId": "station-back",
+          "change": "kept",
+          "reason": null
+        },
+        {
+          "eventId": "train-back",
+          "change": "kept",
+          "reason": null
+        },
+        {
+          "eventId": "home-back",
+          "change": "kept",
+          "reason": null
+        },
+        {
+          "eventId": "d2-flex-before-lunch",
+          "change": "added",
+          "reason": "第二天轻松一点，减少武康路延伸并增加休息，第一天保持原样。"
+        },
+        {
+          "eventId": "d2-wukang-station",
+          "change": "added",
+          "reason": "第二天轻松一点，减少武康路延伸并增加休息，第一天保持原样。"
+        }
+      ]
+    },
+    "validation": {
+      "valid": true,
+      "feasible": false,
+      "errors": [],
+      "warnings": [
+        {
+          "code": "cost-unknown",
+          "eventId": "home-out"
+        },
+        {
+          "code": "cost-estimated",
+          "eventId": "station-out"
+        },
+        {
+          "code": "cost-estimated",
+          "eventId": "exit-out"
+        },
+        {
+          "code": "cost-estimated",
+          "eventId": "d1-station-bund"
+        },
+        {
+          "code": "cost-unknown",
+          "eventId": "d1-bund"
+        },
+        {
+          "code": "booking-unconfirmed",
+          "eventId": "d1-bund"
+        },
+        {
+          "code": "opening-hours-unknown",
+          "eventId": "d1-bund"
+        },
+        {
+          "code": "cost-estimated",
+          "eventId": "d1-bund-food"
+        },
+        {
+          "code": "cost-estimated",
+          "eventId": "d1-lunch"
+        },
+        {
+          "code": "booking-unconfirmed",
+          "eventId": "d1-lunch"
+        },
+        {
+          "code": "opening-hours-unknown",
+          "eventId": "d1-lunch"
+        },
+        {
+          "code": "cost-estimated",
+          "eventId": "d1-after-lunch"
+        },
+        {
+          "code": "cost-estimated",
+          "eventId": "d1-food-square"
+        },
+        {
+          "code": "cost-unknown",
+          "eventId": "d1-square"
+        },
+        {
+          "code": "booking-unconfirmed",
+          "eventId": "d1-square"
+        },
+        {
+          "code": "opening-hours-unknown",
+          "eventId": "d1-square"
+        },
+        {
+          "code": "cost-estimated",
+          "eventId": "d1-square-hotel"
+        },
+        {
+          "code": "cost-estimated",
+          "eventId": "d1-checkin"
+        },
+        {
+          "code": "cost-estimated",
+          "eventId": "d1-snack"
+        },
+        {
+          "code": "cost-estimated",
+          "eventId": "d1-flex"
+        },
+        {
+          "code": "cost-estimated",
+          "eventId": "d1-dinner"
+        },
+        {
+          "code": "cost-estimated",
+          "eventId": "d1-evening"
+        },
+        {
+          "code": "cost-estimated",
+          "eventId": "stay"
+        },
+        {
+          "code": "booking-unconfirmed",
+          "eventId": "stay"
+        },
+        {
+          "code": "cost-estimated",
+          "eventId": "d2-breakfast"
+        },
+        {
+          "code": "cost-estimated",
+          "eventId": "d2-hotel-wukang"
+        },
+        {
+          "code": "cost-unknown",
+          "eventId": "d2-wukang"
+        },
+        {
+          "code": "booking-unconfirmed",
+          "eventId": "d2-wukang"
+        },
+        {
+          "code": "opening-hours-unknown",
+          "eventId": "d2-wukang"
+        },
+        {
+          "code": "cost-estimated",
+          "eventId": "d2-rest"
+        },
+        {
+          "code": "cost-estimated",
+          "eventId": "d2-flex-before-lunch"
+        },
+        {
+          "code": "cost-estimated",
+          "eventId": "d2-lunch"
+        },
+        {
+          "code": "cost-estimated",
+          "eventId": "d2-tea"
+        },
+        {
+          "code": "cost-estimated",
+          "eventId": "d2-return-flex"
+        },
+        {
+          "code": "cost-estimated",
+          "eventId": "d2-wukang-station"
+        },
+        {
+          "code": "cost-estimated",
+          "eventId": "station-back"
+        },
+        {
+          "code": "cost-unknown",
+          "eventId": "home-back"
+        },
+        {
+          "code": "budget-not-fully-verifiable"
+        }
+      ],
+      "totalCostCents": null,
+      "knownCostCents": 73400
+    }
+  }
+}

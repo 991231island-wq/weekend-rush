@@ -1,0 +1,13 @@
+{
+  "name": "weekend-rush-skill",
+  "version": "0.3.0-preview",
+  "private": true,
+  "type": "module",
+  "description": "Intent-first weekend itinerary Skill with optional local MCP query bridge",
+  "engines": { "node": ">=22" },
+  "dependencies": {
+    "@amap/amap-maps-mcp-server": "0.0.8",
+    "@modelcontextprotocol/sdk": "1.32.1",
+    "12306-mcp": "0.3.10"
+  }
+}

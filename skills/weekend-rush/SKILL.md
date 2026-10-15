@@ -1,40 +1,53 @@
 ---
 name: weekend-rush
-description: Plan and revise constraint-aware weekend trips in China using rail and map MCP tools. Use when a traveler has a destination and needs a compact itinerary, options by pace or budget, or a replan after a delay or fatigue.
+description: Turn a rough weekend travel intention into a detailed China itinerary with preference-based recommendations, real rail/map checks, meal and lodging suggestions, two paces, and quick conversational revisions. Use especially for a known destination, two days and one night; do not require attraction lists or train numbers.
 ---
 
 # 周末特种兵行程助手
 
-Help a traveler use limited weekend time well while respecting their return deadline, budget, must-see places, and energy. You propose plans; the traveler books tickets, lodging, meals, and reservations themselves.
+用户说个大概，你把细节安排好。你负责推荐、查询、排程和解释取舍，不把查车次、填 POI、选车站和编排路线交回用户。语言理解和推荐使用宿主 AI 客户端的大模型，无需额外模型 Key；用户自行完成预订与购票。
 
-## Workflow
+## 意向到完整行程
 
-1. Collect the travel date, exact origin and destination cities, preferred stations or permission to choose among stations, earliest departure, latest arrival home, party size, per-person budget, must-see places, walking tolerance, and required rest. Ask for missing hard constraints together. Mark any defaults explicitly; never treat a station as the traveler's home address.
-2. Resolve station names to exact 12306 telecodes. Search trips for the requested boarding date. Request the complete candidate set (`limitedNum: 0` for the direct 12306 MCP), then run `normalize-tickets` from `scripts/trip-utils.mjs` with exact origin and destination telecodes. It rejects station mismatches before applying the display limit, uses the query date, departure time, and duration to build timestamps, and rejects an arrival clock that conflicts with the duration. Keep the upstream origin-run date for traceability. Never present waitlist or sold-out seats as available.
-3. Resolve each named attraction with map text search. If multiple plausible POIs remain, show the name, district, address, category, and ID and ask the traveler to choose. Do not route to a guessed or first-listed result. After selection, request POI detail when available, then plan walking or transit routes using the selected coordinates. Convert route duration from seconds to minutes and distance from meters to kilometers for display.
-4. Check the forecast only for dates returned by the weather tool. Verify opening hours and reservation requirements from a suitable source where possible; a reservation requirement without confirmed booking remains pending.
-5. Propose two plans: (A) cover the must-see places and more optional stops, and (B) reduce walking with more rest. Keep the same hard constraints in both. Include the full outbound and return legs, local transfers, meals, overnight stay, activity durations, costs, walking, data source and query time. Separate retrieved data, estimates, and unknowns. Ask before assuming a total budget passes when any material cost is unknown.
-6. Run `validate-plan` on each candidate using `scripts/trip-utils.mjs`. Fix every hard error before presenting it. Explain warnings plainly; a plan with unresolved costs, opening hours, bookings, or home transfer can be structurally valid without being fully feasible.
-7. When the traveler reports a delay, fatigue, or a completed activity, preserve the previous version and all completed activity times. Ask the model to propose a revised remaining schedule, then run `compare-plans` and `validate-plan`. Report kept, moved, removed, and added items with reasons. Never silently relax a hard constraint. If no plan passes, state the conflict and ask which constraint may change.
+1. 从自然语言提取兴趣、排除项、日期、预算与时间要求，已有信息不重复问；没有必去点时主动推荐。只集中追问影响可行性的关键缺口，不发送完整偏好问卷，不要求提供车次号、酒店坐标或 POI ID。精确住址不是必填，可用附近地标或明确接驳估时。目的城市未定时先收敛到一个城市，说明当前验证范围。
+2. 将已确认硬约束与可修改假设分开。单人、公共交通、休息节奏、餐宿预留可提出草案默认值，不把默认预算当作用户确认。日期或关键时间未知时可先给灵感草案，不能宣称返程或预算已验证。基于客户端当前时间解释“这周末”为具体日期并允许修改。
+3. 按兴趣主动推荐地点组合，先串联片区，再查询具体 POI 与路线；自己比较可用车站与有票车次。推荐有理由，兼顾停留、开放风险和费用，不堆热门榜单。两天都要有具体活动目的和休息，不能用无解释的半天留白掩盖没有规划。
+4. 安排吃、住、玩、交通和休息。餐饮有时间窗、明确区域或可核对的具体餐馆候选、菜系/选择理由、费用依据与替换选项；住宿有建议区域、选区理由、可核对的参考点及预算预留，不把参考点当作已订酒店或实时房价。查相邻路线，预留进出站、找路、用餐、休息和排队缓冲。
+5. 默认展开一份推荐方案，附“少步行、更多休息”的简明备选，用户需要时再展开第二份。两份遵守相同已确认硬约束；无法满足就解释冲突，不强行生成两份“可行”计划。逐段给日期、起止时间、去哪/做什么、理由、交通衔接、费用状态、来源与查询时间，附出发前必办和待确认清单。
+6. 用 `scripts/trip-utils.mjs` 的 `validate-plan` 校验重叠、必去点、预算与到家时间，修复硬错误后再推荐；预算不完整、营业/预约未知和估算仍显著列出。校验器不代替兴趣判断，也不会自动核实营业、预约或日程吃住完整性。可用 `render-trip` 输出手机可读行程卡。
 
-## Tool failures and trust
+推荐准则、完整输出与调整案例见 [意向规划与快捷调整](references/intent-to-itinerary.md)；构造 JSON 与行程卡时阅读 [数据契约](references/data-contract.md)。
 
-- If a rail or map tool fails, say which data is missing and how it affects the plan. Offer an explicitly labeled example or estimate only if useful; never fabricate live availability, coordinates, transit times, opening hours, or current prices.
-- Check station telecodes and selected POI coordinates, not just their Chinese names. A city name and a station name are not interchangeable.
-- Use full Asia/Shanghai timestamps including dates and UTC offset. Respect overnight arrival and the user's actual arrive-home deadline.
-- Use data freshness labels. Ticket inventory and weather can change; tell the traveler to reconfirm before acting.
-- Do not make purchases, reservations, account changes, or MCP server changes. The traveler completes bookings outside this skill.
-- Read [the data contract](references/data-contract.md) when constructing or validating JSON. Read [MCP setup](references/mcp-setup.md) when installing the dependencies.
+## 一句话调整
 
-## Deterministic helper
+利用当前计划理解“这个不喜欢”“第二天轻松点”“多吃一点”“晚一小时”“这里逛完了”。只在指代不清或会触及硬约束时问一个具体问题，不重新收集整套需求。
 
-From this skill directory, run:
+- 保留之前版本、稳定活动 ID 和已完成活动的时间/地点/费用，只重排受影响的剩余部分。更新兴趣后再推荐替代，不能只改标题或表面挪动一个时刻。
+- 替换景点或餐馆后查新详情及前后路线；延误要传播到后续活动并复核返程，不能手工顺延列车时刻。累了优先删可选点、减折返、加休息，保留必去点，无法兼得就说明。
+- 重排用 `compare-plans` 检查已完成项，再用 `validate-plan`；返回保留/换序/替换/删除原因，以及费用、已查路线步行和到家时间变化。缺数据时不编改善数字。
+- 已买车票、已订住宿是固定锚点；冲突时给出建议并保留待确认状态，不能暗示建议已取消、改签或购买订单。
+
+## 数据与工具规则
+
+- 优先用宿主已有的 12306/高德 MCP；否则可用本 Skill 自带 `scripts/query-tools.mjs` 查询桥。安装见 [MCP 设置](references/mcp-setup.md)。桥只查事实，推荐和规划由宿主模型完成。
+- 12306 请求完整候选（`limitedNum: 0`），按精确电报码过滤后排序/截取。用查询乘车日、出发时刻和历时构造到达日期，不能用始发日期覆盖乘车日；核对返回到达时刻。只推荐还来得及接驳、有票且有价格的席别，候补和无票不是已取得车票。
+- 同名 POI 用城市、区县、类别、地址和详情判断。助手推荐的地点可按明确兴趣/片区/类别筛成唯一候选并说明依据，不因为排第一就选。用户点名但仍有多个合理候选时，只问这个歧义问题。详情须有正确城市和有效坐标后再规划路线；火车站主体不能换成地铁站或出入口。
+- 时间用完整 Asia/Shanghai 日期与偏移。地图路线是估计，秒转分钟、米转公里；累计步行区分已查路线和未计全的景区/车站内部步行。天气只用于工具返回日期。
+- 当前 MCP 不完整提供营业、休馆、预约、门票、餐馆菜单价格和酒店房价/房态。有可靠来源则查询并记录时间，查不到就给待确认项或替代，不能将“有 POI”写成“当天开放、有房或已预约”。
+- 来源和查询时间与数据一起保留，查得值、用户估算、助手假设、未知分别标记；有重要未知费用时不能宣布预算达标。工具故障说明缺什么、影响哪段，不回退成假实时结果。
+- Key 只从本机环境读取，不写到聊天、输入 JSON、行程卡、项目或日志。只查询与规划，不下单、预订或修改账号。
+
+## 本机脚本
+
+从此 Skill 目录运行。校验和渲染只需 Node.js 22+；查询桥需固定 npm 依赖和本机高德 Key。
 
 ```sh
-node scripts/trip-utils.mjs normalize-tickets --input request.json
-node scripts/trip-utils.mjs resolve-poi --input request.json
-node scripts/trip-utils.mjs validate-plan --input request.json
-node scripts/trip-utils.mjs compare-plans --input request.json
+node scripts/query-tools.mjs --input queries.json
+node scripts/trip-utils.mjs normalize-tickets --input tickets.json
+node scripts/trip-utils.mjs resolve-poi --input place.json
+node scripts/trip-utils.mjs validate-plan --input plan.json
+node scripts/trip-utils.mjs compare-plans --input revision.json
+node scripts/render-trip.mjs --input itinerary.json --output itinerary.html
 ```
 
-Each input file is JSON and contains the fields described in `references/data-contract.md`. The helper writes its result to stdout and never reads or logs a map key.
+行程卡是静态产物：快捷调整按钮复制一句请求供用户发回 AI 客户端，不在 HTML 内调用模型或改变订单。用户直接在对话中说调整即可，不要求操作卡片。

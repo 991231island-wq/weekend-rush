@@ -9,6 +9,7 @@ import { generatePlans } from '../server/planner.mjs';
 const root = fileURLToPath(new URL('../', import.meta.url));
 const routes = new Map([
   ['/', 'live/index.html'], ['/live.css', 'live/live.css'], ['/live.js', 'live/live.js'],
+  ['/examples/intent-trip-v1', 'docs/examples/intent-trip-v1.html'], ['/examples/intent-trip-v2', 'docs/examples/intent-trip-v2.html'],
   ['/demo', 'demo/index.html'], ['/demo.css', 'demo/demo.css'], ['/demo.js', 'demo/demo.js'],
   ['/skills/weekend-rush/scripts/trip-utils.mjs', 'skills/weekend-rush/scripts/trip-utils.mjs'],
 ]);
