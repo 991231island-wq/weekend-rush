@@ -1,0 +1,110 @@
+{
+  "checkedAt": "2026-10-15T10:14:46.037440+00:00",
+  "github": [
+    {
+      "repository": "Joooook/12306-mcp",
+      "url": "https://github.com/Joooook/12306-mcp",
+      "archived": false,
+      "defaultBranch": "main",
+      "pushedAt": "2026-07-31T06:22:59Z",
+      "fork": false,
+      "parent": null,
+      "license": "MIT"
+    },
+    {
+      "repository": "zxypro1/amap-maps-mcp-server",
+      "error": "HTTPError: HTTP Error 403: rate limit exceeded"
+    },
+    {
+      "repository": "devsapp/amap-maps-mcp-server",
+      "url": "https://github.com/devsapp/amap-maps-mcp-server",
+      "archived": false,
+      "defaultBranch": "master",
+      "pushedAt": "2025-03-29T04:04:52Z",
+      "fork": true,
+      "parent": "zxypro1/amap-maps-mcp-server",
+      "license": null
+    }
+  ],
+  "modelscope": [
+    {
+      "server": "@Joooook/12306-mcp",
+      "api": "https://modelscope.cn/openapi/v1/mcp/servers/@Joooook/12306-mcp",
+      "responseCode": null,
+      "name": "12306-MCP车票查询工具",
+      "sourceUrl": "https://github.com/Joooook/12306-mcp",
+      "isHosted": true,
+      "envNamesOnly": [],
+      "topLevelKeys": [
+        "id",
+        "name",
+        "chinese_name",
+        "description",
+        "tags",
+        "logo_url",
+        "operational_urls",
+        "author",
+        "source_url",
+        "owner",
+        "server_config",
+        "readme",
+        "is_hosted",
+        "is_verified",
+        "view_count",
+        "github_stars",
+        "publisher",
+        "env_schema",
+        "locales",
+        "categories"
+      ],
+      "hasOperationalURL": false,
+      "businessCallTested": false
+    },
+    {
+      "server": "@amap/amap-maps",
+      "api": "https://modelscope.cn/openapi/v1/mcp/servers/@amap/amap-maps",
+      "responseCode": null,
+      "name": "高德地图",
+      "sourceUrl": "https://www.npmjs.com/package/@amap/amap-maps-mcp-server",
+      "isHosted": true,
+      "envNamesOnly": [
+        "AMAP_MAPS_API_KEY"
+      ],
+      "topLevelKeys": [
+        "id",
+        "name",
+        "chinese_name",
+        "description",
+        "tags",
+        "logo_url",
+        "operational_urls",
+        "author",
+        "source_url",
+        "owner",
+        "server_config",
+        "readme",
+        "is_hosted",
+        "is_verified",
+        "view_count",
+        "github_stars",
+        "publisher",
+        "env_schema",
+        "locales",
+        "categories"
+      ],
+      "hasOperationalURL": false,
+      "businessCallTested": false
+    }
+  ],
+  "modelscopeInitialAttempts": [
+    {
+      "server": "Joooook/12306-mcp",
+      "error": "HTTPError: HTTP Error 404: Not Found"
+    },
+    {
+      "server": "amap/amap-maps",
+      "error": "HTTPError: HTTP Error 404: Not Found"
+    }
+  ],
+  "modelscopeCheckedAt": "2026-10-15T10:16:42.860883+00:00"
+}

@@ -1,0 +1,998 @@
+{
+  "checkedAt": "2026-10-15T12:13:01.343Z",
+  "dependency": "@amap/amap-maps-mcp-server@0.0.8",
+  "credentialPresent": true,
+  "scope": "Public Shanghai locations; technical test only",
+  "checks": [
+    {
+      "name": "maps_geo",
+      "arguments": {
+        "address": "上海市人民广场",
+        "city": "上海"
+      },
+      "passed": true,
+      "isError": false,
+      "durationMs": 101,
+      "data": {
+        "return": [
+          {
+            "country": "中国",
+            "province": "上海市",
+            "city": "上海市",
+            "citycode": "021",
+            "district": "黄浦区",
+            "street": "人民广场",
+            "number": [],
+            "adcode": "310101",
+            "location": "121.477401,31.240093",
+            "level": "道路"
+          }
+        ]
+      }
+    },
+    {
+      "name": "maps_geo",
+      "arguments": {
+        "address": "上海市外滩",
+        "city": "上海"
+      },
+      "passed": true,
+      "isError": false,
+      "durationMs": 56,
+      "data": {
+        "return": [
+          {
+            "country": "中国",
+            "province": "上海市",
+            "city": "上海市",
+            "citycode": "021",
+            "district": "浦东新区",
+            "street": [],
+            "number": [],
+            "adcode": "310115",
+            "location": "121.497253,31.238235",
+            "level": "住宅区"
+          },
+          {
+            "country": "中国",
+            "province": "上海市",
+            "city": "上海市",
+            "citycode": "021",
+            "district": "黄浦区",
+            "street": [],
+            "number": [],
+            "adcode": "310101",
+            "location": "121.492308,31.233383",
+            "level": "兴趣点"
+          }
+        ]
+      }
+    },
+    {
+      "name": "maps_text_search",
+      "arguments": {
+        "keywords": "外滩",
+        "city": "上海"
+      },
+      "passed": true,
+      "isError": false,
+      "durationMs": 215,
+      "data": {
+        "suggestion": {
+          "keywords": [],
+          "ciytes": []
+        },
+        "pois": [
+          {
+            "id": "B00155FXB3",
+            "name": "外滩",
+            "address": "中山东一路",
+            "typecode": "110200",
+            "photos": {
+              "provider": [],
+              "title": [],
+              "url": "http://store.is.autonavi.com/showpic/b9c402b7d34ea98654cc915e567761dd"
+            }
+          },
+          {
+            "id": "B0KUN7L6A5",
+            "name": "外滩",
+            "address": "黄浦区",
+            "typecode": "190700",
+            "photos": {
+              "title": [],
+              "url": "https://store.is.autonavi.com/showpic/89db7380cbe8d4ac0000001724966847?type=pic"
+            }
+          },
+          {
+            "id": "BV11113526",
+            "name": "外滩(南京东路)(公交站)",
+            "address": "旅游7线(申城观光1号线);旅游8线(申城旅游2号线);花卉节黄浦专线",
+            "typecode": "150700"
+          },
+          {
+            "id": "B00156YOAL",
+            "name": "外滩-观景大道",
+            "address": "中山东一路(外滩)411号",
+            "typecode": "110200",
+            "photos": {
+              "provider": [],
+              "title": [],
+              "url": "https://aos-comment.amap.com/B00156YOAL/comment/22b89d80-d21b-439d-b51a-476e5c062781.png"
+            }
+          },
+          {
+            "id": "B0FFLBPUT6",
+            "name": "外滩观景台",
+            "address": "外滩(西北角)",
+            "typecode": "110209",
+            "photos": {
+              "provider": [],
+              "title": [],
+              "url": "https://store.is.autonavi.com/showpic/e7fe95ad7095765e0000003132982815?type=pic"
+            }
+          },
+          {
+            "id": "B0FFFR6GDS",
+            "name": "外滩-观景平台",
+            "address": "中山东一路49号外滩内(北侧)",
+            "typecode": "110000",
+            "photos": {
+              "provider": [],
+              "title": [],
+              "url": "https://store.is.autonavi.com/showpic/ee580b89519029fe0000003368524499?type=pic"
+            }
+          },
+          {
+            "id": "B0FFHCONQC",
+            "name": "181外滩",
+            "address": "中山东二路与延安东路交叉口东北60米",
+            "typecode": "120201",
+            "photos": {
+              "title": [],
+              "url": "https://store.is.autonavi.com/showpic/89d2c1ea2f6275a347b0d1262a2ea1b4"
+            }
+          },
+          {
+            "id": "B001579EFK",
+            "name": "外滩·壹零玖",
+            "address": "高阳路与东大名路交叉口东北角",
+            "typecode": "120201",
+            "photos": {
+              "title": [],
+              "url": "http://store.is.autonavi.com/showpic/6caf8d8b87bb4d90936871c486ea424d"
+            }
+          },
+          {
+            "id": "B00154AA10",
+            "name": "外滩中心",
+            "address": "延安东路222号",
+            "typecode": "120201",
+            "photos": {
+              "title": [],
+              "url": "https://aos-comment.amap.com/B00154AA10/comment/content_media_external_file_1000210736_ss__1745041481423_19156191.jpg"
+            }
+          },
+          {
+            "id": "B0L04ZWP2M",
+            "name": "外滩·老市府大楼",
+            "address": "江西中路215号",
+            "typecode": "120201",
+            "photos": {
+              "title": [],
+              "url": "https://store.is.autonavi.com/showpic/6bc94b4b509f0c900000006970396878?type=pic"
+            }
+          },
+          {
+            "id": "B0LDGZAKT8",
+            "name": "外滩·中央停车场",
+            "address": "沙市一路24号(南京东路地铁站7号口步行300米)",
+            "typecode": "150900",
+            "photos": {
+              "title": [],
+              "url": "https://store.is.autonavi.com/showpic/d40689c253dd73994ff0b5f34fe1463e"
+            }
+          },
+          {
+            "id": "B00155KQDK",
+            "name": "外滩·豪景苑",
+            "address": "武昌路338号",
+            "typecode": "120302",
+            "photos": {
+              "title": [],
+              "url": "http://store.is.autonavi.com/showpic/f04450820ffbe0b703dd2b95e8b38f2d"
+            }
+          },
+          {
+            "id": "B0FFGYTGE4",
+            "name": "外滩会(广东路店)",
+            "address": "广东路20号外滩5号6层",
+            "typecode": "050100",
+            "photos": {
+              "title": [],
+              "url": "https://store.is.autonavi.com/showpic/fc6e8b0b552beb650000003093400749?type=pic"
+            }
+          },
+          {
+            "id": "B0FFFEY0AC",
+            "name": "外滩·湾璟会",
+            "address": "中山南一路468号(世博会博物馆地铁站3号口步行350米)",
+            "typecode": "120201|080500",
+            "photos": {
+              "title": [],
+              "url": "https://store.is.autonavi.com/showpic/5c99b4d4462bc7db809e7df726aeb08f"
+            }
+          },
+          {
+            "id": "B00155G6WO",
+            "name": "外滩-陈毅广场",
+            "address": "中山东一路外滩内(北侧)",
+            "typecode": "110105",
+            "photos": {
+              "provider": [],
+              "title": [],
+              "url": "https://store.is.autonavi.com/showpic/8c348f39bca077c44da92c4df1fd083b"
+            }
+          },
+          {
+            "id": "B0FFFDZ3AX",
+            "name": "外滩-气象广场",
+            "address": "中山东一路49号外滩",
+            "typecode": "110105",
+            "photos": {
+              "provider": [],
+              "title": [],
+              "url": "https://aos-comment.amap.com/B0FFFDZ3AX/comment/20260311-2d98045bf126f87943869582-6OQMKtqsfAL8xr3fzFQ5jx.jpg"
+            }
+          },
+          {
+            "id": "B00151C4FB",
+            "name": "外滩·海琪园",
+            "address": "中山南路398弄1-7号",
+            "typecode": "120302",
+            "photos": {
+              "title": "外景图",
+              "url": "http://store.is.autonavi.com/showpic/7e53f879cdc925b15e9e90ccbc0f9123"
+            }
+          },
+          {
+            "id": "B0FFILDNB2",
+            "name": "外滩-金融广场",
+            "address": "外滩街道中山东一路49号外滩西北角",
+            "typecode": "110105",
+            "photos": {
+              "provider": [],
+              "title": [],
+              "url": "https://store.is.autonavi.com/showpic/92a32acf21c465120b213487bfc8aa5f"
+            }
+          },
+          {
+            "id": "B0MUP5EA2P",
+            "name": "外滩建筑群",
+            "address": "中山东一路18号",
+            "typecode": "110200",
+            "photos": {
+              "provider": [],
+              "title": [],
+              "url": "https://store.is.autonavi.com/showpic/82d4654b40d873a80000003054192684?type=pic"
+            }
+          },
+          {
+            "id": "BV09199210",
+            "name": "外滩(汉口路)(公交站)",
+            "address": "旅游7线(申城观光1号线)",
+            "typecode": "150700",
+            "photos": {
+              "title": [],
+              "url": "https://store.is.autonavi.com/showpic/c0e6cfa2ec25ceb653670533780d177e"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "maps_weather",
+      "arguments": {
+        "city": "310000"
+      },
+      "passed": true,
+      "isError": false,
+      "durationMs": 105,
+      "data": {
+        "city": "上海市",
+        "forecasts": [
+          {
+            "date": "2026-10-15",
+            "week": "4",
+            "dayweather": "阴",
+            "nightweather": "阴",
+            "daytemp": "25",
+            "nighttemp": "20",
+            "daywind": "东南",
+            "nightwind": "东南",
+            "daypower": "1-3",
+            "nightpower": "1-3",
+            "daytemp_float": "25.0",
+            "nighttemp_float": "20.0"
+          },
+          {
+            "date": "2026-10-16",
+            "week": "5",
+            "dayweather": "阴",
+            "nightweather": "阴",
+            "daytemp": "26",
+            "nighttemp": "21",
+            "daywind": "东南",
+            "nightwind": "东南",
+            "daypower": "1-3",
+            "nightpower": "1-3",
+            "daytemp_float": "26.0",
+            "nighttemp_float": "21.0"
+          },
+          {
+            "date": "2026-10-17",
+            "week": "6",
+            "dayweather": "阴",
+            "nightweather": "阴",
+            "daytemp": "27",
+            "nighttemp": "23",
+            "daywind": "东南",
+            "nightwind": "东南",
+            "daypower": "1-3",
+            "nightpower": "1-3",
+            "daytemp_float": "27.0",
+            "nighttemp_float": "23.0"
+          },
+          {
+            "date": "2026-10-18",
+            "week": "7",
+            "dayweather": "小雨",
+            "nightweather": "小雨",
+            "daytemp": "30",
+            "nighttemp": "21",
+            "daywind": "西",
+            "nightwind": "西",
+            "daypower": "1-3",
+            "nightpower": "1-3",
+            "daytemp_float": "30.0",
+            "nighttemp_float": "21.0"
+          }
+        ]
+      }
+    },
+    {
+      "name": "maps_direction_walking",
+      "arguments": {
+        "origin": "121.477401,31.240093",
+        "destination": "121.497253,31.238235"
+      },
+      "passed": true,
+      "isError": false,
+      "durationMs": 77,
+      "data": {
+        "route": {
+          "origin": "121.477401,31.240093",
+          "destination": "121.497253,31.238235",
+          "paths": [
+            {
+              "distance": "5668",
+              "duration": "4534",
+              "steps": [
+                {
+                  "instruction": "沿厦门路向东步行88米右转",
+                  "road": "厦门路",
+                  "distance": "88",
+                  "orientation": "东",
+                  "duration": "70"
+                },
+                {
+                  "instruction": "沿南苏州路向东南步行48米向右前方行走",
+                  "road": "南苏州路",
+                  "distance": "48",
+                  "orientation": "东南",
+                  "duration": "38"
+                },
+                {
+                  "instruction": "沿福建中路向南步行94米向右前方行走",
+                  "road": "福建中路",
+                  "distance": "94",
+                  "orientation": "南",
+                  "duration": "75"
+                },
+                {
+                  "instruction": "沿福建中路步行659米左转",
+                  "road": "福建中路",
+                  "distance": "659",
+                  "orientation": [],
+                  "duration": "527"
+                },
+                {
+                  "instruction": "沿福州路向东步行852米右转",
+                  "road": "福州路",
+                  "distance": "852",
+                  "orientation": "东",
+                  "duration": "682"
+                },
+                {
+                  "instruction": "沿中山东二路向东南步行1336米左转",
+                  "road": "中山东二路",
+                  "distance": "1336",
+                  "orientation": "东南",
+                  "duration": "1069"
+                },
+                {
+                  "instruction": "沿外马路向东南步行633米向左后方行走",
+                  "road": "外马路",
+                  "distance": "633",
+                  "orientation": "东南",
+                  "duration": "506"
+                },
+                {
+                  "instruction": "向北步行37米直行",
+                  "road": [],
+                  "distance": "37",
+                  "orientation": "北",
+                  "duration": "30"
+                },
+                {
+                  "instruction": "沿东复线向北步行764米直行",
+                  "road": "东复线",
+                  "distance": "764",
+                  "orientation": "北",
+                  "duration": "611"
+                },
+                {
+                  "instruction": "向东北步行59米左转",
+                  "road": [],
+                  "distance": "59",
+                  "orientation": "东北",
+                  "duration": "47"
+                },
+                {
+                  "instruction": "沿富城路步行219米向左前方行走",
+                  "road": "富城路",
+                  "distance": "219",
+                  "orientation": [],
+                  "duration": "175"
+                },
+                {
+                  "instruction": "沿富城路向西北步行861米左转",
+                  "road": "富城路",
+                  "distance": "861",
+                  "orientation": "西北",
+                  "duration": "689"
+                },
+                {
+                  "instruction": "沿富城路向西北步行18米到达目的地",
+                  "road": "富城路",
+                  "distance": "18",
+                  "orientation": "西北",
+                  "duration": "14"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "maps_direction_transit_integrated",
+      "arguments": {
+        "origin": "121.477401,31.240093",
+        "destination": "121.497253,31.238235",
+        "city": "上海",
+        "cityd": "上海"
+      },
+      "passed": true,
+      "isError": false,
+      "durationMs": 249,
+      "data": {
+        "route": {
+          "origin": "121.477401,31.240093",
+          "destination": "121.497253,31.238235",
+          "distance": "2093",
+          "transits": [
+            {
+              "duration": "1932",
+              "walking_distance": "1532",
+              "segments": [
+                {
+                  "walking": {
+                    "origin": "121.477425,31.240030",
+                    "destination": "121.483604,31.237101",
+                    "distance": "894",
+                    "duration": "892",
+                    "steps": [
+                      {
+                        "instruction": "沿厦门路步行88米右转进入左侧道路",
+                        "road": "厦门路",
+                        "distance": "88",
+                        "action": "右转",
+                        "assistant_action": "进入左侧道路"
+                      },
+                      {
+                        "instruction": "沿南苏州路步行48米向左前方直行",
+                        "road": "南苏州路",
+                        "distance": "48",
+                        "action": "向左前方直行",
+                        "assistant_action": []
+                      },
+                      {
+                        "instruction": "沿南苏州路步行213米右转",
+                        "road": "南苏州路",
+                        "distance": "213",
+                        "action": "右转",
+                        "assistant_action": []
+                      },
+                      {
+                        "instruction": "沿山西南路步行402米左转",
+                        "road": "山西南路",
+                        "distance": "402",
+                        "action": "左转",
+                        "assistant_action": []
+                      },
+                      {
+                        "instruction": "沿南京路步行街步行34米左转",
+                        "road": "南京路步行街",
+                        "distance": "34",
+                        "action": "左转",
+                        "assistant_action": []
+                      },
+                      {
+                        "instruction": "步行18米到达目的地",
+                        "road": [],
+                        "distance": "18",
+                        "action": [],
+                        "assistant_action": "到达目的地"
+                      },
+                      {
+                        "instruction": "步行1米向右后方直行",
+                        "road": [],
+                        "distance": "1",
+                        "action": "向右后方直行",
+                        "assistant_action": []
+                      },
+                      {
+                        "instruction": "步行91米到达南京东路",
+                        "road": [],
+                        "distance": "91",
+                        "action": [],
+                        "assistant_action": "到达南京东路"
+                      }
+                    ]
+                  },
+                  "bus": {
+                    "buslines": [
+                      {
+                        "name": "地铁2号线(蟠祥路·国家会计学院--浦东1号2号航站楼)",
+                        "departure_stop": {
+                          "name": "南京东路"
+                        },
+                        "arrival_stop": {
+                          "name": "陆家嘴"
+                        },
+                        "distance": "1810",
+                        "duration": "270",
+                        "via_stops": []
+                      }
+                    ]
+                  },
+                  "entrance": {
+                    "name": "1号口"
+                  },
+                  "exit": {
+                    "name": "1号口"
+                  },
+                  "railway": {}
+                },
+                {
+                  "walking": {
+                    "origin": "121.502129,31.238255",
+                    "destination": "121.497154,31.238182",
+                    "distance": "638",
+                    "duration": "770",
+                    "steps": [
+                      {
+                        "instruction": "步行102米直行",
+                        "road": [],
+                        "distance": "102",
+                        "action": "直行",
+                        "assistant_action": []
+                      },
+                      {
+                        "instruction": "步行1米到达目的地",
+                        "road": [],
+                        "distance": "1",
+                        "action": [],
+                        "assistant_action": "到达目的地"
+                      },
+                      {
+                        "instruction": "步行9米左转上过街天桥",
+                        "road": [],
+                        "distance": "9",
+                        "action": "左转",
+                        "assistant_action": "上过街天桥"
+                      },
+                      {
+                        "instruction": "步行212米向左前方直行下过街天桥",
+                        "road": [],
+                        "distance": "212",
+                        "action": "向左前方直行",
+                        "assistant_action": "下过街天桥"
+                      },
+                      {
+                        "instruction": "步行4米右转",
+                        "road": [],
+                        "distance": "4",
+                        "action": "右转",
+                        "assistant_action": []
+                      },
+                      {
+                        "instruction": "沿丰和路步行90米左转",
+                        "road": "丰和路",
+                        "distance": "90",
+                        "action": "左转",
+                        "assistant_action": []
+                      },
+                      {
+                        "instruction": "沿明珠塔路步行203米右转",
+                        "road": "明珠塔路",
+                        "distance": "203",
+                        "action": "右转",
+                        "assistant_action": []
+                      },
+                      {
+                        "instruction": "沿富城路步行18米到达目的地",
+                        "road": "富城路",
+                        "distance": "18",
+                        "action": [],
+                        "assistant_action": "到达目的地"
+                      }
+                    ]
+                  },
+                  "bus": {
+                    "buslines": []
+                  },
+                  "entrance": {},
+                  "exit": {},
+                  "railway": {}
+                }
+              ]
+            },
+            {
+              "duration": "3549",
+              "walking_distance": "2307",
+              "segments": [
+                {
+                  "walking": {
+                    "origin": "121.477425,31.240030",
+                    "destination": "121.485901,31.250347",
+                    "distance": "1772",
+                    "duration": "1739",
+                    "steps": [
+                      {
+                        "instruction": "沿厦门路步行88米右转进入左侧道路",
+                        "road": "厦门路",
+                        "distance": "88",
+                        "action": "右转",
+                        "assistant_action": "进入左侧道路"
+                      },
+                      {
+                        "instruction": "沿南苏州路步行48米向左前方直行",
+                        "road": "南苏州路",
+                        "distance": "48",
+                        "action": "向左前方直行",
+                        "assistant_action": []
+                      },
+                      {
+                        "instruction": "沿南苏州路步行805米左转",
+                        "road": "南苏州路",
+                        "distance": "805",
+                        "action": "左转",
+                        "assistant_action": []
+                      },
+                      {
+                        "instruction": "沿四川北路步行711米右转进入左侧道路",
+                        "road": "四川北路",
+                        "distance": "711",
+                        "action": "右转",
+                        "assistant_action": "进入左侧道路"
+                      },
+                      {
+                        "instruction": "沿海宁路步行120米到达海宁路吴淞路",
+                        "road": "海宁路",
+                        "distance": "120",
+                        "action": [],
+                        "assistant_action": "到达海宁路吴淞路"
+                      }
+                    ]
+                  },
+                  "bus": {
+                    "buslines": [
+                      {
+                        "name": "939路(鲁迅公园--杨家渡渡口)",
+                        "departure_stop": {
+                          "name": "海宁路吴淞路"
+                        },
+                        "arrival_stop": {
+                          "name": "陆家嘴环路名商路"
+                        },
+                        "distance": "4017",
+                        "duration": "1258",
+                        "via_stops": [
+                          {
+                            "name": "周家嘴路新建路"
+                          },
+                          {
+                            "name": "陆家嘴环路丰和路"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "entrance": {},
+                  "exit": {},
+                  "railway": {}
+                },
+                {
+                  "walking": {
+                    "origin": "121.500580,31.236849",
+                    "destination": "121.497154,31.238182",
+                    "distance": "535",
+                    "duration": "552",
+                    "steps": [
+                      {
+                        "instruction": "沿陆家嘴环路步行58米左转",
+                        "road": "陆家嘴环路",
+                        "distance": "58",
+                        "action": "左转",
+                        "assistant_action": []
+                      },
+                      {
+                        "instruction": "步行83米左转",
+                        "road": [],
+                        "distance": "83",
+                        "action": "左转",
+                        "assistant_action": []
+                      },
+                      {
+                        "instruction": "沿陆家嘴西路辅路步行226米右转",
+                        "road": "陆家嘴西路辅路",
+                        "distance": "226",
+                        "action": "右转",
+                        "assistant_action": []
+                      },
+                      {
+                        "instruction": "沿富城路步行150米左转",
+                        "road": "富城路",
+                        "distance": "150",
+                        "action": "左转",
+                        "assistant_action": []
+                      },
+                      {
+                        "instruction": "沿富城路步行18米到达目的地",
+                        "road": "富城路",
+                        "distance": "18",
+                        "action": [],
+                        "assistant_action": "到达目的地"
+                      }
+                    ]
+                  },
+                  "bus": {
+                    "buslines": []
+                  },
+                  "entrance": {},
+                  "exit": {},
+                  "railway": {}
+                }
+              ]
+            },
+            {
+              "duration": "3573",
+              "walking_distance": "1986",
+              "segments": [
+                {
+                  "walking": {
+                    "origin": "121.477425,31.240030",
+                    "destination": "121.476624,31.239201",
+                    "distance": "148",
+                    "duration": "135",
+                    "steps": [
+                      {
+                        "instruction": "沿厦门路步行85米左转",
+                        "road": "厦门路",
+                        "distance": "85",
+                        "action": "左转",
+                        "assistant_action": []
+                      },
+                      {
+                        "instruction": "沿浙江中路步行63米到达浙江中路北京东路",
+                        "road": "浙江中路",
+                        "distance": "63",
+                        "action": [],
+                        "assistant_action": "到达浙江中路北京东路"
+                      }
+                    ]
+                  },
+                  "bus": {
+                    "buslines": [
+                      {
+                        "name": "14路(江浦路中山北二路--东新桥)",
+                        "departure_stop": {
+                          "name": "浙江中路北京东路"
+                        },
+                        "arrival_stop": {
+                          "name": "东新桥"
+                        },
+                        "distance": "999",
+                        "duration": "766",
+                        "via_stops": [
+                          {
+                            "name": "湖北路南京东路"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "entrance": {},
+                  "exit": {},
+                  "railway": {}
+                },
+                {
+                  "walking": {
+                    "origin": "121.481926,31.232292",
+                    "destination": "121.480522,31.229601",
+                    "distance": "423",
+                    "duration": "401",
+                    "steps": [
+                      {
+                        "instruction": "沿广东路步行56米左转进入右侧道路",
+                        "road": "广东路",
+                        "distance": "56",
+                        "action": "左转",
+                        "assistant_action": "进入右侧道路"
+                      },
+                      {
+                        "instruction": "沿海口路步行132米左转",
+                        "road": "海口路",
+                        "distance": "132",
+                        "action": "左转",
+                        "assistant_action": []
+                      },
+                      {
+                        "instruction": "沿浙江中路步行116米右转进入右转专用道",
+                        "road": "浙江中路",
+                        "distance": "116",
+                        "action": "右转",
+                        "assistant_action": "进入右转专用道"
+                      },
+                      {
+                        "instruction": "沿延安东路步行119米到达延安东路浙江中路",
+                        "road": "延安东路",
+                        "distance": "119",
+                        "action": [],
+                        "assistant_action": "到达延安东路浙江中路"
+                      }
+                    ]
+                  },
+                  "bus": {
+                    "buslines": [
+                      {
+                        "name": "455路(上海火车站(北广场)--利津路巨峰路)",
+                        "departure_stop": {
+                          "name": "延安东路浙江中路"
+                        },
+                        "arrival_stop": {
+                          "name": "陆家嘴东路浦东南路"
+                        },
+                        "distance": "3128",
+                        "duration": "719",
+                        "via_stops": []
+                      }
+                    ]
+                  },
+                  "entrance": {},
+                  "exit": {},
+                  "railway": {}
+                },
+                {
+                  "walking": {
+                    "origin": "121.509430,31.237091",
+                    "destination": "121.497154,31.238182",
+                    "distance": "1415",
+                    "duration": "1552",
+                    "steps": [
+                      {
+                        "instruction": "沿陆家嘴东路步行97米右转",
+                        "road": "陆家嘴东路",
+                        "distance": "97",
+                        "action": "右转",
+                        "assistant_action": []
+                      },
+                      {
+                        "instruction": "沿陆家嘴环路步行18米左转",
+                        "road": "陆家嘴环路",
+                        "distance": "18",
+                        "action": "左转",
+                        "assistant_action": []
+                      },
+                      {
+                        "instruction": "沿陆家嘴东路步行619米右转",
+                        "road": "陆家嘴东路",
+                        "distance": "619",
+                        "action": "右转",
+                        "assistant_action": []
+                      },
+                      {
+                        "instruction": "步行29米右转上过街天桥",
+                        "road": [],
+                        "distance": "29",
+                        "action": "右转",
+                        "assistant_action": "上过街天桥"
+                      },
+                      {
+                        "instruction": "步行337米向左前方直行下过街天桥",
+                        "road": [],
+                        "distance": "337",
+                        "action": "向左前方直行",
+                        "assistant_action": "下过街天桥"
+                      },
+                      {
+                        "instruction": "步行4米右转",
+                        "road": [],
+                        "distance": "4",
+                        "action": "右转",
+                        "assistant_action": []
+                      },
+                      {
+                        "instruction": "沿丰和路步行90米左转",
+                        "road": "丰和路",
+                        "distance": "90",
+                        "action": "左转",
+                        "assistant_action": []
+                      },
+                      {
+                        "instruction": "沿明珠塔路步行203米右转",
+                        "road": "明珠塔路",
+                        "distance": "203",
+                        "action": "右转",
+                        "assistant_action": []
+                      },
+                      {
+                        "instruction": "沿富城路步行18米到达目的地",
+                        "road": "富城路",
+                        "distance": "18",
+                        "action": [],
+                        "assistant_action": "到达目的地"
+                      }
+                    ]
+                  },
+                  "bus": {
+                    "buslines": []
+                  },
+                  "entrance": {},
+                  "exit": {},
+                  "railway": {}
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "toolCount": 12,
+  "sampleChecksPassed": true,
+  "semanticReview": {
+    "keyAndSampleEndpointsWorking": true,
+    "tripReady": false,
+    "destinationAmbiguous": true,
+    "issue": "Shanghai Bund geocoding returned two candidates: Pudong residential area first and Huangpu POI second. Probe routes used first candidate. Route API responses are valid connectivity evidence, not verified tourist routes.",
+    "weatherDates": [
+      "2026-10-15",
+      "2026-10-16",
+      "2026-10-17",
+      "2026-10-18"
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "weekend-rush",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "description": "周末短途高密度旅行规划 Skill、确定性校验器与离线演示",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "test": "node --test",
+    "demo": "node scripts/serve-demo.mjs",
+    "check:secrets": "node scripts/check-secrets.mjs"
+  }
+}

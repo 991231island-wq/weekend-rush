@@ -1,0 +1,8 @@
+{
+  "result": {
+    "pois": [
+      { "id": "B0KUN7L6A5", "name": "外滩", "address": "浦东新区住宅区", "typecode": "190700", "location": "121.497253,31.238235" },
+      { "id": "B00155FXB3", "name": "外滩", "address": "中山东一路", "typecode": "110200", "location": "121.492308,31.233383" }
+    ]
+  }
+}

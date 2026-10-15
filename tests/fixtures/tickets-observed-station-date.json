@@ -1,0 +1,38 @@
+{
+  "query": {
+    "date": "2026-10-18",
+    "fromStationCode": "AOH",
+    "toStationCode": "HGH",
+    "earliestStartTime": "15:00",
+    "latestStartTime": "20:00",
+    "queriedAt": "2026-10-15T18:13:00+08:00"
+  },
+  "raw": [
+    {
+      "train_no": "8d0000D11400",
+      "start_date": "2026-10-17",
+      "start_train_code": "D111",
+      "start_time": "16:29",
+      "arrive_time": "18:15",
+      "lishi": "01:46",
+      "from_station": "上海松江",
+      "to_station": "杭州",
+      "from_station_telecode": "IMH",
+      "to_station_telecode": "HZH",
+      "prices": [{ "seat_name": "二等座", "num": "无", "price": 30 }]
+    },
+    {
+      "train_no": "5l0000G26900",
+      "start_date": "2026-10-18",
+      "start_train_code": "G269",
+      "start_time": "15:00",
+      "arrive_time": "15:45",
+      "lishi": "00:45",
+      "from_station": "上海虹桥",
+      "to_station": "杭州东",
+      "from_station_telecode": "AOH",
+      "to_station_telecode": "HGH",
+      "prices": [{ "seat_name": "二等座", "num": "有", "price": 87 }]
+    }
+  ]
+}

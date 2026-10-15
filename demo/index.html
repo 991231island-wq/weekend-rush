@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f2ed">
+  <title>周末快闪 · 上海行程提案</title>
+  <link rel="stylesheet" href="/demo.css">
+  <script type="module" src="/demo.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="周末快闪首页"><span class="brand-icon">周</span><span>周末快闪<small>WEEKEND RUSH</small></span></a>
+    <nav><a class="active" href="#itinerary">行程方案</a><a href="#about">设计说明</a></nav>
+    <span class="demo-pill"><i></i>离线演示 · 模拟数据</span>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div>
+        <div class="eyebrow">48 HOURS · CITY ESCAPE</div>
+        <h1>把周末留给<br><em>想去的地方。</em></h1>
+        <p class="hero-copy">在有限的时间、预算和体力里，找一条真正走得通的路线。</p>
+      </div>
+      <div class="trip-stamp"><span>两天一夜</span><strong>杭州 <b>→</b> 上海</strong><small>2026.11.07 — 11.08 · 1 位旅行者</small></div>
+      <div class="hero-art" aria-hidden="true"><div class="sun"></div><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><span class="art-label">WEEKEND<br>WELL SPENT</span></div>
+    </section>
+
+    <section class="constraint-bar" aria-label="行程约束">
+      <div><span>总预算</span><strong>¥<span id="budgetDisplay">1,000</span> <small>/人</small></strong></div>
+      <div><span>出发时间</span><strong>周六 06:00 后</strong></div>
+      <div><span>最晚到家</span><strong>周日 <span id="homeDisplay">20:00</span></strong></div>
+      <div><span>出行偏好</span><strong>经典必去 · 步行适中</strong></div>
+      <button class="edit-link" id="editConstraints">编辑约束 <span>↗</span></button>
+    </section>
+
+    <section class="section-head" id="itinerary">
+      <div><div class="eyebrow">YOUR OPTIONS</div><h2>两种节奏，你来选。</h2><p>都满足返程和预算约束，只是把时间花在不同的地方。</p></div>
+      <div class="version-tag"><span class="live-dot"></span><span id="versionLabel">方案版本 01</span></div>
+    </section>
+
+    <section class="compare-grid" id="plans" aria-label="行程方案比较"></section>
+
+    <section class="adjust-panel" id="adjust">
+      <div class="adjust-copy"><span class="adjust-icon">↻</span><div><div class="eyebrow">PLANS CHANGE. THAT'S OK.</div><h3>路上有变化，也能接着走。</h3><p>模拟一个变化，看看剩下的行程怎么调整。</p></div></div>
+      <div class="adjust-actions"><button class="outline-button" id="delayButton"><span>◷</span>晚出发 1 小时</button><button class="outline-button" id="tiredButton"><span>⌁</span>今天有点累</button></div>
+      <div class="revision-note" id="revisionNote" role="status" aria-live="polite"></div>
+    </section>
+
+    <section class="itinerary-section">
+      <div class="itinerary-heading"><div><div class="eyebrow">THE LITTLE DETAILS</div><h2>周末时间线</h2></div><div class="source-legend"><span><i class="legend-dot train"></i>交通</span><span><i class="legend-dot plan"></i>游览</span><span><i class="legend-dot rest"></i>用餐 / 休息</span></div></div>
+      <div class="timeline" id="timeline"></div>
+    </section>
+
+    <section class="trust-band" id="about">
+      <div class="trust-mark">i</div><div><strong>行程是建议，出发前记得复核。</strong><p>车次、余票、天气和营业安排会变化。本演示内的时间、价格和地点均为模拟数据，不用于真实出行。</p></div><a href="#method">了解数据边界 <span>→</span></a>
+    </section>
+
+    <section class="method" id="method"><div class="eyebrow">A PRODUCT, NOT JUST A PROMPT</div><h2>每个选择，都有依据。</h2><div class="method-grid"><article><span>01 / 输入</span><h3>先讲清楚限制</h3><p>到家时间、预算、必去地点和体力偏好，先变成明确约束。</p></article><article><span>02 / 校验</span><h3>再看能不能走通</h3><p>车站、日期、营业时间和预算分开核实，未知信息不会被补成事实。</p></article><article><span>03 / 重排</span><h3>变化来了留有余地</h3><p>改动发生后保留已完成的事，解释删了什么、为什么调整。</p></article></div></section>
+  </main>
+  <footer><span class="brand-icon mini">周</span><span>周末快闪 · Weekend Rush</span><span>一个为有限时间设计的旅行规划作品</span><a href="#top">回到顶部 ↑</a></footer>
+
+  <dialog id="constraintDialog"><form method="dialog"><div class="dialog-head"><div><div class="eyebrow">TRIP CONSTRAINTS</div><h2>这次出行的边界</h2></div><button class="close-dialog" aria-label="关闭">×</button></div><label>每人预算（元）<input id="budgetInput" type="number" value="1000" min="100" step="50"></label><label>最晚到家时间<input id="homeInput" type="time" value="20:00"></label><div class="dialog-footer"><span>当前案例仅供体验</span><button class="primary-button" id="saveConstraints" value="save">保存设置</button></div></form></dialog>
+</body>
+</html>
