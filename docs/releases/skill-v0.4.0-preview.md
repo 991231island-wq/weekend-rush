@@ -4,6 +4,8 @@
 
 已于北京时间2026-10-16公开发布：[GitHub Release](https://github.com/991231island-wq/weekend-rush/releases/tag/skill-v0.4.0-preview)。标签指向 `0fb38d5758d83de9d4ea3985aaa647807e763da0`。公开仓库及发布页匿名访问均为HTTP 200，匿名下载的ZIP与本机验证包SHA256一致。版本状态为pre-release，非draft。
 
+同日通过 GitHub 仓库导入，公开发布到[魔搭 Skills 中心](https://modelscope.cn/skills/atent2L/weekend-rush)。中文展示名与介绍、MIT 许可已核对，自动同步关闭。导入提交 `8c812f8b34a9780383db429f0c65c6375cd10b84` 中的 Skill 内容与上述标签一致。匿名页面、详情与 ZIP 下载均为 HTTP 200；官方 SDK 在隔离目录安装后，16 个文件与标签内容全部一致，固定依赖安装、自检、广州车站列表（45 个）、上海人民广场详情和行程卡生成成功。预算超限样例仍正确拒绝标记为可行。详见[魔搭实测记录](../魔搭平台接口实测-2026-10-16.md)。本次验证不等同于已完成魔搭实验场或所有 AI 客户端的端到端对话体验。
+
 ## 用户能做什么
 
 - 说出周末旅行意向，让助手主动推荐并安排两天一晚的吃、住、玩、公共交通和休息。

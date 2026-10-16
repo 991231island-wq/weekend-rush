@@ -5,6 +5,7 @@
 本次发布对象是 **AI 客户端内使用的 Skill：v0.4.0-preview**。预览版尚未完成外部用户试用；网页AI应用将单独开发部署。
 
 - [Skill预览版与安装包](https://github.com/991231island-wq/weekend-rush/releases/tag/skill-v0.4.0-preview)
+- [魔搭 Skills 中文发布页](https://modelscope.cn/skills/atent2L/weekend-rush)（同一 `v0.4.0-preview`，自动同步关闭）
 - [完整安装说明](docs/install-skill.md) · [版本说明](docs/releases/skill-v0.4.0-preview.md)
 - [广州白云区—武汉完整参考行程](docs/examples/广州白云-武汉-2026-10-17至18-完整参考行程.md)
 - [Skill源码](skills/weekend-rush) · [功能验收与边界](docs/Skill-懒人版验收.md)

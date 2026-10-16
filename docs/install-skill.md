@@ -6,6 +6,14 @@
 
 下载 [skill-v0.4.0-preview](https://github.com/991231island-wq/weekend-rush/releases/tag/skill-v0.4.0-preview) 中的 `weekend-rush-skill-v0.4.0-preview.zip`。发布页同时提供 `SHA256SUMS.txt`，用于核对下载文件是否一致。
 
+也可从[魔搭 Skills 发布页](https://modelscope.cn/skills/atent2L/weekend-rush)下载同一版本，或使用页面给出的安装方式：
+
+```sh
+npx skills add https://modelscope.cn/skills/atent2L/weekend-rush
+```
+
+魔搭下载的 ZIP 由平台重新打包，不能使用 GitHub ZIP 的校验值；2026-10-16 实测魔搭 ZIP 的 SHA256 为 `4243100fd4571141995450945d15a3481559a183c144e1da261b9fca15fa9eb9`，16 个文件与 GitHub 发布标签的原始内容逐一一致。两平台均仍需完成下面的本机依赖与 Key 配置。Windows 若因解压长路径失败，可先解压到较短的临时路径，再将含 `SKILL.md` 的文件夹放入客户端目录。
+
 解压后，将含有 `SKILL.md` 的 **weekend-rush** 文件夹放到客户端Skills目录。Codex默认目录为：
 
 - Windows：`%USERPROFILE%\.codex\skills\weekend-rush`
