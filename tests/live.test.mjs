@@ -28,6 +28,19 @@ test('live plans retain unknown fees and booking checks, reserve lunch separatel
     assert.ok(plan.events.every((row,index)=>!index||Date.parse(row.startAt)>=Date.parse(plan.events[index-1].endAt)));
   }
 });
+test('dates outside the ticket sale window still produce a clearly estimated reference itinerary',async()=>{
+  const fake=service({async tickets(){throw new Error('reference plans must not claim ticket data');}});
+  const result=await generatePlans(fake,{...input(),ticketStatus:'not-yet-open',fromStationName:'杭州东站',toStationName:'上海虹桥站'});
+  assert.equal(result.ticketStatus,'not-yet-open');
+  assert.ok(result.notices.some(row=>row.includes('3 小时参考时段')));
+  for(const plan of result.variants){
+    assert.equal(plan.status,'draft');
+    const trains=plan.events.filter(row=>row.kind==='train');
+    assert.equal(trains.length,2);
+    assert.ok(trains.every(row=>row.title.includes('车次待查询')&&row.costCents===null&&row.costStatus==='unknown'&&row.note.includes('没有车次')));
+    assert.ok(plan.validation.warnings.some(row=>row.code==='rail-not-on-sale'));
+  }
+});
 test('replacing a place refreshes its POI data and both adjacent route details and walking totals',async()=>{
   const originalDetail=service().detail;
   const fake=service({
@@ -85,14 +98,17 @@ test('rail service validates station membership, requests all rows, then filters
   const result=await live.tickets(query);assert.equal(args.limitedNum,0);assert.equal(result.rejectedCount,1);assert.ok(result.tickets.every(row=>row.trainCode==='G2'));
   await assert.rejects(live.tickets({...query,fromStationCode:'BAD'}),error=>error.code==='INVALID_STATIONS');
 });
-test('HTTP service rejects foreign origins, invalid JSON, and does not expose a credential',async t=>{
+test('HTTP service enforces same-origin sessions and does not expose a credential',async t=>{
+  const previousCode=process.env.APP_ACCESS_CODE;process.env.APP_ACCESS_CODE='test-session-code';
   const app=createLiveServer({service:{status:()=>({mapKeyConfigured:true}),stations:async city=>({city})}});
-  await new Promise(resolve=>app.server.listen(0,'127.0.0.1',resolve));t.after(()=>app.close());
+  await new Promise(resolve=>app.server.listen(0,'127.0.0.1',resolve));t.after(async()=>{await app.close();if(previousCode==null)delete process.env.APP_ACCESS_CODE;else process.env.APP_ACCESS_CODE=previousCode;});
   const url=`http://127.0.0.1:${app.server.address().port}`;
-  assert.deepEqual(await (await fetch(url+'/api/status')).json(),{mapKeyConfigured:true});
+  const status=await (await fetch(url+'/api/status')).json();assert.equal(status.aiEnabled,true);assert.equal(JSON.stringify(status).includes('test-session-code'),false);
   assert.equal((await fetch(url+'/api/stations',{method:'POST',headers:{origin:'https://example.com','content-type':'application/json'},body:'{}'})).status,403);
-  assert.equal((await fetch(url+'/api/stations',{method:'POST',headers:{'content-type':'application/json'},body:'broken'})).status,400);
-  assert.deepEqual(await (await fetch(url+'/api/stations',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({city:'上海'})})).json(),{city:'上海'});
+  const login=await fetch(url+'/api/session',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({accessCode:'test-session-code'})});
+  assert.equal(login.status,200);const cookie=login.headers.get('set-cookie').split(';')[0];
+  assert.equal((await fetch(url+'/api/stations',{method:'POST',headers:{cookie,'content-type':'application/json'},body:'broken'})).status,400);
+  assert.deepEqual(await (await fetch(url+'/api/stations',{method:'POST',headers:{cookie,'content-type':'application/json'},body:JSON.stringify({city:'上海'})})).json(),{city:'上海'});
   assert.equal((await fetch(url+'/live.js')).status,200);
 });
 

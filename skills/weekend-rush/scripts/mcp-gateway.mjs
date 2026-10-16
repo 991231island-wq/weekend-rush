@@ -24,6 +24,8 @@ export function createGateway({ key = localKey() } = {}) {
   const cache = new Map();
   const tails = new Map();
   const lastCalls = new Map();
+  let actualCalls = 0;
+  let callGuard = async () => {};
   let closing = false;
   const entries = { rail: '12306-mcp/build/index.js', amap: '@amap/amap-maps-mcp-server/build/index.js' };
   const safeMessage = error => {
@@ -62,6 +64,8 @@ export function createGateway({ key = localKey() } = {}) {
         const { client } = await clientFor(provider);
         const delay = provider === 'amap' ? Math.max(0, (lastCalls.get(provider) ?? 0) + 1100 - Date.now()) : 0;
         if (delay) await new Promise(resolve => setTimeout(resolve, delay));
+        await callGuard({ provider, name, callNumber: actualCalls + 1 });
+        actualCalls++;
         lastCalls.set(provider, Date.now());
         const result = await client.callTool({ name, arguments: args }, undefined, { timeout: 20000 });
         const text = (result.content ?? []).filter(item => item.type === 'text').map(item => item.text).join('\n');
@@ -85,6 +89,8 @@ export function createGateway({ key = localKey() } = {}) {
   }
   return {
     call,
+    setCallGuard(guard) { callGuard = typeof guard === 'function' ? guard : async () => {}; },
+    usage: () => ({ actualToolCalls: actualCalls }),
     status: () => ({ mapKeyConfigured: Boolean(key), providers: { rail: '12306-mcp@0.3.10', amap: '@amap/amap-maps-mcp-server@0.0.8' } }),
     async close() {
       closing = true;

@@ -3,12 +3,12 @@
   "version": "0.2.0",
   "private": false,
   "type": "module",
-  "description": "周末短途旅行规划 Skill、本机真实 MCP 查询与离线演示",
+  "description": "对话式周末旅行 AI 应用、旅行规划 Skill 与真实 MCP 查询",
   "engines": {
     "node": ">=22"
   },
   "scripts": {
-    "start": "node scripts/serve-live.mjs",
+    "start": "node scripts/start-web.mjs",
     "test": "node --test",
     "demo": "node scripts/serve-demo.mjs",
     "check:secrets": "node scripts/check-secrets.mjs"

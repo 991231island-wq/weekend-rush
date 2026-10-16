@@ -56,18 +56,36 @@ function poiSnapshot(place) {
     location: place.location, businessArea: place.businessArea ?? null, alias: place.alias ?? null,
     rating: place.rating ?? null, referenceConsumption: place.referenceConsumption ?? null,
     openingText: place.openingText ?? null, photos: Array.isArray(place.photos) ? place.photos : [],
+    source: place.source ?? null, queriedAt: place.queriedAt ?? null, tool: place.tool ?? null,
   };
 }
 
 export async function generatePlans(service, rawInput) {
   const input = normalizePlanInput(rawInput);
+  const ticketPending = input.ticketStatus === 'not-yet-open';
   const forwardQuery = { date: input.departureDate, fromCity: input.originCity, toCity: input.destinationCity, fromStationCode: input.fromStationCode, toStationCode: input.toStationCode };
   const backwardQuery = { date: input.returnDate, fromCity: input.destinationCity, toCity: input.originCity, fromStationCode: input.toStationCode, toStationCode: input.fromStationCode };
-  const [forward, backward] = await Promise.all([service.tickets(forwardQuery), service.tickets(backwardQuery)]);
-  const outbound = forward.tickets.find(ticket => ticket.id === input.outboundTicketId);
-  const inbound = backward.tickets.find(ticket => ticket.id === input.returnTicketId);
-  const outboundSeat = availableSeat(outbound, input.outboundSeat);
-  const inboundSeat = availableSeat(inbound, input.returnSeat);
+  let forward; let backward; let outbound; let inbound; let outboundSeat; let inboundSeat;
+  if (ticketPending) {
+    const from = { name: input.fromStationName || `${input.originCity}站` };
+    const to = { name: input.toStationName || `${input.destinationCity}站` };
+    const estimatedDuration = 180 * 60000;
+    const outboundDeparture = Date.parse(input.earliestLeaveAt) + (input.homeTransferMinutes + 45) * 60000;
+    const returnDeparture = Date.parse(input.latestHomeAt) - (input.homeTransferMinutes + 30) * 60000 - estimatedDuration;
+    if (returnDeparture < at(input.returnDate, '15:00')) throw new PublicError('NO_REFERENCE_RAIL_WINDOW', '按 3 小时城际参考时段无法同时保留次日游览和按时到家，请放宽到家时间。');
+    const nowUnknown = null;
+    forward = { tickets: [], from, to, source: '12306 售票窗口状态', queriedAt: nowUnknown, availability: 'not-yet-open' };
+    backward = { tickets: [], from: to, to: from, source: '12306 售票窗口状态', queriedAt: nowUnknown, availability: 'not-yet-open' };
+    outbound = { id: 'not-yet-open-outbound', trainCode: '车次待查询', from, to, departureAt: shanghaiISO(outboundDeparture), arrivalAt: shanghaiISO(outboundDeparture + estimatedDuration), queriedAt: null };
+    inbound = { id: 'not-yet-open-return', trainCode: '车次待查询', from: to, to: from, departureAt: shanghaiISO(returnDeparture), arrivalAt: shanghaiISO(returnDeparture + estimatedDuration), queriedAt: null };
+    outboundSeat = inboundSeat = { name: '尚未开售', priceCny: null };
+  } else {
+    [forward, backward] = await Promise.all([service.tickets(forwardQuery), service.tickets(backwardQuery)]);
+    outbound = forward.tickets.find(ticket => ticket.id === input.outboundTicketId);
+    inbound = backward.tickets.find(ticket => ticket.id === input.returnTicketId);
+    outboundSeat = availableSeat(outbound, input.outboundSeat);
+    inboundSeat = availableSeat(inbound, input.returnSeat);
+  }
   if (Date.parse(inbound.departureAt) <= Date.parse(outbound.arrivalAt)) throw new PublicError('INVALID_TRAIN_ORDER', '返程必须晚于去程到达。');
   const homeDeparture = Date.parse(outbound.departureAt) - (input.homeTransferMinutes + 45) * 60000;
   if (homeDeparture <= Date.now()) throw new PublicError('DEPARTURE_PASSED', '按接驳与进站预留计算，出门时间已过，请选择更晚的去程。');
@@ -86,11 +104,12 @@ export async function generatePlans(service, rawInput) {
       variants.push({ id: pace, name: pace === 'coverage' ? '多覆盖方案' : '少步行方案', status: 'unavailable', message: error.message, errorCode: error.code });
     }
   }
-  return { generatedAt: new Date().toISOString(), engine: '真实 MCP 数据＋确定性规则规划', variants, railQueries: [forward, backward].map(({ source, queriedAt, cacheHit, rejectedCount }) => ({ source, queriedAt, cacheHit, rejectedCount })), notices: ['车票未购买；余票和价格可能随时变化。', '地图提供常规路线估计，不保证出行日的班次或拥堵情况。', '餐饮、住宿和交通预留为用户估算；门票、营业安排及预约仍需核实。', '住处接驳和景区内部步行尚未查证，到家时间与步行总量均有估算边界。'] };
+  return { generatedAt: new Date().toISOString(), engine: '真实 MCP 数据＋确定性规则规划', ticketStatus: ticketPending ? 'not-yet-open' : 'available', variants, railQueries: [forward, backward].map(({ source, queriedAt, cacheHit, rejectedCount, availability }) => ({ source, queriedAt, cacheHit, rejectedCount, availability })), notices: [...(ticketPending ? ['车票尚未开售；城际交通以 3 小时参考时段占位，不是已查询车次或发车时间。开售后须重新查票并调整行程。'] : ['车票未购买；余票和价格可能随时变化。']), '地图提供常规路线估计，不保证出行日的班次或拥堵情况。', '餐饮、住宿和交通预留为用户估算；门票、营业安排及预约仍需核实。', '住处接驳和景区内部步行尚未查证，到家时间与步行总量均有估算边界。'] };
 }
 
 async function schedule(service, context) {
   const { input, outbound, inbound, outboundSeat, inboundSeat, station, lodging, places, homeDeparture, pace } = context;
+  const ticketPending = input.ticketStatus === 'not-yet-open';
   const events = [];
   const omitted = [];
   let sequence = 0;
@@ -102,7 +121,7 @@ async function schedule(service, context) {
   const outTime = Date.parse(outbound.departureAt);
   add('住处 → 出发站（用户估算）', 'transfer', homeDeparture, outTime - 45 * 60000, { source: '用户接驳时间估算', costCents: null, costStatus: 'unknown', note: '本段费用未计入市内预留，请单独核实。' });
   add('进站与候车', 'rest', outTime - 45 * 60000, outTime, { source: '规划预留 45 分钟' });
-  add(`${outbound.trainCode} · ${outbound.from.name} → ${outbound.to.name}`, 'train', outTime, Date.parse(outbound.arrivalAt), { costCents: Math.round(outboundSeat.priceCny * 100), source: '12306 MCP', queriedAt: outbound.queriedAt, note: `${outboundSeat.name} · 查询时有票，尚未购买` });
+  add(`${outbound.trainCode} · ${outbound.from.name} → ${outbound.to.name}`, 'train', outTime, Date.parse(outbound.arrivalAt), { costCents: ticketPending ? null : Math.round(outboundSeat.priceCny * 100), costStatus: ticketPending ? 'unknown' : 'known', bookingStatus: ticketPending ? 'unknown' : 'not-required', source: ticketPending ? '12306 售票窗口尚未开放' : '12306 MCP', queriedAt: outbound.queriedAt, note: ticketPending ? '仅按 3 小时估算交通时段占位；没有车次、发车时间、余票或票价，开售后须重新核对。' : `${outboundSeat.name} · 查询时有票，尚未购买` });
   add('出站缓冲', 'rest', Date.parse(outbound.arrivalAt), Date.parse(outbound.arrivalAt) + 30 * 60000, { source: '规划预留 30 分钟' });
   let remaining = [...places];
   if (pace === 'gentle') {
@@ -128,11 +147,34 @@ async function schedule(service, context) {
     let mealCharged = false;
     let lunchTaken = false;
     let visitedSinceRest = 0;
-    const addMeal = () => {
-      add(day === 1 && !mealCharged ? '早餐与全天餐饮预留' : '附近用餐（餐厅待选择）', 'rest', cursor, cursor + 45 * 60000, { placeId: position.id, source: '用户餐饮预算与用餐时长估算', costCents: mealCharged ? 0 : input.foodDailyCents, costStatus: 'estimate', note: mealCharged ? '已计入当天餐饮预留，餐厅与绕行待确认。' : '此金额覆盖当天全部餐饮，餐厅与实际价格待确认。' });
+    let restaurantLookupDone = false;
+    const addMeal = async () => {
+      let restaurant = null;
+      if (!restaurantLookupDone && typeof service.around === 'function') {
+        restaurantLookupDone = true;
+        try {
+          const nearby = await service.around({ city: input.destinationCity, anchorId: position.id, keywords: input.foodKeywords || '餐厅', radius: 1000 });
+          const avoided = new Set(input.restaurantAvoidIds ?? []);
+          const candidate = nearby.candidates.find(row => !avoided.has(row.id));
+          if (candidate) {
+            const leg = await service.route(position, candidate, input.destinationCity, pace);
+            restaurant = candidate;
+            cursor = routeEvent(leg, position, candidate, cursor, transportCharged ? 0 : input.transitDailyCents);
+            position = candidate;
+            transportCharged = true;
+          }
+        } catch { /* Keep the meal in the schedule and leave the restaurant as unverified. */ }
+      }
+      const mealTitle = restaurant ? `附近餐饮推荐：${restaurant.name}` : day === 1 && !mealCharged ? '早餐与全天餐饮预留（餐厅待确认）' : '附近用餐（餐厅待确认）';
+      add(mealTitle, 'rest', cursor, cursor + 45 * 60000, {
+        placeId: restaurant?.id ?? position.id, placeDetails: restaurant ? poiSnapshot(restaurant) : undefined,
+        source: restaurant?.source ?? '用户餐饮预算与用餐时长估算', queriedAt: restaurant?.queriedAt ?? null,
+        costCents: mealCharged ? 0 : input.foodDailyCents, costStatus: 'estimate',
+        note: restaurant ? `已核对地点详情，距上一地点直线约 ${restaurant.distanceMeters} 米；已查询到店路线。人均参考消费${restaurant.referenceConsumption ? ` ${restaurant.referenceConsumption}` : '未返回'}，不计作实际成交价；此金额覆盖当天全部餐饮。` : '未取得适合的周边餐厅，保留餐饮时间与预算；实际店铺、价格和营业状态待确认。',
+      });
       cursor += 45 * 60000; mealCharged = true; visitedSinceRest = 0;
     };
-    if (day === 1) addMeal();
+    if (day === 1) await addMeal();
     const attempted = new Set();
     while (remaining.some(place => !attempted.has(place.id))) {
       const candidates = remaining.filter(place => !attempted.has(place.id)).sort((a, b) => Number(b.required) - Number(a.required) || distance(position, a) - distance(position, b));
@@ -149,10 +191,10 @@ async function schedule(service, context) {
       const reservedMeal = !lunchTaken && cursor + (go.durationMinutes + place.durationMinutes + exit.durationMinutes) * 60000 >= at(date, '11:30') ? 45 : 0;
       const closingBuffer = day === 0 ? 45 : 0;
       if (cursor + (go.durationMinutes + place.durationMinutes + exit.durationMinutes + restMinutes + reservedMeal + closingBuffer) * 60000 > deadline) continue;
-      if (needsLunch) { addMeal(); lunchTaken = true; }
+      if (needsLunch) { await addMeal(); lunchTaken = true; }
       if (restMinutes) { add('休息预留（休息点待确认）', 'rest', cursor, cursor + restMinutes * 60000, { placeId: position.id, source: '规划休息预留' }); cursor += restMinutes * 60000; visitedSinceRest = 0; }
       cursor = routeEvent(go, position, place, cursor, transportCharged ? 0 : input.transitDailyCents); transportCharged = true;
-      add(place.name, 'visit', cursor, cursor + place.durationMinutes * 60000, { placeId: place.id, placeDetails: poiSnapshot(place), required: place.required, source: place.source, queriedAt: place.queriedAt, costCents: place.admissionCents, costStatus: place.admissionCents == null ? 'unknown' : 'estimate', bookingStatus: 'unknown', openingStatus: 'unknown', note: '地点与坐标已查；游览时长及门票预留由用户填写。营业时段和预约须核实。' });
+      add(place.name, 'visit', cursor, cursor + place.durationMinutes * 60000, { placeId: place.id, placeDetails: poiSnapshot(place), required: place.required, reason: place.reason ?? null, source: place.source, queriedAt: place.queriedAt, costCents: place.admissionCents, costStatus: place.admissionCents == null ? 'unknown' : 'estimate', bookingStatus: 'unknown', openingStatus: 'unknown', note: '地点与坐标已查；游览时长及门票预留由规划估算。营业时段和预约须核实。' });
       cursor += place.durationMinutes * 60000;
       position = place;
       remaining = remaining.filter(item => item.id !== place.id);
@@ -165,9 +207,9 @@ async function schedule(service, context) {
     }
     if (!lunchTaken && cursor + lastLeg.durationMinutes * 60000 >= at(date, '11:30')) {
       if (cursor + (45 + lastLeg.durationMinutes) * 60000 > deadline) throw new PublicError('MEAL_TIME_MISSING', '行程缺少用餐时间，请换更晚返程或减少地点。');
-      addMeal(); lunchTaken = true;
+      await addMeal(); lunchTaken = true;
     }
-    if (!mealCharged && day === 0) { addMeal(); lunchTaken = true; }
+    if (!mealCharged && day === 0) { await addMeal(); lunchTaken = true; }
     if (day === 1 && cursor + lastLeg.durationMinutes * 60000 < deadline) {
       const leaveAt = deadline - lastLeg.durationMinutes * 60000;
       add('返程前自由休息与机动时间（休息点待确认）', 'rest', cursor, leaveAt, { placeId: position.id, source: '保留返站路线时长与进站缓冲后的空闲时间' });
@@ -185,10 +227,11 @@ async function schedule(service, context) {
     }
   }
   for (const place of remaining) if (!omitted.some(row => row.id === place.id)) omitted.push({ id: place.id, name: place.name, reason: place.required ? '必去点无法装入现有时间窗口。' : '时间不足，移除可选点。' });
-  add(`${inbound.trainCode} · ${inbound.from.name} → ${inbound.to.name}`, 'train', Date.parse(inbound.departureAt), Date.parse(inbound.arrivalAt), { source: '12306 MCP', queriedAt: inbound.queriedAt, costCents: Math.round(inboundSeat.priceCny * 100), note: `${inboundSeat.name} · 查询时有票，尚未购买` });
+  add(`${inbound.trainCode} · ${inbound.from.name} → ${inbound.to.name}`, 'train', Date.parse(inbound.departureAt), Date.parse(inbound.arrivalAt), { source: ticketPending ? '12306 售票窗口尚未开放' : '12306 MCP', queriedAt: inbound.queriedAt, costCents: ticketPending ? null : Math.round(inboundSeat.priceCny * 100), costStatus: ticketPending ? 'unknown' : 'known', bookingStatus: ticketPending ? 'unknown' : 'not-required', note: ticketPending ? '仅按 3 小时估算交通时段占位；没有车次、发车时间、余票或票价，开售后须重新核对。' : `${inboundSeat.name} · 查询时有票，尚未购买` });
   const arrivalHome = Date.parse(inbound.arrivalAt) + (30 + input.homeTransferMinutes) * 60000;
   add('出站与回家（用户估算）', 'transfer', Date.parse(inbound.arrivalAt), arrivalHome, { source: '30 分钟出站预留＋用户接驳估算', costCents: null, costStatus: 'unknown', note: '住处接驳费用未知，不包含在目的城市交通预留内。' });
   const plan = { id: pace, name: pace === 'coverage' ? '多覆盖方案' : '少步行方案', events, omitted, arrivalHomeAt: shanghaiISO(arrivalHome), totalWalkingMeters, walkingNotice: '仅汇总地图路线中的步行；景区内、车站内与住处接驳步行未完整计入。' };
   const validation = validatePlan(plan, { mustVisitIds: places.filter(place => place.required).map(place => place.id), budgetCents: input.budgetCents, latestHomeAt: input.latestHomeAt });
-  return { ...plan, status: validation.valid ? 'draft' : 'conflict', validation, budgetCents: input.budgetCents, costNotice: '已知票价＋用户预留小计；未知费用尚未计全，不代表总预算满足。' };
+  if (ticketPending) validation.warnings.push({ code: 'rail-not-on-sale' });
+  return { ...plan, status: validation.valid ? 'draft' : 'conflict', validation, budgetCents: input.budgetCents, costNotice: ticketPending ? '车票尚未开售，城际时段和车票费用未知；其他预算预留不能证明总预算满足。' : '已知票价＋用户预留小计；未知费用尚未计全，不代表总预算满足。' };
 }

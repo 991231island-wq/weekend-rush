@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f5f0">
+  <title>周末快闪 · AI 行程助手</title>
+  <link rel="stylesheet" href="/ai.css">
+  <link rel="stylesheet" href="/access.css">
+  <script type="module" src="/ai.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="周末快闪首页"><span class="brand-mark">周</span><span>周末快闪<small>WEEKEND RUSH</small></span></a>
+    <nav><a href="#planner">开始规划</a><a href="#sample">看示例</a><a href="/manual">手动查询</a></nav>
+    <div class="top-actions"><span class="live-pill"><i></i> AI · 实时数据</span><button id="clearSession" class="link-button hidden">清除此会话</button></div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy"><p class="eyebrow">YOUR WEEKEND, ALREADY FIGURED OUT</p><h1>说个大概，<br><em>周末就安排明白。</em></h1><p>告诉我从哪出发、想去哪。我会查车次和地点，排好吃住玩，再按你喜欢的方式调整。</p>
+        <div class="hero-points"><span>不必先列景点</span><span>车票与路线真实查询</span><span>预算超了也给完整方案</span></div>
+      </div>
+      <aside class="hero-note"><span class="note-icon">✳</span><div><b>先给一份完整计划</b><p>想少走路、换餐馆、晚点出发，直接告诉我。每次调整都会留存版本和原因。</p></div></aside>
+    </section>
+
+    <section class="workspace" id="planner">
+      <div class="compose-card">
+        <div class="card-heading"><div><p class="eyebrow">YOUR NEXT GETAWAY</p><h2>这次想怎么走？</h2></div><span class="time-tag">约 1 分钟开始</span></div>
+        <label class="sr-only" for="message">描述你的旅行意向</label>
+        <textarea id="message" maxlength="1600" placeholder="例如：广州白云区出发去武汉，10 月 17 日早上走、18 日晚上回。我想看看江边和老建筑，吃点当地特色，预算 1000 元。"></textarea>
+        <div class="assist-row"><span>不用先选车次、景点或餐馆</span><span id="charCount">0 / 1600</span></div>
+        <details class="essentials" open>
+          <summary>确认几个关键条件 <small>意向里说过的可留空，助手会自动整理</small></summary>
+          <div class="field-grid">
+            <label>出发城市<input id="originCity" maxlength="20" placeholder="如：广州白云区"></label>
+            <label>目的城市<input id="destinationCity" maxlength="20" placeholder="如：武汉"></label>
+            <label>出发日期<input id="departureDate" type="date" required></label>
+            <label>返程日期<input id="returnDate" type="date" required></label>
+            <label>最早离开住处<input id="earliestLeaveTime" type="time" value="06:00"></label>
+            <label>最晚到家<input id="latestHomeTime" type="time" value="22:00"></label>
+            <label>每人预算上限（元）<input id="budgetCny" type="number" min="1" max="100000" value="1000"></label>
+          </div>
+          <p class="field-note">人数按 1 人；住处附近地标可以写在上方意向里，精确住址不用填。预算是上限，不够时仍会给你完整参考安排。</p>
+        </details>
+        <div class="compose-footer"><span class="privacy-note">对话只在当前会话内保留，关闭后可清除。</span><button id="generate" class="primary-button"><span>帮我安排</span><span aria-hidden="true">↗</span></button></div>
+        <p id="formMessage" class="form-message" role="status" aria-live="polite"></p>
+        <div id="accessGate" class="gate hidden" role="dialog" aria-modal="false" aria-labelledby="gateTitle">
+          <form id="accessForm" class="gate-card"><span class="gate-icon">周</span><p class="eyebrow">EARLY ACCESS</p><h2 id="gateTitle">输入体验码，开始规划</h2><p>固定示例无需体验码。真实车次、地点和模型规划仅对体验者开放。</p><label for="accessCode">体验码</label><input id="accessCode" type="password" autocomplete="one-time-code" required maxlength="120" placeholder="请输入体验码"><button type="submit" class="primary-button">进入助手 <span>↗</span></button><p id="gateMessage" class="form-message" role="status" aria-live="polite"></p></form>
+        </div>
+      </div>
+
+      <aside class="side-column" id="sample">
+        <div class="side-card sample-card"><p class="eyebrow">TAKE A LOOK FIRST</p><h3>先看看一份行程卡</h3><p>这些是固定示例，不会调用模型、车票或地图接口。</p><a href="/examples/intent-trip-v1" target="_blank" rel="noreferrer">杭州 → 上海 · 两天一夜 <span>↗</span></a><a href="/examples/intent-trip-v2" target="_blank" rel="noreferrer">少走路调整版 <span>↗</span></a><div class="sample-label">示例数据 · 非实时行程</div></div>
+        <div class="side-card boundary-card"><span class="boundary-mark">i</span><div><h3>信息会标清楚</h3><p>车票、地点、路线按查询结果显示。餐饮与住宿预算是估算，营业时间、门票和预约状态仍需出发前确认。</p></div></div>
+      </aside>
+    </section>
+
+    <section id="progress" class="progress-card hidden" aria-live="polite"><div class="loader"></div><div><b id="progressTitle">正在整理需求</b><p id="progressBody">查询只会在服务端进行，凭证不会进入浏览器。</p></div><span class="progress-clock">这可能需要几十秒</span></section>
+
+    <section id="resultSection" class="result-section hidden" aria-live="polite">
+      <div class="result-heading"><div><p class="eyebrow">YOUR WEEKEND PLAN</p><h2 id="resultTitle">给你安排好了。</h2><p id="resultMeta"></p></div><div class="result-actions"><select id="versionSelect" aria-label="选择行程版本"></select><button id="exportTrip" class="outline-button">导出行程卡</button></div></div>
+      <div id="changeBanner" class="change-banner hidden"></div>
+      <div id="planSummary" class="summary-card"></div>
+      <div id="alternatives" class="variant-row"></div>
+      <div id="tripMetrics" class="metrics-row"></div>
+      <div id="validationBox" class="validation-box"></div>
+      <div class="timeline-head"><div><p class="eyebrow">THE FLOW</p><h3>两天怎么安排</h3></div><span id="scheduleStatus" class="schedule-label"></span></div>
+      <div id="timeline" class="timeline"></div>
+      <details class="evidence-panel"><summary>查询依据与出发前待确认 <span>展开来源、时间、费用边界和待办</span></summary><div id="evidenceContent"></div></details>
+      <div class="adjust-card"><div><p class="eyebrow">MAKE IT YOURS</p><h3>想改哪里，说一句就好。</h3><p>旧版本仍保留，调整失败时不会覆盖当前行程。</p></div><div class="quick-actions"><button data-adjust="少走路，安排得轻松一点">少走路</button><button data-adjust="晚一小时出发">晚一小时</button><button data-adjust="换一家餐馆">换个餐馆</button></div><form id="adjustForm" class="adjust-form"><label class="sr-only" for="adjustMessage">描述你想调整的内容</label><input id="adjustMessage" maxlength="500" placeholder="比如：第二天少安排一个点，留些休息时间"><button type="submit" class="primary-button">调整行程 <span>↗</span></button></form></div>
+      <p class="service-boundary">仅提供查询与规划，不购票、不订房、不代办预约。出行前请在原服务复核实时信息。</p>
+    </section>
+
+    <footer><span>周末快闪 · AI 行程助手</span><span>数据来自 12306 与高德 MCP · 费用及营业边界如实标记</span></footer>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

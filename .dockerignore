@@ -1,0 +1,14 @@
+.git
+.cache
+node_modules
+dist
+work
+tests
+docs/examples/*-results.json
+docs/examples/*-queries.json
+*.log
+.env
+.env.*
+!.env.example
+configs/mcp-servers.json
+configs/mcp-servers.local.json
