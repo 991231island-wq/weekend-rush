@@ -2,6 +2,8 @@
 
 发布范围：可安装的AI客户端Skill及查询、校验、行程卡脚本。网页AI应用不属于本次上线范围。预览标签表示尚未完成外部用户试用，不能据此声称已验证用户价值。
 
+已于北京时间2026-10-16公开发布：[GitHub Release](https://github.com/991231island-wq/weekend-rush/releases/tag/skill-v0.4.0-preview)。标签指向 `0fb38d5758d83de9d4ea3985aaa647807e763da0`。公开仓库及发布页匿名访问均为HTTP 200，匿名下载的ZIP与本机验证包SHA256一致。版本状态为pre-release，非draft。
+
 ## 用户能做什么
 
 - 说出周末旅行意向，让助手主动推荐并安排两天一晚的吃、住、玩、公共交通和休息。
