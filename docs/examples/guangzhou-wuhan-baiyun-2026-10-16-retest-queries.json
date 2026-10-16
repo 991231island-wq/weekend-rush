@@ -1,0 +1,12 @@
+{
+  "queries": [
+    {"id":"out-baiyun-wuhan","operation":"tickets","input":{"date":"2026-10-17","fromCity":"广州","toCity":"武汉","fromStationCode":"GBA","toStationCode":"WHN"}},
+    {"id":"out-baiyun-hankou","operation":"tickets","input":{"date":"2026-10-17","fromCity":"广州","toCity":"武汉","fromStationCode":"GBA","toStationCode":"HKN"}},
+    {"id":"out-north-wuhan","operation":"tickets","input":{"date":"2026-10-17","fromCity":"广州","toCity":"武汉","fromStationCode":"GBQ","toStationCode":"WHN"}},
+    {"id":"out-north-hankou","operation":"tickets","input":{"date":"2026-10-17","fromCity":"广州","toCity":"武汉","fromStationCode":"GBQ","toStationCode":"HKN"}},
+    {"id":"back-wuhan-baiyun","operation":"tickets","input":{"date":"2026-10-18","fromCity":"武汉","toCity":"广州","fromStationCode":"WHN","toStationCode":"GBA"}},
+    {"id":"back-hankou-baiyun","operation":"tickets","input":{"date":"2026-10-18","fromCity":"武汉","toCity":"广州","fromStationCode":"HKN","toStationCode":"GBA"}},
+    {"id":"back-wuhan-north","operation":"tickets","input":{"date":"2026-10-18","fromCity":"武汉","toCity":"广州","fromStationCode":"WHN","toStationCode":"GBQ"}},
+    {"id":"back-hankou-north","operation":"tickets","input":{"date":"2026-10-18","fromCity":"武汉","toCity":"广州","fromStationCode":"HKN","toStationCode":"GBQ"}}
+  ]
+}

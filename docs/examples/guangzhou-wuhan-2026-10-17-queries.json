@@ -1,0 +1,11 @@
+{
+  "queries": [
+    { "id": "status", "operation": "status" },
+    { "id": "guangzhou-stations", "operation": "stations", "input": { "city": "广州" } },
+    { "id": "wuhan-stations", "operation": "stations", "input": { "city": "武汉" } },
+    { "id": "outbound-wuhan", "operation": "tickets", "input": { "date": "2026-10-17", "fromCity": "广州", "toCity": "武汉", "fromStationCode": "IZQ", "toStationCode": "WHN" } },
+    { "id": "outbound-hankou", "operation": "tickets", "input": { "date": "2026-10-17", "fromCity": "广州", "toCity": "武汉", "fromStationCode": "IZQ", "toStationCode": "HKN" } },
+    { "id": "return-wuhan", "operation": "tickets", "input": { "date": "2026-10-18", "fromCity": "武汉", "toCity": "广州", "fromStationCode": "WHN", "toStationCode": "IZQ" } },
+    { "id": "return-hankou", "operation": "tickets", "input": { "date": "2026-10-18", "fromCity": "武汉", "toCity": "广州", "fromStationCode": "HKN", "toStationCode": "IZQ" } }
+  ]
+}

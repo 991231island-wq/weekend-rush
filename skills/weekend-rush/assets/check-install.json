@@ -1,0 +1,6 @@
+{
+  "queries": [
+    { "id": "local-status", "operation": "status" },
+    { "id": "reserved-information-sources", "operation": "information-sources" }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "queries": [
+    { "id": "station", "operation": "detail", "input": { "city": "武汉", "id": "B001B0IZUF" } },
+    { "id": "yellow-crane", "operation": "detail", "input": { "city": "武汉", "id": "B001B0I4K0" } },
+    { "id": "hubu-alley", "operation": "detail", "input": { "city": "武汉", "id": "B0FFF5V6F4" } },
+    { "id": "museum", "operation": "detail", "input": { "city": "武汉", "id": "B001B0JYXS" } },
+    { "id": "east-lake", "operation": "detail", "input": { "city": "武汉", "id": "B001B1ASJQ" } },
+    { "id": "hotel-area", "operation": "detail", "input": { "city": "武汉", "id": "BV10060940" } }
+  ]
+}

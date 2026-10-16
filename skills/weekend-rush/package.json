@@ -1,6 +1,6 @@
 {
   "name": "weekend-rush-skill",
-  "version": "0.3.0-preview",
+  "version": "0.4.0-preview",
   "private": true,
   "type": "module",
   "description": "Intent-first weekend itinerary Skill with optional local MCP query bridge",

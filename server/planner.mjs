@@ -50,6 +50,14 @@ function availableSeat(ticket, name) {
   if (!ticket || !seat) throw new PublicError('TICKET_CHANGED', '所选车次/席别当前不可用，请重新查询并选择。', 409);
   return seat;
 }
+function poiSnapshot(place) {
+  return {
+    id: place.id, name: place.name, address: place.address ?? '', city: place.city ?? null, type: place.type ?? null,
+    location: place.location, businessArea: place.businessArea ?? null, alias: place.alias ?? null,
+    rating: place.rating ?? null, referenceConsumption: place.referenceConsumption ?? null,
+    openingText: place.openingText ?? null, photos: Array.isArray(place.photos) ? place.photos : [],
+  };
+}
 
 export async function generatePlans(service, rawInput) {
   const input = normalizePlanInput(rawInput);
@@ -107,7 +115,7 @@ async function schedule(service, context) {
   const routeEvent = (leg, from, to, start, budgetCents = 0) => {
     const end = start + leg.durationMinutes * 60000;
     totalWalkingMeters += leg.walkingMeters;
-    add(`${from.name} → ${to.name}`, 'transfer', start, end, { placeId: to.id, walkingMeters: leg.walkingMeters, distanceMeters: leg.distanceMeters, mode: leg.mode, source: leg.source, queriedAt: leg.queriedAt, cacheHit: leg.cacheHit, costCents: budgetCents, costStatus: 'estimate', note: budgetCents ? '本项计入当天全部市内交通预留，实际公交票价未取得。' : '市内费用已计入当天交通预留；景区内步行未计入。' });
+    add(`${from.name} → ${to.name}`, 'transfer', start, end, { placeId: to.id, placeDetails: poiSnapshot(to), walkingMeters: leg.walkingMeters, distanceMeters: leg.distanceMeters, mode: leg.mode, routeDetails: leg.routeDetails ?? null, source: leg.source, queriedAt: leg.queriedAt, cacheHit: leg.cacheHit, costCents: budgetCents, costStatus: 'estimate', note: budgetCents ? '本项计入当天全部市内交通预留，实际公交票价未取得。' : '市内费用已计入当天交通预留；景区内步行未计入。' });
     return end;
   };
   for (let day = 0; day < 2; day++) {
@@ -144,7 +152,7 @@ async function schedule(service, context) {
       if (needsLunch) { addMeal(); lunchTaken = true; }
       if (restMinutes) { add('休息预留（休息点待确认）', 'rest', cursor, cursor + restMinutes * 60000, { placeId: position.id, source: '规划休息预留' }); cursor += restMinutes * 60000; visitedSinceRest = 0; }
       cursor = routeEvent(go, position, place, cursor, transportCharged ? 0 : input.transitDailyCents); transportCharged = true;
-      add(place.name, 'visit', cursor, cursor + place.durationMinutes * 60000, { placeId: place.id, required: place.required, source: place.source, queriedAt: place.queriedAt, costCents: place.admissionCents, costStatus: place.admissionCents == null ? 'unknown' : 'estimate', bookingStatus: 'unknown', openingStatus: 'unknown', note: '地点与坐标已查；游览时长及门票预留由用户填写。营业时段和预约须核实。' });
+      add(place.name, 'visit', cursor, cursor + place.durationMinutes * 60000, { placeId: place.id, placeDetails: poiSnapshot(place), required: place.required, source: place.source, queriedAt: place.queriedAt, costCents: place.admissionCents, costStatus: place.admissionCents == null ? 'unknown' : 'estimate', bookingStatus: 'unknown', openingStatus: 'unknown', note: '地点与坐标已查；游览时长及门票预留由用户填写。营业时段和预约须核实。' });
       cursor += place.durationMinutes * 60000;
       position = place;
       remaining = remaining.filter(item => item.id !== place.id);
@@ -171,7 +179,7 @@ async function schedule(service, context) {
       if (cursor < at(date, '18:00')) { add('住宿参考点自由休息', 'rest', cursor, at(date, '18:00'), { placeId: lodging.id, source: '自由缓冲时段，住宿未预订' }); cursor = at(date, '18:00'); }
       if (cursor + 45 * 60000 > deadline) throw new PublicError('DAY_TOO_TIGHT', '抵达住宿参考点后缺少用餐和休息时间，请调整行程。');
       add('晚餐预留（餐厅待选择）', 'rest', cursor, cursor + 45 * 60000, { placeId: lodging.id, source: '用餐时长估算', costCents: 0, costStatus: 'estimate', note: '已计入当天餐饮预留。' }); cursor += 45 * 60000;
-      add(`住宿参考：${lodging.name}`, 'stay', cursor, at(input.returnDate, '08:30'), { placeId: lodging.id, source: '高德地点＋用户住宿预算', queriedAt: lodging.queriedAt, costCents: input.hotelCents, costStatus: 'estimate', bookingStatus: 'required-unconfirmed', note: '仅为路线参考点，未查询房价或预订。' });
+      add(`住宿参考：${lodging.name}`, 'stay', cursor, at(input.returnDate, '08:30'), { placeId: lodging.id, placeDetails: poiSnapshot(lodging), source: '高德地点＋用户住宿预算', queriedAt: lodging.queriedAt, costCents: input.hotelCents, costStatus: 'estimate', bookingStatus: 'required-unconfirmed', note: '仅为路线参考点，未查询房价或预订。' });
     } else {
       add('进站、安检与候车', 'rest', cursor, Date.parse(inbound.departureAt), { source: '至少预留 60 分钟' });
     }

@@ -1,0 +1,10 @@
+{
+  "queries": [
+    { "id": "station-to-hubu", "operation": "route", "input": { "origin": { "id": "B001B0IZUF", "name": "武汉站", "location": "114.424338,30.606981" }, "destination": { "id": "B0FFF5V6F4", "name": "户部巷", "location": "114.298068,30.547412" }, "city": "武汉", "pace": "coverage" } },
+    { "id": "hubu-to-yellow", "operation": "route", "input": { "origin": { "id": "B0FFF5V6F4", "name": "户部巷", "location": "114.298068,30.547412" }, "destination": { "id": "B001B0I4K0", "name": "黄鹤楼", "location": "114.302467,30.544649" }, "city": "武汉", "pace": "coverage" } },
+    { "id": "yellow-to-hotelarea", "operation": "route", "input": { "origin": { "id": "B001B0I4K0", "name": "黄鹤楼", "location": "114.302467,30.544649" }, "destination": { "id": "BV10060940", "name": "楚河汉街地铁站", "location": "114.341415,30.553848" }, "city": "武汉", "pace": "coverage" } },
+    { "id": "hotelarea-to-museum", "operation": "route", "input": { "origin": { "id": "BV10060940", "name": "楚河汉街地铁站", "location": "114.341415,30.553848" }, "destination": { "id": "B001B0JYXS", "name": "湖北省博物馆", "location": "114.365446,30.561506" }, "city": "武汉", "pace": "gentle" } },
+    { "id": "museum-to-eastlake", "operation": "route", "input": { "origin": { "id": "B001B0JYXS", "name": "湖北省博物馆", "location": "114.365446,30.561506" }, "destination": { "id": "B001B1ASJQ", "name": "东湖听涛景区", "location": "114.376688,30.564713" }, "city": "武汉", "pace": "coverage" } },
+    { "id": "eastlake-to-station", "operation": "route", "input": { "origin": { "id": "B001B1ASJQ", "name": "东湖听涛景区", "location": "114.376688,30.564713" }, "destination": { "id": "B001B0IZUF", "name": "武汉站", "location": "114.424338,30.606981" }, "city": "武汉", "pace": "gentle" } }
+  ]
+}

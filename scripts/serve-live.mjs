@@ -49,6 +49,14 @@ export function createLiveServer({ service, gateway } = {}) {
           '/api/tickets': () => live.tickets(input),
           '/api/places': () => live.search(input),
           '/api/place': () => live.detail(input),
+          '/api/around': () => live.around(input),
+          '/api/route': async () => {
+            const [origin, destination] = await Promise.all([
+              live.detail({ city: input.city, id: input.originId }),
+              live.detail({ city: input.city, id: input.destinationId }),
+            ]);
+            return live.route(origin, destination, input.city, input.pace);
+          },
           '/api/weather': () => live.weather(input.city),
           '/api/plan': () => generatePlans(live, input),
         };

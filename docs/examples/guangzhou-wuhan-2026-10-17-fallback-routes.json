@@ -1,0 +1,6 @@
+{
+  "queries": [
+    { "id": "dinner-to-hotel", "operation": "route", "input": { "origin": { "id": "B0FFIEQOQ6", "name": "沉渔落宴碳烤活鱼(司门口店)", "location": "114.300220,30.548736" }, "destination": { "id": "B001B16EWE", "name": "7天酒店(武汉司门口黄鹤楼地铁站长江大桥店)", "location": "114.297510,30.548453" }, "city": "武汉", "pace": "coverage" } },
+    { "id": "museum-to-station", "operation": "route", "input": { "origin": { "id": "B001B0JYXS", "name": "湖北省博物馆", "location": "114.365446,30.561506" }, "destination": { "id": "B001B0IZUF", "name": "武汉站", "location": "114.424338,30.606981" }, "city": "武汉", "pace": "gentle" } }
+  ]
+}

@@ -1,0 +1,4 @@
+{
+  "operation": "route",
+  "input": { "origin": { "id": "B0I6Y4OAHR", "name": "纽赛尔酒店(武汉东湖湖北省博物馆店)", "location": "114.364020,30.560874" }, "destination": { "id": "B0FFHGSOL5", "name": "楚天粤海国际大酒店-楚粤轩中餐厅(水果湖店)", "location": "114.363718,30.564572" }, "city": "武汉", "pace": "gentle" }
+}

@@ -1,0 +1,8 @@
+{
+  "queries": [
+    { "id": "hubu-food", "operation": "around", "input": { "city": "武汉", "anchorId": "B0FFF5V6F4", "keywords": "武汉特色餐馆", "radius": 1000 } },
+    { "id": "museum-hotel", "operation": "around", "input": { "city": "武汉", "anchorId": "B001B0JYXS", "keywords": "酒店", "radius": 1000 } },
+    { "id": "museum-dinner", "operation": "around", "input": { "city": "武汉", "anchorId": "B001B0JYXS", "keywords": "湖北菜", "radius": 1000 } },
+    { "id": "eastlake-food", "operation": "around", "input": { "city": "武汉", "anchorId": "B001B1ASJQ", "keywords": "餐厅", "radius": 1000 } }
+  ]
+}

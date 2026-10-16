@@ -13,3 +13,6 @@ Thumbs.db
 __pycache__/
 dist/
 .cache/
+# Local upstream query responses; publish the curated itinerary and reports instead.
+docs/examples/guangzhou-wuhan-*-results.json
+docs/examples/guangzhou-wuhan-baiyun-v2-validation.json

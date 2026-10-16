@@ -1,0 +1,12 @@
+{
+  "queries": [
+    { "id": "wuhan-station", "operation": "search", "input": { "city": "武汉", "keywords": "武汉站 火车站" } },
+    { "id": "yellow-crane", "operation": "search", "input": { "city": "武汉", "keywords": "黄鹤楼景区" } },
+    { "id": "hubu-alley", "operation": "search", "input": { "city": "武汉", "keywords": "户部巷" } },
+    { "id": "jianghan-road", "operation": "search", "input": { "city": "武汉", "keywords": "江汉路步行街" } },
+    { "id": "museum", "operation": "search", "input": { "city": "武汉", "keywords": "湖北省博物馆" } },
+    { "id": "east-lake", "operation": "search", "input": { "city": "武汉", "keywords": "东湖听涛景区" } },
+    { "id": "hotel-area", "operation": "search", "input": { "city": "武汉", "keywords": "楚河汉街地铁站" } },
+    { "id": "weather", "operation": "weather", "input": { "city": "武汉" } }
+  ]
+}

@@ -4,6 +4,34 @@ const money = cents => cents == null ? '待确认' : `¥${(cents / 100).toFixed(
 const clock = value => value?.slice(11, 16) ?? '';
 const localTime = value => value ? new Date(value).toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai', hour12: false }) : '时间未知';
 const evidence = value => `${escape(value.source)} · 查询于 ${escape(localTime(value.queriedAt))}${value.cacheHit ? ' · 缓存结果' : ''}`;
+function poiExtra(row) {
+  if (!row) return '';
+  const values = [row.businessArea && `商圈：${row.businessArea}`, row.alias && `别名：${row.alias}`, row.rating && `地图评分：${row.rating}`, row.referenceConsumption && `参考消费（不是已确认餐费）：${row.referenceConsumption}`, row.openingText && `营业文本（未按出行日核实）：${row.openingText}`].filter(Boolean);
+  const photos = (row.photos ?? []).map(photo => {
+    try { const url = new URL(photo.url); return url.protocol === 'https:' && !url.username && !url.password && !/[?&](?:key|token|secret|api[-_]?key)=/i.test(url.href) ? `<a href="${escape(url.href)}" target="_blank" rel="noreferrer noopener">${escape(photo.title || '查看地点图片')}</a>` : ''; } catch { return ''; }
+  }).filter(Boolean);
+  return values.length || photos.length ? `${values.map(escape).join('<br>')}${photos.length ? `${values.length ? '<br>' : ''}图片：${photos.join(' · ')}` : ''}` : '';
+}
+function routeMarkup(route) {
+  const details = route?.routeDetails;
+  if (!details?.segments?.length) return '<p>仅有路线汇总，未返回逐段指引。</p>';
+  const chain = details.segments.map(segment => segment.buslines?.length ? segment.buslines.map(line => line.name || '线路未返回').join(' / ') : segment.railway?.name || (segment.kind === 'walking' || segment.walking ? '步行' : '线路未返回'));
+  const rows = details.segments.map((segment, index) => {
+    const lines = segment.buslines?.length ? `<p>同段备选线路（择一，不是连续换乘）：</p><ul>${segment.buslines.map(line => {
+      const via = line.viaStops?.length ? ` · 途经：${line.viaStops.map(escape).join('、')}` : '';
+      const metrics = [Number.isFinite(line.durationMinutes) ? `约 ${line.durationMinutes} 分钟` : '', Number.isFinite(line.distanceMeters) ? `${line.distanceMeters} 米` : ''].filter(Boolean).join(' · ');
+      return `<li>${escape(line.name || '线路未返回')} · ${escape(line.departureStop || '上车站未返回')} → ${escape(line.arrivalStop || '下车站未返回')}${via}${metrics ? ` · ${escape(metrics)}` : ''}</li>`;
+    }).join('')}</ul>` : segment.kind === 'transit' ? '<p>线路与上下车站未返回。</p>' : '';
+    const walking = segment.kind === 'walking' ? segment : segment.walking;
+    const walk = walking ? `<p>步行约 ${escape(walking.distanceMeters ?? '未知')} 米，${escape(walking.durationMinutes ?? '未知')} 分钟</p>${walking.steps?.length ? `<ol>${walking.steps.map(step => {
+      const details = [step.road && `道路：${step.road}`, step.orientation && `方向：${step.orientation}`, step.action && `动作：${step.action}`, step.assistantAction && `指引：${step.assistantAction}`, Number.isFinite(step.distanceMeters) && `${step.distanceMeters} 米`, Number.isFinite(step.durationMinutes) && `${step.durationMinutes} 分钟`].filter(Boolean).map(escape);
+      return `<li>${escape(step.instruction || '步行指引未返回')}${details.length ? ` · ${details.join(' · ')}` : ''}</li>`;
+    }).join('')}</ol>` : '<p>详细步行步骤未返回。</p>'}` : '';
+    const gates = segment.kind === 'transit' || segment.entrance || segment.exit ? `<p>进站口：${escape(segment.entrance || '未返回')} · 出站口：${escape(segment.exit || '未返回')}</p>` : '';
+    return `<li><b>第 ${index + 1} 段</b>${walk}${lines}${gates}</li>`;
+  });
+  return `<p>乘车链路：${escape(chain.join(' → '))}</p><details><summary>展开逐段指引</summary><ol>${rows.join('')}</ol></details>`;
+}
 let revision = 0;
 let tickets = { outbound: [], return: [] };
 let station = null; let lodging = null; let places = [];
@@ -77,8 +105,8 @@ $('queryTrains').addEventListener('click', () => busy('queryTrains', 'railStatus
   if (weather.status === 'fulfilled') {
     const data = weather.value;
     const dates = [$('departureDate').value, $('returnDate').value];
-    const forecasts = data.forecasts.filter(row => dates.includes(row.date));
-    $('weather').innerHTML = forecasts.map(row => `<div class="weather-day"><strong>${escape(row.date)}</strong><span>${escape(row.dayweather)} · ${escape(row.nighttemp)}–${escape(row.daytemp)}℃</span></div>`).join('') + `<p class="weather-meta">${evidence(data)} · ${dates.every(date => forecasts.some(row => row.date === date)) ? '仅显示出行日期的预报' : '部分出行日期超出当前预报范围，不能用其他日期代替'}。</p>`;
+    const forecastByDate = new Map(data.forecasts.map(row => [row.date, row]));
+    $('weather').innerHTML = dates.map(date => { const row = forecastByDate.get(date); return row ? `<div class="weather-day"><strong>${escape(row.date)}</strong><span>${escape(row.dayweather)} / ${escape(row.nightweather)} · ${escape(row.nighttemp)}–${escape(row.daytemp)}℃</span><span>白天 ${escape(row.daywind)} ${escape(row.daypower)}级 · 夜间 ${escape(row.nightwind)} ${escape(row.nightpower)}级</span></div>` : `<div class="weather-day"><strong>${escape(date)}</strong><span>超出当前预报日期，天气未知。</span></div>`; }).join('') + `<p class="weather-meta">${evidence(data)} · 仅显示与实际出行日期对应的预报。</p>`;
   } else $('weather').textContent = `天气未取得：${weather.reason.message}`;
 }));
 
@@ -110,12 +138,36 @@ $('searchPlaces').addEventListener('click', () => busy('searchPlaces', 'placeSta
   });
 }));
 function renderPlaces() {
-  $('stationAnchor').textContent = station ? `${station.name} · ${station.address}` : '尚未选择';
-  $('lodgingAnchor').textContent = lodging ? `${lodging.name} · ${lodging.address}` : '尚未选择';
+  $('stationAnchor').innerHTML = station ? `${escape(station.name)} · ${escape(station.address)}${poiExtra(station)}` : '尚未选择';
+  $('lodgingAnchor').innerHTML = lodging ? `${escape(lodging.name)} · ${escape(lodging.address)}${poiExtra(lodging)}` : '尚未选择';
+  const anchor = $('aroundAnchor'); const previous = anchor.value;
+  const anchors = [station, lodging, ...places].filter(Boolean);
+  anchor.innerHTML = anchors.length ? anchors.map(row => `<option value="${escape(row.id)}">${escape(row.name)}</option>`).join('') : '<option value="">请先确认地点</option>';
+  if (anchors.some(row => row.id === previous)) anchor.value = previous;
   $('selectedPlaces').innerHTML = places.length ? places.map((row, index) => `<article class="picked-place"><div class="picked-top"><div><strong>${escape(row.name)}</strong><p>${escape(row.address)} · ${escape(row.id)}<br>${evidence(row)}</p></div><button class="remove-place" data-remove="${index}">移除</button></div><div class="picked-fields"><label><input type="checkbox" data-place="${index}" data-field="required" ${row.required ? 'checked' : ''}>必去</label><label>游览分钟<input type="number" min="15" max="240" value="${escape(row.durationMinutes)}" data-place="${index}" data-field="durationMinutes"></label><label>门票预留（元）<input type="number" min="0" placeholder="未知" value="${escape(row.admissionCny)}" data-place="${index}" data-field="admissionCny"></label></div></article>`).join('') : '<p class="empty">请添加 1–6 个具体景点。门票留空会标为待确认。</p>';
+  for (const [index, article] of $('selectedPlaces').querySelectorAll('.picked-place').entries()) article.querySelector('.picked-top > div').insertAdjacentHTML('beforeend', poiExtra(places[index]));
   for (const input of $('selectedPlaces').querySelectorAll('[data-field]')) input.addEventListener('input', () => { places[Number(input.dataset.place)][input.dataset.field] = input.dataset.field === 'required' ? input.checked : input.value; changed(); });
   for (const button of $('selectedPlaces').querySelectorAll('[data-remove]')) button.addEventListener('click', () => { places.splice(Number(button.dataset.remove), 1); changed(); renderPlaces(); });
 }
+$('searchAround').addEventListener('click', () => busy('searchAround', 'aroundStatus', async () => {
+  const city = $('destinationCity').value; const anchorId = $('aroundAnchor').value;
+  if (!anchorId) throw new Error('请先确认一个景点、车站或住宿参考点。');
+  const version = revision; $('aroundStatus').textContent = '正在查询周边并逐一核对地点详情…'; $('aroundCandidates').innerHTML = ''; $('aroundRoute').innerHTML = '';
+  const result = await api('around', { city, anchorId, keywords: $('aroundKeywords').value, radius: Number($('aroundRadius').value) });
+  if (version !== revision) return;
+  $('aroundStatus').textContent = `${result.candidates.length} 个候选 · 已核对 ${result.checkedCount} 个详情 · 排除 ${result.rejectedCount} 个城市/范围不符或资料不完整的点 · ${localTime(result.queriedAt)}。${result.notice}`;
+  $('aroundCandidates').innerHTML = result.candidates.length ? result.candidates.map((row, index) => `<article class="candidate"><div><strong>${escape(row.name)}</strong><p>${escape(row.address)}<br>距中心直线约 ${escape(row.distanceMeters)} 米</p>${poiExtra(row)}<p>${evidence(row)}</p></div><button class="secondary" data-around-route="${index}">查实际路线</button></article>`).join('') : '<p class="empty">在本次核对范围内没有合适结果；可以换关键词或扩大范围。</p>';
+  for (const button of $('aroundCandidates').querySelectorAll('[data-around-route]')) button.addEventListener('click', async () => {
+    if (button.disabled) return; button.disabled = true; $('aroundRoute').textContent = '正在核对公交/步行路线…';
+    try {
+      const row = result.candidates[Number(button.dataset.aroundRoute)];
+      const route = await api('route', { city, originId: anchorId, destinationId: row.id, pace: 'gentle' });
+      $('aroundRoute').innerHTML = `<article class="route-result"><h3>${escape(result.anchor.name)} → ${escape(row.name)}</h3><p>${escape(route.mode === 'walking' ? '步行' : '公交/地铁')} · ${escape(route.durationMinutes)} 分钟 · 路线步行 ${escape(route.walkingMeters)} 米 · ${escape(route.distanceMeters == null && route.mode === 'transit' ? '全程距离未可靠返回' : `${route.distanceMeters} 米`)}</p>${routeMarkup(route)}<p class="muted">${evidence(route)}。出行日班次、拥堵与进出站细节可能变化。</p></article>`;
+    } catch (error) { $('aroundRoute').textContent = `路线未取得：${error.message}`; }
+    finally { button.disabled = false; }
+  });
+}));
+
 $('generatePlan').addEventListener('click', () => busy('generatePlan', 'planStatus', async () => {
   $('planStatus').className = 'notice';
   const out = tickets.outbound[$('outboundTicket').value]; const back = tickets.return[$('returnTicket').value];
@@ -147,7 +199,7 @@ function renderResult() {
     let date = '';
     $('timeline').innerHTML = plan.events.map(event => {
       const next = event.startAt.slice(0, 10); const heading = date !== next ? `<h3 class="day-title">${escape(next)}</h3>` : ''; date = next;
-      return `${heading}<article class="event ${escape(event.kind)}"><div class="event-time"><span>${clock(event.startAt)}</span><span>${event.endAt.slice(0, 10) !== next ? `${escape(event.endAt.slice(5, 10))} ` : ''}${clock(event.endAt)}</span></div><div class="event-main"><span class="price">${event.costStatus === 'unknown' ? '费用待确认' : event.costCents ? `${money(event.costCents)}${event.costStatus === 'estimate' ? '（预留）' : ''}` : event.costStatus === 'estimate' ? '计入当天预留' : '无单列费用'}</span><h3>${escape(event.title)}</h3>${event.note ? `<p>${escape(event.note)}</p>` : ''}${event.walkingMeters ? `<p>路线步行约 ${event.walkingMeters} 米</p>` : ''}<div class="source">${event.queriedAt ? evidence(event) : escape(event.source || '规则规划')}</div></div></article>`;
+      return `${heading}<article class="event ${escape(event.kind)}"><div class="event-time"><span>${clock(event.startAt)}</span><span>${event.endAt.slice(0, 10) !== next ? `${escape(event.endAt.slice(5, 10))} ` : ''}${clock(event.endAt)}</span></div><div class="event-main"><span class="price">${event.costStatus === 'unknown' ? '费用待确认' : event.costCents ? `${money(event.costCents)}${event.costStatus === 'estimate' ? '（预留）' : ''}` : event.costStatus === 'estimate' ? '计入当天预留' : '无单列费用'}</span><h3>${escape(event.title)}</h3>${event.placeDetails?.address ? `<p>${escape(event.placeDetails.address)}</p>${poiExtra(event.placeDetails)}` : ''}${event.mode ? routeMarkup({routeDetails:event.routeDetails}) : ''}${event.note ? `<p>${escape(event.note)}</p>` : ''}${event.walkingMeters ? `<p>路线步行约 ${event.walkingMeters} 米</p>` : ''}<div class="source">${event.queriedAt ? evidence(event) : escape(event.source || '规则规划')}</div></div></article>`;
     }).join('');
   }
   $('dataNotices').innerHTML = result.notices.map(note => `<p>${escape(note)}</p>`).join('');

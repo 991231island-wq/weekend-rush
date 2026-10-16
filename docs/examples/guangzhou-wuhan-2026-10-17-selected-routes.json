@@ -1,0 +1,11 @@
+{
+  "queries": [
+    { "id": "hubu-to-lunch", "operation": "route", "input": { "origin": { "id": "B0FFF5V6F4", "name": "户部巷", "location": "114.298068,30.547412" }, "destination": { "id": "B0MB6SN3P7", "name": "老武汉武汉菜(黄鹤楼店)", "location": "114.295183,30.546857" }, "city": "武汉", "pace": "coverage" } },
+    { "id": "lunch-to-yellow", "operation": "route", "input": { "origin": { "id": "B0MB6SN3P7", "name": "老武汉武汉菜(黄鹤楼店)", "location": "114.295183,30.546857" }, "destination": { "id": "B001B0I4K0", "name": "黄鹤楼", "location": "114.302467,30.544649" }, "city": "武汉", "pace": "coverage" } },
+    { "id": "yellow-to-hotel", "operation": "route", "input": { "origin": { "id": "B001B0I4K0", "name": "黄鹤楼", "location": "114.302467,30.544649" }, "destination": { "id": "B0I6Y4OAHR", "name": "纽赛尔酒店(武汉东湖湖北省博物馆店)", "location": "114.364020,30.560874" }, "city": "武汉", "pace": "gentle" } },
+    { "id": "hotel-to-dinner", "operation": "route", "input": { "origin": { "id": "B0I6Y4OAHR", "name": "纽赛尔酒店(武汉东湖湖北省博物馆店)", "location": "114.364020,30.560874" }, "destination": { "id": "B0MBSUEHRF", "name": "藕相遇•市井湖北菜(东湖省博店)", "location": "114.368228,30.562421" }, "city": "武汉", "pace": "coverage" } },
+    { "id": "hotel-to-museum", "operation": "route", "input": { "origin": { "id": "B0I6Y4OAHR", "name": "纽赛尔酒店(武汉东湖湖北省博物馆店)", "location": "114.364020,30.560874" }, "destination": { "id": "B001B0JYXS", "name": "湖北省博物馆", "location": "114.365446,30.561506" }, "city": "武汉", "pace": "coverage" } },
+    { "id": "eastlake-to-lunch", "operation": "route", "input": { "origin": { "id": "B001B1ASJQ", "name": "东湖听涛景区", "location": "114.376688,30.564713" }, "destination": { "id": "B001B16FM7", "name": "妙语悠香茶餐厅(东湖公园店)", "location": "114.372025,30.563260" }, "city": "武汉", "pace": "coverage" } },
+    { "id": "lunch-to-station", "operation": "route", "input": { "origin": { "id": "B001B16FM7", "name": "妙语悠香茶餐厅(东湖公园店)", "location": "114.372025,30.563260" }, "destination": { "id": "B001B0IZUF", "name": "武汉站", "location": "114.424338,30.606981" }, "city": "武汉", "pace": "gentle" } }
+  ]
+}

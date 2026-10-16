@@ -39,6 +39,38 @@ The query date defines the boarding date. `start_date` is kept as `upstreamOrigi
 
 Input fields: `result` contains a map search result (`pois`) or geocode result (`return`); optional `selector` can contain a stable `poiId`, `district`, and/or `typecode`. The output status is `resolved`, `ambiguous`, or `not-found`. Route only with a resolved candidate whose `location` passes `parseCoordinates`.
 
+POI detail may also include `businessArea`, `alias`, `rating`, `referenceConsumption`, `openingText`, and `photos: [{title, url}]`. Empty strings, empty arrays, and placeholders are missing values. Reference consumption is a source label, not a confirmed price. Opening text is not a date-specific opening check. Only use HTTPS photo links without credentials, and show links without automatically loading images.
+
+## Find nearby places
+
+`query-tools` accepts an `around` operation using a city and a confirmed center POI ID; the user does not provide coordinates:
+
+```json
+{
+  "operation": "around",
+  "input": {
+    "city": "上海",
+    "anchorId": "confirmed-poi-id",
+    "keywords": "餐厅",
+    "radius": 1000
+  }
+}
+```
+
+Radius defaults to 1,000 meters and accepts 100–5,000 meters. It is a straight-line search radius. The adapter rechecks up to six candidate details and returns at most three candidates matching the city and radius, with `distanceMeters`, source, and query time. Query a real route before scheduling a candidate. A failed or empty query stays empty; do not invent a substitute venue.
+
+## Keep selected route details
+
+`route` retains `routeDetails.kind` (`walking` or `transit`) and the ordered `segments` from the selected AMap path. Walking steps keep instructions, roads, distance, and duration. Transit segments keep their walking steps, bus/metro alternatives, board/alight stops, via stops, rail details, and any returned entrance/exit names. Multiple lines in one segment are alternatives for that segment, not consecutive transfers. Durations are minutes and distances are meters. Transit `distanceMeters` stays null when the response only provides a shared route-level distance; `fareCents` stays null unless a source supplies a fare.
+
+## Reserved food, lodging, admission and opening information ports
+
+Call `information-sources` to see which categories are actually connected. The default implementation reports all four disconnected. `information-lookup` requires `kind` (`meal-price`, `hotel-rate`, `admission`, `opening-hours`), `city`, `date` (`YYYY-MM-DD`), and a concrete `placeId` or `placeName`; provider-specific details such as check-in/out, occupancy, room type, meal or ticket variant can be added when an adapter is implemented. A disconnected category returns `SOURCE_NOT_CONNECTED`. It must not be treated as an empty or zero-price result.
+
+Future adapters register through `createLiveService(gateway, { informationProviders: { [kind]: { name, query: async input => response } } })`. A provider response is `{ status: "found" | "not-found", items: [...] }`. Each found item has `label`, either `amountCents` (nonnegative integer CNY cents) or `text`, `source`, `queriedAt` (timestamp), and `validForDate` matching the request. Optional fields are `variant`, `conditions`, and credential-free HTTPS `sourceUrl`. The port strips unrecognized fields and rejects missing provenance, mismatched dates and unsafe links. It does not request credentials, normalize a provider's dynamic inventory, verify reservations, or update budget totals. Those require an actual adapter and separate evidence checks.
+
+An itinerary event may keep successful lookup responses in `informationEvidence: [lookupResponse]`; the card displays their values, source, date and query time. This evidence is separate from `costCents`, `costStatus`, `openingStatus` and `bookingStatus`. A planner must explicitly decide whether a date/variant-specific quote can update a cost or status. A restaurant's AMap `referenceConsumption` remains reference information, not a `meal-price` lookup. If an official page and an API disagree, retain both dated records and mark the conflict for review.
+
 ## Validate an itinerary
 
 Input to `validate-plan --input file.json`:
@@ -90,12 +122,13 @@ The renderer will not overwrite an existing file: choose a new version filename.
   "assumptions": ["单人，公共交通；住所接驳采用用户估时，尚未查证"],
   "constraints": { "budgetCents": 100000, "latestHomeAt": "2026-10-18T21:00:00+08:00", "mustVisitIds": [] },
   "plans": [{ "id": "recommended", "name": "推荐方案", "reason": "符合兴趣且减少跨区折返", "arrivalHomeAt": "2026-10-18T19:00:00+08:00", "events": [] }],
+  "weather": { "city": "上海", "source": "AMap MCP", "queriedAt": "2026-10-16T08:00:00+08:00", "forecasts": [] },
   "predeparture": ["核实营业和预约，确认车票与住宿"],
   "notices": ["餐宿费用为预留，未购票未预订"],
   "changeSummary": []
 }
 ```
 
-Populate `events` using the full event schema above; the empty array illustrates the wrapper only and will be rejected by the renderer. Optional event fields `title`, `address`, `description`, `reason`, `alternative`, `note`, `mode`, `walkingMeters`, `source`, `sourceUrl`, `queriedAt` supply human-readable detail. `source` must distinguish retrieved information from a user estimate or planning assumption; a source URL is optional and must not contain credentials.
+Populate `events` using the full event schema above; the empty array illustrates the wrapper only and will be rejected by the renderer. Optional event fields `title`, `address`, `description`, `reason`, `alternative`, `note`, `mode`, `walkingMeters`, `distanceMeters`, `routeDetails`, `placeDetails`, `source`, `sourceUrl`, `queriedAt` supply human-readable detail. `placeDetails` may carry verified POI fields such as `businessArea`, `alias`, `rating`, `referenceConsumption`, `openingText`, and safe `photos`. The renderer labels reference consumption and opening text as unverified. `source` must distinguish retrieved information from a user estimate or planning assumption; a source URL is optional and must not contain credentials.
 
 The renderer runs the shared validator and highlights hard conflicts/unknowns. It additionally warns when the itinerary lacks two days of visits, per-day meals, a stay, rest, or sources. These are completeness checks, not proof that recommendations fit a user, a venue is open, or all costs are verified. Default quick-adjust prompts are copy-only requests for the host model. Supply optional `adjustments` strings to customize them; actual revisions must be queried and validated in the AI client before producing the next card.

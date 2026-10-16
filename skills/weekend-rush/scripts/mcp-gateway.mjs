@@ -37,7 +37,7 @@ export function createGateway({ key = localKey() } = {}) {
     if (!entries[provider]) throw new PublicError('UNKNOWN_PROVIDER', '未知数据服务。');
     if (!clients.has(provider)) {
       const promise = (async () => {
-        const client = new Client({ name: 'weekend-rush', version: '0.3.0-preview' });
+        const client = new Client({ name: 'weekend-rush', version: '0.4.0-preview' });
         const transport = new StdioClientTransport({ command: process.execPath, args: [require.resolve(entries[provider])], env: { ...getDefaultEnvironment(), ...(provider === 'amap' ? { AMAP_MAPS_API_KEY: key } : {}) }, stderr: 'pipe' });
         transport.stderr?.on('data', () => {});
         try { await client.connect(transport, { timeout: 20000 }); return { client, transport }; }

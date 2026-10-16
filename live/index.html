@@ -30,6 +30,7 @@
     <p id="placeStatus" class="muted" role="status"></p><div id="placeCandidates" class="candidate-list"></div>
     <div class="selected-anchors"><div><span>目的地火车站地图点</span><strong id="stationAnchor">尚未选择</strong></div><div><span>住宿参考点（未预订）</span><strong id="lodgingAnchor">尚未选择</strong></div></div>
     <div id="selectedPlaces" class="selected-list"><p class="empty">添加 1–6 个游览地点，勾选必去点，并填写你的游览时长与门票预留。</p></div>
+    <details class="around-panel"><summary>按已确认地点查周边餐饮与休息点</summary><p class="muted">默认范围 1 公里；范围是直线距离。选中候选后可再查实际公交/步行路线。营业和价格仍需核实。</p><div class="search-row"><label>围绕地点<select id="aroundAnchor"><option value="">请先确认地点</option></select></label><label>寻找<select id="aroundKeywords"><option value="餐厅">餐馆</option><option value="咖啡馆">咖啡馆</option><option value="公园">公园/休息点</option></select></label><label>半径<select id="aroundRadius"><option value="1000">1 公里</option><option value="500">500 米</option><option value="2000">2 公里</option><option value="3000">3 公里</option></select></label><button id="searchAround" class="secondary">查询周边</button></div><p id="aroundStatus" class="muted" role="status"></p><div id="aroundCandidates" class="candidate-list"></div><div id="aroundRoute" class="route-check"></div></details>
   </section>
 
   <section class="generate-band"><div><h2>用这些条件，计算两种节奏。</h2><p>以真实路线生成多覆盖与少步行方案；信息不全时保留待核实项，冲突会明确指出。</p></div><button id="generatePlan" class="primary">查询路线并生成方案</button></section>

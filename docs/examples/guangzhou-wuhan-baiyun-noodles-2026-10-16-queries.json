@@ -1,0 +1,4 @@
+{"queries":[
+{"id":"hotel-to-noodles","operation":"route","input":{"city":"武汉","pace":"coverage","origin":{"id":"B001B16EWE","name":"7天酒店(武汉司门口黄鹤楼地铁站长江大桥店)","location":"114.297510,30.548453"},"destination":{"id":"B0FFGHIDGO","name":"传统老武汉热干面(户部巷店)","location":"114.297275,30.548575"}}},
+{"id":"noodles-to-hotel","operation":"route","input":{"city":"武汉","pace":"coverage","origin":{"id":"B0FFGHIDGO","name":"传统老武汉热干面(户部巷店)","location":"114.297275,30.548575"},"destination":{"id":"B001B16EWE","name":"7天酒店(武汉司门口黄鹤楼地铁站长江大桥店)","location":"114.297510,30.548453"}}}
+]}

@@ -1,0 +1,17 @@
+{
+  "plan": {
+    "events": [
+      { "id": "outbound", "kind": "train", "startAt": "2026-10-17T07:58:00+08:00", "endAt": "2026-10-17T12:21:00+08:00", "costCents": 44200, "costStatus": "known" },
+      { "id": "lunch-1", "kind": "meal", "startAt": "2026-10-17T14:00:00+08:00", "endAt": "2026-10-17T14:45:00+08:00", "costCents": null, "costStatus": "unknown", "openingStatus": "unknown" },
+      { "id": "yellow-crane", "kind": "visit", "placeId": "B001B0I4K0", "startAt": "2026-10-17T15:00:00+08:00", "endAt": "2026-10-17T17:00:00+08:00", "costCents": 7000, "costStatus": "known", "bookingStatus": "unknown", "openingStatus": "unknown" },
+      { "id": "dinner-1", "kind": "meal", "startAt": "2026-10-17T18:00:00+08:00", "endAt": "2026-10-17T19:00:00+08:00", "costCents": null, "costStatus": "unknown", "openingStatus": "unknown" },
+      { "id": "stay", "kind": "stay", "startAt": "2026-10-17T19:10:00+08:00", "endAt": "2026-10-18T08:40:00+08:00", "costCents": null, "costStatus": "unknown", "bookingStatus": "required-unconfirmed" },
+      { "id": "museum", "kind": "visit", "placeId": "B001B0JYXS", "startAt": "2026-10-18T10:00:00+08:00", "endAt": "2026-10-18T11:35:00+08:00", "costCents": 0, "costStatus": "known", "bookingStatus": "required-unconfirmed", "openingStatus": "verified" },
+      { "id": "east-lake", "kind": "visit", "placeId": "B001B1ASJQ", "startAt": "2026-10-18T11:55:00+08:00", "endAt": "2026-10-18T12:35:00+08:00", "costCents": 0, "costStatus": "known", "openingStatus": "unknown" },
+      { "id": "lunch-2", "kind": "meal", "startAt": "2026-10-18T12:46:00+08:00", "endAt": "2026-10-18T13:26:00+08:00", "costCents": null, "costStatus": "unknown", "openingStatus": "unknown" },
+      { "id": "return", "kind": "train", "startAt": "2026-10-18T15:43:00+08:00", "endAt": "2026-10-18T19:58:00+08:00", "costCents": 47000, "costStatus": "known" }
+    ],
+    "arrivalHomeAt": null
+  },
+  "constraints": { "budgetCents": 100000, "latestHomeAt": "2026-10-18T22:00:00+08:00", "mustVisitIds": [] }
+}

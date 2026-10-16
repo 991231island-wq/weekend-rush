@@ -16,11 +16,14 @@ export async function runQueries(service, request) {
       tickets: () => service.tickets(input),
       search: () => service.search(input),
       detail: () => service.detail(input),
+      around: () => service.around(input),
+      'information-sources': () => service.informationStatus(),
+      'information-lookup': () => service.informationLookup(input),
       weather: () => service.weather(input.city),
       route: () => service.route(input.origin, input.destination, input.city, input.pace),
     };
     try {
-      if (!Object.hasOwn(actions, query?.operation)) throw new PublicError('UNKNOWN_OPERATION', '未知查询类型。仅支持 status/stations/tickets/search/detail/weather/route。');
+      if (!Object.hasOwn(actions, query?.operation)) throw new PublicError('UNKNOWN_OPERATION', '未知查询类型。仅支持 status/stations/tickets/search/detail/around/information-sources/information-lookup/weather/route。');
       results.push({ id: query.id ?? null, operation: query.operation, ok: true, result: await actions[query.operation]() });
     } catch (error) {
       results.push({ id: query?.id ?? null, operation: query?.operation ?? null, ok: false, code: error instanceof PublicError ? error.code : 'QUERY_FAILED', error: error instanceof PublicError ? error.message : '查询未成功，未生成替代数据。' });

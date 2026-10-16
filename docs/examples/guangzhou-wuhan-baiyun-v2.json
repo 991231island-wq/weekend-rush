@@ -1,0 +1,1912 @@
+{
+  "title": "广州白云区 → 武汉，两天一晚参考行程（预算未满足）",
+  "version": "v2-budget-reference",
+  "generatedAt": "2026-10-16T02:09:01.541Z",
+  "summary": "预算不足仍交付完整参考：第一天户部巷与黄鹤楼，第二天省博与东湖。已知车票及日场门票1019元；加助手预留合计1494元，另有住处接驳等未知费用。原预算保持1000元。",
+  "preferences": "默认首次到访：地标、当地简餐、博物馆、短线看湖；有雨时减少夜游。",
+  "assumptions": [
+    "单人、公共交通、首次武汉旅行，无另行指定兴趣，默认地标+湖北菜+博物馆+短线看湖。",
+    "白云区仅用于优先比较车站，不能证明广州白云站对住处最近。",
+    "轻装背包，第二天退房后随身携带；大件行李需补查寄存。",
+    "住宿200元、六次用餐/打包合计245元、市内公共交通30元均为助手预留，不是实时报价；住处接驳费用未知。"
+  ],
+  "constraints": {
+    "budgetCents": 100000,
+    "latestHomeAt": "2026-10-18T22:00:00+08:00",
+    "mustVisitIds": []
+  },
+  "plans": [
+    {
+      "id": "reference",
+      "name": "完整参考方案 · 预算未满足",
+      "reason": "在既定日期和返程目标下先把行程排完整，保留费用冲突和预约未知。",
+      "arrivalHomeAt": null,
+      "events": [
+        {
+          "id": "breakfast-1",
+          "kind": "meal",
+          "startAt": "2026-10-17T07:00:00+08:00",
+          "endAt": "2026-10-17T07:20:00+08:00",
+          "title": "广州白云站简早餐",
+          "costCents": 1500,
+          "costStatus": "estimate",
+          "source": "助手排程与费用预留；不是报价",
+          "queriedAt": "2026-10-16T02:09:01.541Z",
+          "description": "先在住处或站外解决，再进站；具体商户未核实。住处出门时刻需按附近地标倒推。"
+        },
+        {
+          "id": "boarding-1",
+          "kind": "rest",
+          "startAt": "2026-10-17T07:20:00+08:00",
+          "endAt": "2026-10-17T07:48:00+08:00",
+          "title": "安检、候车与检票",
+          "costCents": 0,
+          "costStatus": "known",
+          "source": "助手排程与费用预留；不是报价",
+          "queriedAt": "2026-10-16T02:09:01.541Z"
+        },
+        {
+          "id": "outbound",
+          "kind": "train",
+          "startAt": "2026-10-17T07:48:00+08:00",
+          "endAt": "2026-10-17T12:45:00+08:00",
+          "title": "G1104 广州白云 → 武汉",
+          "costCents": 43400,
+          "costStatus": "known",
+          "source": "12306 MCP 0.3.10，2026-10-16 10:05查询",
+          "queriedAt": "2026-10-16T02:05:55.262Z",
+          "bookingStatus": "required-unconfirmed",
+          "description": "查询时二等座有票，未购买；车次不可随手顺延。"
+        },
+        {
+          "id": "exit-1",
+          "kind": "transfer",
+          "startAt": "2026-10-17T12:45:00+08:00",
+          "endAt": "2026-10-17T13:15:00+08:00",
+          "title": "武汉站出站、找地铁",
+          "costCents": 0,
+          "costStatus": "known",
+          "source": "助手排程与费用预留；不是报价",
+          "queriedAt": "2026-10-16T02:09:01.541Z"
+        },
+        {
+          "id": "station-hubu",
+          "kind": "transfer",
+          "startAt": "2026-10-17T13:15:00+08:00",
+          "endAt": "2026-10-17T14:20:00+08:00",
+          "title": "4号线武汉火车站 → 复兴路，换5号线至司门口黄鹤楼，C口步行到户部巷",
+          "costCents": 1000,
+          "costStatus": "estimate",
+          "source": "高德 MCP 0.0.8",
+          "queriedAt": "2026-10-16T02:09:08.199Z",
+          "mode": "transit",
+          "durationMinutes": 63,
+          "distanceMeters": null,
+          "walkingMeters": 750,
+          "fareCents": null,
+          "routeDetails": {
+            "kind": "transit",
+            "segments": [
+              {
+                "kind": "transit",
+                "walking": {
+                  "kind": "walking",
+                  "origin": "114.424294,30.606966",
+                  "destination": "114.424370,30.607378",
+                  "distanceMeters": 62,
+                  "durationMinutes": 3,
+                  "steps": [
+                    {
+                      "instruction": "步行28米直行出阶梯",
+                      "road": null,
+                      "distanceMeters": 28,
+                      "durationMinutes": null,
+                      "orientation": null,
+                      "action": "直行",
+                      "assistantAction": "出阶梯"
+                    },
+                    {
+                      "instruction": "步行6米",
+                      "road": null,
+                      "distanceMeters": 6,
+                      "durationMinutes": null,
+                      "orientation": null,
+                      "action": null,
+                      "assistantAction": null
+                    },
+                    {
+                      "instruction": "步行1米到达目的地",
+                      "road": null,
+                      "distanceMeters": 1,
+                      "durationMinutes": null,
+                      "orientation": null,
+                      "action": null,
+                      "assistantAction": "到达目的地"
+                    },
+                    {
+                      "instruction": "步行28米到达武汉火车站",
+                      "road": null,
+                      "distanceMeters": 28,
+                      "durationMinutes": null,
+                      "orientation": null,
+                      "action": null,
+                      "assistantAction": "到达武汉火车站"
+                    }
+                  ]
+                },
+                "buslines": [
+                  {
+                    "name": "轨道交通4号线(武汉火车站--柏林)",
+                    "departureStop": "武汉火车站",
+                    "arrivalStop": "复兴路",
+                    "distanceMeters": 17010,
+                    "durationMinutes": 38,
+                    "viaStops": [
+                      "杨春湖",
+                      "工业四路",
+                      "仁和路",
+                      "园林路",
+                      "罗家港",
+                      "铁机路",
+                      "岳家嘴",
+                      "东亭",
+                      "青鱼嘴",
+                      "楚河汉街",
+                      "洪山广场",
+                      "中南路",
+                      "梅苑小区",
+                      "武昌火车站",
+                      "首义路"
+                    ]
+                  }
+                ],
+                "railway": null,
+                "entrance": "西入口",
+                "exit": null
+              },
+              {
+                "kind": "transit",
+                "walking": {
+                  "kind": "walking",
+                  "origin": "114.301399,30.534302",
+                  "destination": "114.301399,30.534302",
+                  "distanceMeters": 116,
+                  "durationMinutes": 4,
+                  "steps": [
+                    {
+                      "instruction": "步行1米到达复兴路",
+                      "road": null,
+                      "distanceMeters": 1,
+                      "durationMinutes": null,
+                      "orientation": null,
+                      "action": null,
+                      "assistantAction": "到达复兴路"
+                    }
+                  ]
+                },
+                "buslines": [
+                  {
+                    "name": "轨道交通5号线(红霞--武汉站东广场)",
+                    "departureStop": "复兴路",
+                    "arrivalStop": "司门口黄鹤楼",
+                    "distanceMeters": 1407,
+                    "durationMinutes": 7,
+                    "viaStops": [
+                      "彭刘杨"
+                    ]
+                  }
+                ],
+                "railway": null,
+                "entrance": null,
+                "exit": "C口"
+              },
+              {
+                "kind": "walking",
+                "walking": {
+                  "kind": "walking",
+                  "origin": "114.302177,30.546896",
+                  "destination": "114.298164,30.547379",
+                  "distanceMeters": 572,
+                  "durationMinutes": 12,
+                  "steps": [
+                    {
+                      "instruction": "步行108米直行",
+                      "road": null,
+                      "distanceMeters": 108,
+                      "durationMinutes": null,
+                      "orientation": null,
+                      "action": "直行",
+                      "assistantAction": null
+                    },
+                    {
+                      "instruction": "步行1米到达目的地",
+                      "road": null,
+                      "distanceMeters": 1,
+                      "durationMinutes": null,
+                      "orientation": null,
+                      "action": null,
+                      "assistantAction": "到达目的地"
+                    },
+                    {
+                      "instruction": "步行11米左转",
+                      "road": null,
+                      "distanceMeters": 11,
+                      "durationMinutes": null,
+                      "orientation": null,
+                      "action": "左转",
+                      "assistantAction": null
+                    },
+                    {
+                      "instruction": "沿青龙巷步行137米向右前方直行",
+                      "road": "青龙巷",
+                      "distanceMeters": 137,
+                      "durationMinutes": null,
+                      "orientation": null,
+                      "action": "向右前方直行",
+                      "assistantAction": null
+                    },
+                    {
+                      "instruction": "沿自由路步行247米左转",
+                      "road": "自由路",
+                      "distanceMeters": 247,
+                      "durationMinutes": null,
+                      "orientation": null,
+                      "action": "左转",
+                      "assistantAction": null
+                    },
+                    {
+                      "instruction": "沿户部巷步行69米到达目的地",
+                      "road": "户部巷",
+                      "distanceMeters": 69,
+                      "durationMinutes": null,
+                      "orientation": null,
+                      "action": null,
+                      "assistantAction": "到达目的地"
+                    }
+                  ]
+                },
+                "buslines": [],
+                "railway": null,
+                "entrance": null,
+                "exit": null
+              }
+            ]
+          },
+          "cacheHit": false,
+          "tool": "maps_direction_transit_integrated",
+          "note": "路线按查询时估计，已留衔接缓冲；未来班次和景区内部步行另计。"
+        },
+        {
+          "id": "hubu-lunch",
+          "kind": "transfer",
+          "startAt": "2026-10-17T14:20:00+08:00",
+          "endAt": "2026-10-17T14:30:00+08:00",
+          "title": "户部巷 → 老武汉武汉菜",
+          "costCents": 0,
+          "costStatus": "known",
+          "source": "高德 MCP 0.0.8",
+          "queriedAt": "2026-10-16T02:09:10.211Z",
+          "mode": "walking",
+          "durationMinutes": 6,
+          "distanceMeters": 395,
+          "walkingMeters": 395,
+          "fareCents": 0,
+          "routeDetails": {
+            "kind": "walking",
+            "segments": [
+              {
+                "kind": "walking",
+                "origin": "114.298068,30.547412",
+                "destination": "114.295183,30.546857",
+                "distanceMeters": 395,
+                "durationMinutes": 6,
+                "steps": [
+                  {
+                    "instruction": "沿户部巷向西南步行88米右转",
+                    "road": "户部巷",
+                    "distanceMeters": 88,
+                    "durationMinutes": 2,
+                    "orientation": "西南",
+                    "action": null,
+                    "assistantAction": null
+                  },
+                  {
+                    "instruction": "沿民主路向西步行198米左转",
+                    "road": "民主路",
+                    "distanceMeters": 198,
+                    "durationMinutes": 3,
+                    "orientation": "西",
+                    "action": null,
+                    "assistantAction": null
+                  },
+                  {
+                    "instruction": "向南步行56米右转",
+                    "road": null,
+                    "distanceMeters": 56,
+                    "durationMinutes": 1,
+                    "orientation": "南",
+                    "action": null,
+                    "assistantAction": null
+                  },
+                  {
+                    "instruction": "沿斗级营向西步行53米到达目的地",
+                    "road": "斗级营",
+                    "distanceMeters": 53,
+                    "durationMinutes": 1,
+                    "orientation": "西",
+                    "action": null,
+                    "assistantAction": null
+                  }
+                ]
+              }
+            ]
+          },
+          "cacheHit": false,
+          "tool": "maps_direction_walking",
+          "note": "路线按查询时估计，已留衔接缓冲；未来班次和景区内部步行另计。"
+        },
+        {
+          "id": "lunch-1",
+          "kind": "meal",
+          "startAt": "2026-10-17T14:30:00+08:00",
+          "endAt": "2026-10-17T15:10:00+08:00",
+          "title": "老武汉武汉菜（黄鹤楼店）午餐",
+          "costCents": 7000,
+          "costStatus": "estimate",
+          "source": "助手排程与费用预留；不是报价",
+          "queriedAt": "2026-10-16T02:09:01.541Z",
+          "placeId": "B0MB6SN3P7",
+          "address": "步行汉阳门花园向内100米近黄鹤楼长江大桥/自驾斗级营停车场(解放路口)B区上来左转",
+          "placeDetails": {
+            "id": "B0MB6SN3P7",
+            "name": "老武汉武汉菜(黄鹤楼店)",
+            "address": "步行汉阳门花园向内100米近黄鹤楼长江大桥/自驾斗级营停车场(解放路口)B区上来左转",
+            "city": "武汉市",
+            "type": "餐饮服务;中餐厅;湖北菜(鄂菜)",
+            "location": "114.295183,30.546857",
+            "businessArea": "江滩",
+            "alias": null,
+            "photos": [
+              {
+                "title": null,
+                "url": "https://store.is.autonavi.com/showpic/3bae035a4bc168ee0000001937608769?type=pic"
+              }
+            ],
+            "rating": "4.6",
+            "referenceConsumption": "62.00",
+            "openingText": "周一至周日 11:00-22:00",
+            "source": "高德 MCP 0.0.8",
+            "queriedAt": "2026-10-16T02:09:03.631Z",
+            "cacheHit": false,
+            "tool": "maps_search_detail"
+          },
+          "openingStatus": "unknown",
+          "description": "地点与地图营业文本已查；当日营业、菜单价格或房价仍需核实。",
+          "reason": "到达后先吃饭，湖北菜候选与黄鹤楼在同一片区；建议按菜单选单人份，菜品未核实。"
+        },
+        {
+          "id": "lunch-yellow",
+          "kind": "transfer",
+          "startAt": "2026-10-17T15:10:00+08:00",
+          "endAt": "2026-10-17T15:25:00+08:00",
+          "title": "午餐店 → 黄鹤楼",
+          "costCents": 0,
+          "costStatus": "known",
+          "source": "高德 MCP 0.0.8",
+          "queriedAt": "2026-10-16T02:09:11.312Z",
+          "mode": "walking",
+          "durationMinutes": 13,
+          "distanceMeters": 931,
+          "walkingMeters": 931,
+          "fareCents": 0,
+          "routeDetails": {
+            "kind": "walking",
+            "segments": [
+              {
+                "kind": "walking",
+                "origin": "114.295183,30.546857",
+                "destination": "114.302467,30.544649",
+                "distanceMeters": 931,
+                "durationMinutes": 13,
+                "steps": [
+                  {
+                    "instruction": "沿斗级营向东步行408米右转",
+                    "road": "斗级营",
+                    "distanceMeters": 408,
+                    "durationMinutes": 6,
+                    "orientation": "东",
+                    "action": null,
+                    "assistantAction": null
+                  },
+                  {
+                    "instruction": "向南步行43米右转",
+                    "road": null,
+                    "distanceMeters": 43,
+                    "durationMinutes": 1,
+                    "orientation": "南",
+                    "action": null,
+                    "assistantAction": null
+                  },
+                  {
+                    "instruction": "向西步行66米左转",
+                    "road": null,
+                    "distanceMeters": 66,
+                    "durationMinutes": 1,
+                    "orientation": "西",
+                    "action": null,
+                    "assistantAction": null
+                  },
+                  {
+                    "instruction": "沿武珞路向东步行150米左转",
+                    "road": "武珞路",
+                    "distanceMeters": 150,
+                    "durationMinutes": 2,
+                    "orientation": "东",
+                    "action": null,
+                    "assistantAction": null
+                  },
+                  {
+                    "instruction": "向东步行180米向右前方行走",
+                    "road": null,
+                    "distanceMeters": 180,
+                    "durationMinutes": 3,
+                    "orientation": "东",
+                    "action": null,
+                    "assistantAction": null
+                  },
+                  {
+                    "instruction": "向东南步行26米左转",
+                    "road": null,
+                    "distanceMeters": 26,
+                    "durationMinutes": 1,
+                    "orientation": "东南",
+                    "action": null,
+                    "assistantAction": null
+                  },
+                  {
+                    "instruction": "向东步行11米左转",
+                    "road": null,
+                    "distanceMeters": 11,
+                    "durationMinutes": 1,
+                    "orientation": "东",
+                    "action": null,
+                    "assistantAction": null
+                  },
+                  {
+                    "instruction": "向东北步行47米到达目的地",
+                    "road": null,
+                    "distanceMeters": 47,
+                    "durationMinutes": 1,
+                    "orientation": "东北",
+                    "action": null,
+                    "assistantAction": null
+                  }
+                ]
+              }
+            ]
+          },
+          "cacheHit": false,
+          "tool": "maps_direction_walking",
+          "note": "路线按查询时估计，已留衔接缓冲；未来班次和景区内部步行另计。"
+        },
+        {
+          "id": "yellow-crane",
+          "kind": "visit",
+          "startAt": "2026-10-17T15:25:00+08:00",
+          "endAt": "2026-10-17T17:15:00+08:00",
+          "title": "黄鹤楼日场：公园与登楼",
+          "costCents": 7000,
+          "costStatus": "known",
+          "source": "武汉市2026年度政府定价清单；开放时间参考当期公开信息",
+          "queriedAt": "2026-10-16T02:09:01.541Z",
+          "placeId": "B001B0I4K0",
+          "address": "武汉市武昌区蛇山黄鹤楼景区",
+          "sourceUrl": "https://fgw.wuhan.gov.cn/zfxxgk/zfxxgk_4/sysf/202604/P020260518549310243435.pdf",
+          "openingStatus": "unknown",
+          "bookingStatus": "required-unconfirmed",
+          "reason": "作为首次武汉旅行的代表性景点；不跨江折返。",
+          "note": "15:25目标入园。日场公开营业文本指向18:00清场；10月17日售票及临时公告仍需复核，日夜场不通用。"
+        },
+        {
+          "id": "yellow-hotel",
+          "kind": "transfer",
+          "startAt": "2026-10-17T17:15:00+08:00",
+          "endAt": "2026-10-17T17:30:00+08:00",
+          "title": "黄鹤楼 → 司门口酒店参考点",
+          "costCents": 0,
+          "costStatus": "known",
+          "source": "高德 MCP 0.0.8",
+          "queriedAt": "2026-10-16T02:09:15.713Z",
+          "mode": "walking",
+          "durationMinutes": 12,
+          "distanceMeters": 861,
+          "walkingMeters": 861,
+          "fareCents": 0,
+          "routeDetails": {
+            "kind": "walking",
+            "segments": [
+              {
+                "kind": "walking",
+                "origin": "114.302467,30.544649",
+                "destination": "114.297510,30.548453",
+                "distanceMeters": 861,
+                "durationMinutes": 12,
+                "steps": [
+                  {
+                    "instruction": "向西南步行47米右转",
+                    "road": null,
+                    "distanceMeters": 47,
+                    "durationMinutes": 1,
+                    "orientation": "西南",
+                    "action": null,
+                    "assistantAction": null
+                  },
+                  {
+                    "instruction": "向西步行11米右转",
+                    "road": null,
+                    "distanceMeters": 11,
+                    "durationMinutes": 1,
+                    "orientation": "西",
+                    "action": null,
+                    "assistantAction": null
+                  },
+                  {
+                    "instruction": "向西北步行26米左转",
+                    "road": null,
+                    "distanceMeters": 26,
+                    "durationMinutes": 1,
+                    "orientation": "西北",
+                    "action": null,
+                    "assistantAction": null
+                  },
+                  {
+                    "instruction": "向西步行180米右转",
+                    "road": null,
+                    "distanceMeters": 180,
+                    "durationMinutes": 3,
+                    "orientation": "西",
+                    "action": null,
+                    "assistantAction": null
+                  },
+                  {
+                    "instruction": "沿武珞路向西步行62米向右前方行走",
+                    "road": "武珞路",
+                    "distanceMeters": 62,
+                    "durationMinutes": 1,
+                    "orientation": "西",
+                    "action": null,
+                    "assistantAction": null
+                  },
+                  {
+                    "instruction": "向北步行172米右转",
+                    "road": null,
+                    "distanceMeters": 172,
+                    "durationMinutes": 3,
+                    "orientation": "北",
+                    "action": null,
+                    "assistantAction": null
+                  },
+                  {
+                    "instruction": "向北步行140米左转",
+                    "road": null,
+                    "distanceMeters": 140,
+                    "durationMinutes": 2,
+                    "orientation": "北",
+                    "action": null,
+                    "assistantAction": null
+                  },
+                  {
+                    "instruction": "沿自由路向西步行223米到达目的地",
+                    "road": "自由路",
+                    "distanceMeters": 223,
+                    "durationMinutes": 3,
+                    "orientation": "西",
+                    "action": null,
+                    "assistantAction": null
+                  }
+                ]
+              }
+            ]
+          },
+          "cacheHit": false,
+          "tool": "maps_direction_walking",
+          "note": "路线按查询时估计，已留衔接缓冲；未来班次和景区内部步行另计。"
+        },
+        {
+          "id": "checkin-rest",
+          "kind": "rest",
+          "startAt": "2026-10-17T17:30:00+08:00",
+          "endAt": "2026-10-17T18:10:00+08:00",
+          "title": "办理入住、休息和充电",
+          "costCents": 0,
+          "costStatus": "known",
+          "source": "助手排程与费用预留；不是报价",
+          "queriedAt": "2026-10-16T02:09:01.541Z",
+          "placeId": "B001B16EWE",
+          "address": "户部巷自由路70号(户部巷内小张烤鱼对面)",
+          "placeDetails": {
+            "id": "B001B16EWE",
+            "name": "7天酒店(武汉司门口黄鹤楼地铁站长江大桥店)",
+            "address": "户部巷自由路70号(户部巷内小张烤鱼对面)",
+            "city": "武汉市",
+            "type": "住宿服务;宾馆酒店;经济型连锁酒店",
+            "location": "114.297510,30.548453",
+            "businessArea": "江滩",
+            "alias": null,
+            "photos": [
+              {
+                "title": null,
+                "url": "https://aos-comment.amap.com/default_poi/comment/%5B2026-01-24-14-40-12%5D993DE6F5-65B9-4C73-B2D1-0AC06601C38_1769236817521_49739166.jpg"
+              }
+            ],
+            "rating": "4.1",
+            "referenceConsumption": null,
+            "openingText": null,
+            "source": "高德 MCP 0.0.8",
+            "queriedAt": "2026-10-16T02:09:02.517Z",
+            "cacheHit": false,
+            "tool": "maps_search_detail"
+          },
+          "openingStatus": "unknown",
+          "description": "地点与地图营业文本已查；当日营业、菜单价格或房价仍需核实。",
+          "bookingStatus": "required-unconfirmed",
+          "reason": "为长途车程和游览后留休息。酒店只是位置参考，未核实房态。"
+        },
+        {
+          "id": "hotel-dinner",
+          "kind": "transfer",
+          "startAt": "2026-10-17T18:10:00+08:00",
+          "endAt": "2026-10-17T18:15:00+08:00",
+          "title": "酒店 → 传统老武汉热干面",
+          "costCents": 0,
+          "costStatus": "known",
+          "source": "高德 MCP 0.0.8",
+          "queriedAt": "2026-10-16T02:12:57.755Z",
+          "mode": "walking",
+          "durationMinutes": 1,
+          "distanceMeters": 27,
+          "walkingMeters": 27,
+          "fareCents": 0,
+          "routeDetails": {
+            "kind": "walking",
+            "segments": [
+              {
+                "kind": "walking",
+                "origin": "114.297510,30.548453",
+                "destination": "114.297275,30.548575",
+                "distanceMeters": 27,
+                "durationMinutes": 1,
+                "steps": [
+                  {
+                    "instruction": "沿自由路向西北步行27米到达目的地",
+                    "road": "自由路",
+                    "distanceMeters": 27,
+                    "durationMinutes": 1,
+                    "orientation": "西北",
+                    "action": null,
+                    "assistantAction": null
+                  }
+                ]
+              }
+            ]
+          },
+          "cacheHit": false,
+          "tool": "maps_direction_walking",
+          "note": "路线按查询时估计，已留衔接缓冲；未来班次和景区内部步行另计。"
+        },
+        {
+          "id": "dinner-1",
+          "kind": "meal",
+          "startAt": "2026-10-17T18:15:00+08:00",
+          "endAt": "2026-10-17T19:00:00+08:00",
+          "title": "传统老武汉热干面（户部巷店）：简餐与附近小吃选择",
+          "costCents": 3000,
+          "costStatus": "estimate",
+          "source": "助手排程与费用预留；不是报价",
+          "queriedAt": "2026-10-16T02:09:01.541Z",
+          "placeId": "B0FFGHIDGO",
+          "address": "司门口中华路街道解放路459号户部巷",
+          "placeDetails": {
+            "id": "B0FFGHIDGO",
+            "name": "传统老武汉热干面(户部巷店)",
+            "address": "司门口中华路街道解放路459号户部巷",
+            "city": "武汉市",
+            "type": "餐饮服务;中餐厅;中餐厅",
+            "location": "114.297275,30.548575",
+            "businessArea": "司门口",
+            "alias": null,
+            "photos": [
+              {
+                "title": null,
+                "url": "https://aos-comment.amap.com/B0FFGHIDGO/comment/40c400a5a7ac693c65e0eb5f5fca3723_2048_2048_80.jpg"
+              }
+            ],
+            "rating": "3.8",
+            "referenceConsumption": "15.00",
+            "openingText": "周一至周日 06:30-21:00",
+            "source": "高德 MCP 0.0.8",
+            "queriedAt": "2026-10-16T02:12:22.699Z",
+            "cacheHit": false,
+            "tool": "maps_search_detail",
+            "distanceMeters": 26
+          },
+          "openingStatus": "unknown",
+          "description": "适合单人简餐；地图参考消费15元不是结算价，按实际菜单选择搭配。"
+        },
+        {
+          "id": "dinner-hotel",
+          "kind": "transfer",
+          "startAt": "2026-10-17T19:00:00+08:00",
+          "endAt": "2026-10-17T19:05:00+08:00",
+          "title": "面馆 → 酒店",
+          "costCents": 0,
+          "costStatus": "known",
+          "source": "高德 MCP 0.0.8",
+          "queriedAt": "2026-10-16T02:12:58.824Z",
+          "mode": "walking",
+          "durationMinutes": 1,
+          "distanceMeters": 27,
+          "walkingMeters": 27,
+          "fareCents": 0,
+          "routeDetails": {
+            "kind": "walking",
+            "segments": [
+              {
+                "kind": "walking",
+                "origin": "114.297275,30.548575",
+                "destination": "114.297510,30.548453",
+                "distanceMeters": 27,
+                "durationMinutes": 1,
+                "steps": [
+                  {
+                    "instruction": "沿自由路向东南步行27米到达目的地",
+                    "road": "自由路",
+                    "distanceMeters": 27,
+                    "durationMinutes": 1,
+                    "orientation": "东南",
+                    "action": null,
+                    "assistantAction": null
+                  }
+                ]
+              }
+            ]
+          },
+          "cacheHit": false,
+          "tool": "maps_direction_walking",
+          "note": "路线按查询时估计，已留衔接缓冲；未来班次和景区内部步行另计。"
+        },
+        {
+          "id": "stay",
+          "kind": "stay",
+          "startAt": "2026-10-17T19:05:00+08:00",
+          "endAt": "2026-10-18T07:20:00+08:00",
+          "title": "司门口一晚住宿，晚间休息",
+          "costCents": 20000,
+          "costStatus": "estimate",
+          "source": "助手排程与费用预留；不是报价",
+          "queriedAt": "2026-10-16T02:09:01.541Z",
+          "placeId": "B001B16EWE",
+          "address": "户部巷自由路70号(户部巷内小张烤鱼对面)",
+          "placeDetails": {
+            "id": "B001B16EWE",
+            "name": "7天酒店(武汉司门口黄鹤楼地铁站长江大桥店)",
+            "address": "户部巷自由路70号(户部巷内小张烤鱼对面)",
+            "city": "武汉市",
+            "type": "住宿服务;宾馆酒店;经济型连锁酒店",
+            "location": "114.297510,30.548453",
+            "businessArea": "江滩",
+            "alias": null,
+            "photos": [
+              {
+                "title": null,
+                "url": "https://aos-comment.amap.com/default_poi/comment/%5B2026-01-24-14-40-12%5D993DE6F5-65B9-4C73-B2D1-0AC06601C38_1769236817521_49739166.jpg"
+              }
+            ],
+            "rating": "4.1",
+            "referenceConsumption": null,
+            "openingText": null,
+            "source": "高德 MCP 0.0.8",
+            "queriedAt": "2026-10-16T02:09:02.517Z",
+            "cacheHit": false,
+            "tool": "maps_search_detail"
+          },
+          "openingStatus": "unknown",
+          "description": "地点与地图营业文本已查；当日营业、菜单价格或房价仍需核实。",
+          "bookingStatus": "required-unconfirmed",
+          "reason": "近首日游览和餐饮，减少夜间移动；200元只是助手费用预留。",
+          "note": "17日夜间预报大雨，默认不加江滩或跨江夜游。房价和房态未知，未预订。"
+        },
+        {
+          "id": "hotel-breakfast",
+          "kind": "transfer",
+          "startAt": "2026-10-18T07:20:00+08:00",
+          "endAt": "2026-10-18T07:25:00+08:00",
+          "title": "酒店 → 早餐候选",
+          "costCents": 0,
+          "costStatus": "known",
+          "source": "高德 MCP 0.0.8",
+          "queriedAt": "2026-10-16T02:12:57.755Z",
+          "mode": "walking",
+          "durationMinutes": 1,
+          "distanceMeters": 27,
+          "walkingMeters": 27,
+          "fareCents": 0,
+          "routeDetails": {
+            "kind": "walking",
+            "segments": [
+              {
+                "kind": "walking",
+                "origin": "114.297510,30.548453",
+                "destination": "114.297275,30.548575",
+                "distanceMeters": 27,
+                "durationMinutes": 1,
+                "steps": [
+                  {
+                    "instruction": "沿自由路向西北步行27米到达目的地",
+                    "road": "自由路",
+                    "distanceMeters": 27,
+                    "durationMinutes": 1,
+                    "orientation": "西北",
+                    "action": null,
+                    "assistantAction": null
+                  }
+                ]
+              }
+            ]
+          },
+          "cacheHit": false,
+          "tool": "maps_direction_walking",
+          "note": "路线按查询时估计，已留衔接缓冲；未来班次和景区内部步行另计。"
+        },
+        {
+          "id": "breakfast-2",
+          "kind": "meal",
+          "startAt": "2026-10-18T07:25:00+08:00",
+          "endAt": "2026-10-18T07:55:00+08:00",
+          "title": "户部巷附近过早：同一已查面馆为可核对候选",
+          "costCents": 1500,
+          "costStatus": "estimate",
+          "source": "助手排程与费用预留；不是报价",
+          "queriedAt": "2026-10-16T02:09:01.541Z",
+          "placeId": "B0FFGHIDGO",
+          "address": "司门口中华路街道解放路459号户部巷",
+          "placeDetails": {
+            "id": "B0FFGHIDGO",
+            "name": "传统老武汉热干面(户部巷店)",
+            "address": "司门口中华路街道解放路459号户部巷",
+            "city": "武汉市",
+            "type": "餐饮服务;中餐厅;中餐厅",
+            "location": "114.297275,30.548575",
+            "businessArea": "司门口",
+            "alias": null,
+            "photos": [
+              {
+                "title": null,
+                "url": "https://aos-comment.amap.com/B0FFGHIDGO/comment/40c400a5a7ac693c65e0eb5f5fca3723_2048_2048_80.jpg"
+              }
+            ],
+            "rating": "3.8",
+            "referenceConsumption": "15.00",
+            "openingText": "周一至周日 06:30-21:00",
+            "source": "高德 MCP 0.0.8",
+            "queriedAt": "2026-10-16T02:12:22.699Z",
+            "cacheHit": false,
+            "tool": "maps_search_detail",
+            "distanceMeters": 26
+          },
+          "openingStatus": "unknown",
+          "description": "适合单人简餐；地图参考消费15元不是结算价，按实际菜单选择搭配。"
+        },
+        {
+          "id": "breakfast-hotel",
+          "kind": "transfer",
+          "startAt": "2026-10-18T07:55:00+08:00",
+          "endAt": "2026-10-18T08:00:00+08:00",
+          "title": "早餐后回酒店",
+          "costCents": 0,
+          "costStatus": "known",
+          "source": "高德 MCP 0.0.8",
+          "queriedAt": "2026-10-16T02:12:58.824Z",
+          "mode": "walking",
+          "durationMinutes": 1,
+          "distanceMeters": 27,
+          "walkingMeters": 27,
+          "fareCents": 0,
+          "routeDetails": {
+            "kind": "walking",
+            "segments": [
+              {
+                "kind": "walking",
+                "origin": "114.297275,30.548575",
+                "destination": "114.297510,30.548453",
+                "distanceMeters": 27,
+                "durationMinutes": 1,
+                "steps": [
+                  {
+                    "instruction": "沿自由路向东南步行27米到达目的地",
+                    "road": "自由路",
+                    "distanceMeters": 27,
+                    "durationMinutes": 1,
+                    "orientation": "东南",
+                    "action": null,
+                    "assistantAction": null
+                  }
+                ]
+              }
+            ]
+          },
+          "cacheHit": false,
+          "tool": "maps_direction_walking",
+          "note": "路线按查询时估计，已留衔接缓冲；未来班次和景区内部步行另计。"
+        },
+        {
+          "id": "checkout",
+          "kind": "rest",
+          "startAt": "2026-10-18T08:00:00+08:00",
+          "endAt": "2026-10-18T08:20:00+08:00",
+          "title": "退房、整理随身物品",
+          "costCents": 0,
+          "costStatus": "known",
+          "source": "助手排程与费用预留；不是报价",
+          "queriedAt": "2026-10-16T02:09:01.541Z",
+          "description": "默认轻装背包，不再回酒店取行李。若携带行李箱，需补查寄存点和取件路线。"
+        },
+        {
+          "id": "hotel-museum",
+          "kind": "transfer",
+          "startAt": "2026-10-18T08:20:00+08:00",
+          "endAt": "2026-10-18T09:30:00+08:00",
+          "title": "576路中华路都府堤路 → 民主路洪山体育馆，换14路至东湖路省博物馆",
+          "costCents": 1000,
+          "costStatus": "estimate",
+          "source": "高德 MCP 0.0.8",
+          "queriedAt": "2026-10-16T02:09:19.131Z",
+          "mode": "transit",
+          "durationMinutes": 63,
+          "distanceMeters": null,
+          "walkingMeters": 738,
+          "fareCents": null,
+          "routeDetails": {
+            "kind": "transit",
+            "segments": [
+              {
+                "kind": "transit",
+                "walking": {
+                  "kind": "walking",
+                  "origin": "114.297554,30.548515",
+                  "destination": "114.297935,30.549675",
+                  "distanceMeters": 240,
+                  "durationMinutes": 4,
+                  "steps": [
+                    {
+                      "instruction": "沿自由路步行47米左转",
+                      "road": "自由路",
+                      "distanceMeters": 47,
+                      "durationMinutes": null,
+                      "orientation": null,
+                      "action": "左转",
+                      "assistantAction": null
+                    },
+                    {
+                      "instruction": "沿都府堤步行144米左转",
+                      "road": "都府堤",
+                      "distanceMeters": 144,
+                      "durationMinutes": null,
+                      "orientation": null,
+                      "action": "左转",
+                      "assistantAction": null
+                    },
+                    {
+                      "instruction": "沿中华路步行49米到达中华路都府堤路",
+                      "road": "中华路",
+                      "distanceMeters": 49,
+                      "durationMinutes": null,
+                      "orientation": null,
+                      "action": null,
+                      "assistantAction": "到达中华路都府堤路"
+                    }
+                  ]
+                },
+                "buslines": [
+                  {
+                    "name": "576路(和平大道地铁三角路--珞狮南路华中农大)",
+                    "departureStop": "中华路都府堤路",
+                    "arrivalStop": "民主路洪山体育馆",
+                    "distanceMeters": 5726,
+                    "durationMinutes": 29,
+                    "viaStops": [
+                      "解放路司门口",
+                      "中山路解放路",
+                      "中山路凤凰山",
+                      "中山路螃蟹岬",
+                      "中山路小东门",
+                      "民主路小东门",
+                      "民主路何家垅"
+                    ]
+                  }
+                ],
+                "railway": null,
+                "entrance": null,
+                "exit": null
+              },
+              {
+                "kind": "transit",
+                "walking": {
+                  "kind": "walking",
+                  "origin": "114.334450,30.544670",
+                  "destination": "114.334450,30.544670",
+                  "distanceMeters": 1,
+                  "durationMinutes": 0,
+                  "steps": [
+                    {
+                      "instruction": "步行1米到达民主路洪山体育馆",
+                      "road": null,
+                      "distanceMeters": 1,
+                      "durationMinutes": null,
+                      "orientation": null,
+                      "action": null,
+                      "assistantAction": "到达民主路洪山体育馆"
+                    }
+                  ]
+                },
+                "buslines": [
+                  {
+                    "name": "14路(凤凰山停车场--东湖路省博物馆)",
+                    "departureStop": "民主路洪山体育馆",
+                    "arrivalStop": "东湖路省博物馆",
+                    "distanceMeters": 4559,
+                    "durationMinutes": 22,
+                    "viaStops": [
+                      "中北路姚家岭街",
+                      "东湖路省计量院",
+                      "东湖路楚河汉街",
+                      "东湖路中南医院",
+                      "东湖路蔡家嘴"
+                    ]
+                  }
+                ],
+                "railway": null,
+                "entrance": null,
+                "exit": null
+              },
+              {
+                "kind": "walking",
+                "walking": {
+                  "kind": "walking",
+                  "origin": "114.362762,30.561480",
+                  "destination": "114.365364,30.561615",
+                  "distanceMeters": 497,
+                  "durationMinutes": 9,
+                  "steps": [
+                    {
+                      "instruction": "沿东湖路步行265米向右后方直行",
+                      "road": "东湖路",
+                      "distanceMeters": 265,
+                      "durationMinutes": null,
+                      "orientation": null,
+                      "action": "向右后方直行",
+                      "assistantAction": null
+                    },
+                    {
+                      "instruction": "步行59米左转",
+                      "road": null,
+                      "distanceMeters": 59,
+                      "durationMinutes": null,
+                      "orientation": null,
+                      "action": "左转",
+                      "assistantAction": null
+                    },
+                    {
+                      "instruction": "步行79米",
+                      "road": null,
+                      "distanceMeters": 79,
+                      "durationMinutes": null,
+                      "orientation": null,
+                      "action": null,
+                      "assistantAction": null
+                    },
+                    {
+                      "instruction": "步行29米直行",
+                      "road": null,
+                      "distanceMeters": 29,
+                      "durationMinutes": null,
+                      "orientation": null,
+                      "action": "直行",
+                      "assistantAction": null
+                    },
+                    {
+                      "instruction": "步行65米左转到达目的地",
+                      "road": null,
+                      "distanceMeters": 65,
+                      "durationMinutes": null,
+                      "orientation": null,
+                      "action": "左转",
+                      "assistantAction": "到达目的地"
+                    }
+                  ]
+                },
+                "buslines": [],
+                "railway": null,
+                "entrance": null,
+                "exit": null
+              }
+            ]
+          },
+          "cacheHit": false,
+          "tool": "maps_direction_transit_integrated",
+          "note": "路线按查询时估计，已留衔接缓冲；未来班次和景区内部步行另计。"
+        },
+        {
+          "id": "museum",
+          "kind": "visit",
+          "startAt": "2026-10-18T09:30:00+08:00",
+          "endAt": "2026-10-18T11:40:00+08:00",
+          "title": "湖北省博物馆：按已预约时段看重点展厅",
+          "costCents": 0,
+          "costStatus": "known",
+          "source": "湖北省博物馆官方服务说明及2026-09-29延时公告",
+          "queriedAt": "2026-10-16T02:09:01.541Z",
+          "placeId": "B001B0JYXS",
+          "address": "武汉市东湖路160号",
+          "sourceUrl": "https://m-www.hbww.org.cn/p/13081.html",
+          "openingStatus": "verified",
+          "bookingStatus": "required-unconfirmed",
+          "reason": "雨天优先室内文化体验，预留两个多小时而非匆忙打卡。",
+          "note": "免费入馆但需实名预约；09:30只是计划目标，未确认对应预约名额或时段。热门展厅排队需现场取舍，不含另售的编钟演出票。"
+        },
+        {
+          "id": "museum-eastlake",
+          "kind": "transfer",
+          "startAt": "2026-10-18T11:40:00+08:00",
+          "endAt": "2026-10-18T12:05:00+08:00",
+          "title": "省博 → 东湖听涛景区",
+          "costCents": 0,
+          "costStatus": "known",
+          "source": "高德 MCP 0.0.8",
+          "queriedAt": "2026-10-16T02:09:09.106Z",
+          "mode": "walking",
+          "durationMinutes": 20,
+          "distanceMeters": 1495,
+          "walkingMeters": 1495,
+          "fareCents": 0,
+          "routeDetails": {
+            "kind": "walking",
+            "segments": [
+              {
+                "kind": "walking",
+                "origin": "114.365446,30.561506",
+                "destination": "114.376688,30.564713",
+                "distanceMeters": 1495,
+                "durationMinutes": 20,
+                "steps": [
+                  {
+                    "instruction": "向东北步行39米向左前方行走",
+                    "road": null,
+                    "distanceMeters": 39,
+                    "durationMinutes": 1,
+                    "orientation": "东北",
+                    "action": null,
+                    "assistantAction": null
+                  },
+                  {
+                    "instruction": "向西北步行88米右转",
+                    "road": null,
+                    "distanceMeters": 88,
+                    "durationMinutes": 2,
+                    "orientation": "西北",
+                    "action": null,
+                    "assistantAction": null
+                  },
+                  {
+                    "instruction": "向东北步行58米向左前方行走",
+                    "road": null,
+                    "distanceMeters": 58,
+                    "durationMinutes": 1,
+                    "orientation": "东北",
+                    "action": null,
+                    "assistantAction": null
+                  },
+                  {
+                    "instruction": "向东北步行21米右转",
+                    "road": null,
+                    "distanceMeters": 21,
+                    "durationMinutes": 1,
+                    "orientation": "东北",
+                    "action": null,
+                    "assistantAction": null
+                  },
+                  {
+                    "instruction": "沿黄鹂路辅路向东步行101米向左前方行走",
+                    "road": "黄鹂路辅路",
+                    "distanceMeters": 101,
+                    "durationMinutes": 2,
+                    "orientation": "东",
+                    "action": null,
+                    "assistantAction": null
+                  },
+                  {
+                    "instruction": "沿东湖绿道步行28米向左前方行走",
+                    "road": "东湖绿道",
+                    "distanceMeters": 28,
+                    "durationMinutes": 1,
+                    "orientation": null,
+                    "action": null,
+                    "assistantAction": null
+                  },
+                  {
+                    "instruction": "沿黄鹂路向东步行328米",
+                    "road": "黄鹂路",
+                    "distanceMeters": 328,
+                    "durationMinutes": 5,
+                    "orientation": "东",
+                    "action": null,
+                    "assistantAction": null
+                  },
+                  {
+                    "instruction": "沿东湖绿道向东步行123米向右前方行走",
+                    "road": "东湖绿道",
+                    "distanceMeters": 123,
+                    "durationMinutes": 2,
+                    "orientation": "东",
+                    "action": null,
+                    "assistantAction": null
+                  },
+                  {
+                    "instruction": "沿听涛道向东步行56米右转",
+                    "road": "听涛道",
+                    "distanceMeters": 56,
+                    "durationMinutes": 1,
+                    "orientation": "东",
+                    "action": null,
+                    "assistantAction": null
+                  },
+                  {
+                    "instruction": "向东步行67米向右前方行走",
+                    "road": null,
+                    "distanceMeters": 67,
+                    "durationMinutes": 1,
+                    "orientation": "东",
+                    "action": null,
+                    "assistantAction": null
+                  },
+                  {
+                    "instruction": "沿听涛道向东南步行133米向左前方行走",
+                    "road": "听涛道",
+                    "distanceMeters": 133,
+                    "durationMinutes": 2,
+                    "orientation": "东南",
+                    "action": null,
+                    "assistantAction": null
+                  },
+                  {
+                    "instruction": "向东步行39米直行",
+                    "road": null,
+                    "distanceMeters": 39,
+                    "durationMinutes": 1,
+                    "orientation": "东",
+                    "action": null,
+                    "assistantAction": null
+                  },
+                  {
+                    "instruction": "向东步行94米左转",
+                    "road": null,
+                    "distanceMeters": 94,
+                    "durationMinutes": 2,
+                    "orientation": "东",
+                    "action": null,
+                    "assistantAction": null
+                  },
+                  {
+                    "instruction": "沿听涛道向东北步行176米左转",
+                    "road": "听涛道",
+                    "distanceMeters": 176,
+                    "durationMinutes": 3,
+                    "orientation": "东北",
+                    "action": null,
+                    "assistantAction": null
+                  },
+                  {
+                    "instruction": "沿听涛道向北步行124米右转",
+                    "road": "听涛道",
+                    "distanceMeters": 124,
+                    "durationMinutes": 2,
+                    "orientation": "北",
+                    "action": null,
+                    "assistantAction": null
+                  },
+                  {
+                    "instruction": "向东步行20米到达目的地",
+                    "road": null,
+                    "distanceMeters": 20,
+                    "durationMinutes": 1,
+                    "orientation": "东",
+                    "action": null,
+                    "assistantAction": null
+                  }
+                ]
+              }
+            ]
+          },
+          "cacheHit": false,
+          "tool": "maps_direction_walking",
+          "note": "路线按查询时估计，已留衔接缓冲；未来班次和景区内部步行另计。"
+        },
+        {
+          "id": "eastlake",
+          "kind": "visit",
+          "startAt": "2026-10-18T12:05:00+08:00",
+          "endAt": "2026-10-18T12:40:00+08:00",
+          "title": "东湖听涛短线散步",
+          "costCents": 0,
+          "costStatus": "known",
+          "source": "武汉市2026年度政府定价清单",
+          "queriedAt": "2026-10-16T02:09:01.541Z",
+          "placeId": "B001B1ASJQ",
+          "sourceUrl": "https://fgw.wuhan.gov.cn/zfxxgk/zfxxgk_4/sysf/202604/P020260518549310243435.pdf",
+          "openingStatus": "unknown",
+          "reason": "与省博相邻，短时看湖；只安排入口附近，不绕整片东湖。",
+          "note": "下雨或疲劳时可删除；景区内部步行距离尚未完整计算。"
+        },
+        {
+          "id": "eastlake-lunch",
+          "kind": "transfer",
+          "startAt": "2026-10-18T12:40:00+08:00",
+          "endAt": "2026-10-18T12:55:00+08:00",
+          "title": "听涛景区 → 妙语悠香茶餐厅",
+          "costCents": 0,
+          "costStatus": "known",
+          "source": "高德 MCP 0.0.8",
+          "queriedAt": "2026-10-16T02:09:12.415Z",
+          "mode": "walking",
+          "durationMinutes": 11,
+          "distanceMeters": 774,
+          "walkingMeters": 774,
+          "fareCents": 0,
+          "routeDetails": {
+            "kind": "walking",
+            "segments": [
+              {
+                "kind": "walking",
+                "origin": "114.376688,30.564713",
+                "destination": "114.372025,30.563260",
+                "distanceMeters": 774,
+                "durationMinutes": 11,
+                "steps": [
+                  {
+                    "instruction": "向西步行20米左转",
+                    "road": null,
+                    "distanceMeters": 20,
+                    "durationMinutes": 1,
+                    "orientation": "西",
+                    "action": null,
+                    "assistantAction": null
+                  },
+                  {
+                    "instruction": "沿听涛道向南步行124米右转",
+                    "road": "听涛道",
+                    "distanceMeters": 124,
+                    "durationMinutes": 2,
+                    "orientation": "南",
+                    "action": null,
+                    "assistantAction": null
+                  },
+                  {
+                    "instruction": "沿听涛道向西南步行168米右转",
+                    "road": "听涛道",
+                    "distanceMeters": 168,
+                    "durationMinutes": 3,
+                    "orientation": "西南",
+                    "action": null,
+                    "assistantAction": null
+                  },
+                  {
+                    "instruction": "向西步行8米直行",
+                    "road": null,
+                    "distanceMeters": 8,
+                    "durationMinutes": 1,
+                    "orientation": "西",
+                    "action": null,
+                    "assistantAction": null
+                  },
+                  {
+                    "instruction": "向西步行94米直行",
+                    "road": null,
+                    "distanceMeters": 94,
+                    "durationMinutes": 2,
+                    "orientation": "西",
+                    "action": null,
+                    "assistantAction": null
+                  },
+                  {
+                    "instruction": "向西步行39米向右前方行走",
+                    "road": null,
+                    "distanceMeters": 39,
+                    "durationMinutes": 1,
+                    "orientation": "西",
+                    "action": null,
+                    "assistantAction": null
+                  },
+                  {
+                    "instruction": "向西北步行200米左转",
+                    "road": null,
+                    "distanceMeters": 200,
+                    "durationMinutes": 3,
+                    "orientation": "西北",
+                    "action": null,
+                    "assistantAction": null
+                  },
+                  {
+                    "instruction": "沿听涛道向西步行40米",
+                    "road": "听涛道",
+                    "distanceMeters": 40,
+                    "durationMinutes": 1,
+                    "orientation": "西",
+                    "action": null,
+                    "assistantAction": null
+                  },
+                  {
+                    "instruction": "沿听涛道向西步行16米右转",
+                    "road": "听涛道",
+                    "distanceMeters": 16,
+                    "durationMinutes": 1,
+                    "orientation": "西",
+                    "action": null,
+                    "assistantAction": null
+                  },
+                  {
+                    "instruction": "沿听涛道步行65米到达目的地",
+                    "road": "听涛道",
+                    "distanceMeters": 65,
+                    "durationMinutes": 1,
+                    "orientation": null,
+                    "action": null,
+                    "assistantAction": null
+                  }
+                ]
+              }
+            ]
+          },
+          "cacheHit": false,
+          "tool": "maps_direction_walking",
+          "note": "路线按查询时估计，已留衔接缓冲；未来班次和景区内部步行另计。"
+        },
+        {
+          "id": "lunch-2",
+          "kind": "meal",
+          "startAt": "2026-10-18T12:55:00+08:00",
+          "endAt": "2026-10-18T13:40:00+08:00",
+          "title": "妙语悠香茶餐厅（东湖公园店）午餐和休息",
+          "costCents": 8500,
+          "costStatus": "estimate",
+          "source": "助手排程与费用预留；不是报价",
+          "queriedAt": "2026-10-16T02:09:01.541Z",
+          "placeId": "B001B16FM7",
+          "address": "沿湖大道6号(近东湖公园大门口)",
+          "placeDetails": {
+            "id": "B001B16FM7",
+            "name": "妙语悠香茶餐厅(东湖公园店)",
+            "address": "沿湖大道6号(近东湖公园大门口)",
+            "city": "武汉市",
+            "type": "餐饮服务;快餐厅;茶餐厅",
+            "location": "114.372025,30.563260",
+            "businessArea": "东亭",
+            "alias": null,
+            "photos": [
+              {
+                "title": null,
+                "url": "https://aos-comment.amap.com/B001B16FM7/comment/b4b676a317c3658cd9a1cd69ead72348_2048_2048_80.jpg"
+              }
+            ],
+            "rating": "4.6",
+            "referenceConsumption": "82.00",
+            "openingText": "周一至周日 09:30-23:00",
+            "source": "高德 MCP 0.0.8",
+            "queriedAt": "2026-10-16T02:09:05.810Z",
+            "cacheHit": false,
+            "tool": "maps_search_detail"
+          },
+          "openingStatus": "unknown",
+          "description": "地点与地图营业文本已查；当日营业、菜单价格或房价仍需核实。",
+          "reason": "沿湖区域坐下吃饭、休息；地图参考消费82元不是菜单报价。"
+        },
+        {
+          "id": "lunch-station",
+          "kind": "transfer",
+          "startAt": "2026-10-18T13:40:00+08:00",
+          "endAt": "2026-10-18T14:45:00+08:00",
+          "title": "14路或701路至东湖路省博物馆，步行转8号线省博湖北日报 → 岳家嘴，换4号线至武汉火车站",
+          "costCents": 1000,
+          "costStatus": "estimate",
+          "source": "高德 MCP 0.0.8",
+          "queriedAt": "2026-10-16T02:09:14.785Z",
+          "mode": "transit",
+          "durationMinutes": 55,
+          "distanceMeters": null,
+          "walkingMeters": 654,
+          "fareCents": null,
+          "routeDetails": {
+            "kind": "transit",
+            "segments": [
+              {
+                "kind": "transit",
+                "walking": {
+                  "kind": "walking",
+                  "origin": "114.371895,30.563324",
+                  "destination": "114.371292,30.562939",
+                  "distanceMeters": 78,
+                  "durationMinutes": 2,
+                  "steps": [
+                    {
+                      "instruction": "沿听涛道步行36米向右前方直行",
+                      "road": "听涛道",
+                      "distanceMeters": 36,
+                      "durationMinutes": null,
+                      "orientation": null,
+                      "action": "向右前方直行",
+                      "assistantAction": null
+                    },
+                    {
+                      "instruction": "沿沿湖大道步行31米向右前方直行",
+                      "road": "沿湖大道",
+                      "distanceMeters": 31,
+                      "durationMinutes": null,
+                      "orientation": null,
+                      "action": "向右前方直行",
+                      "assistantAction": null
+                    },
+                    {
+                      "instruction": "沿东湖绿道步行11米到达黄鹂路东湖",
+                      "road": "东湖绿道",
+                      "distanceMeters": 11,
+                      "durationMinutes": null,
+                      "orientation": null,
+                      "action": null,
+                      "assistantAction": "到达黄鹂路东湖"
+                    }
+                  ]
+                },
+                "buslines": [
+                  {
+                    "name": "14路(黄鹂路东湖--凤凰山停车场)",
+                    "departureStop": "黄鹂路东湖",
+                    "arrivalStop": "东湖路省博物馆",
+                    "distanceMeters": 1290,
+                    "durationMinutes": 13,
+                    "viaStops": []
+                  },
+                  {
+                    "name": "701路(黄鹂路东湖--紫华路园博园南门)",
+                    "departureStop": "黄鹂路东湖",
+                    "arrivalStop": "东湖路省博物馆",
+                    "distanceMeters": 1220,
+                    "durationMinutes": 13,
+                    "viaStops": []
+                  }
+                ],
+                "railway": null,
+                "entrance": null,
+                "exit": null
+              },
+              {
+                "kind": "transit",
+                "walking": {
+                  "kind": "walking",
+                  "origin": "114.363434,30.562851",
+                  "destination": "114.365349,30.564852",
+                  "distanceMeters": 344,
+                  "durationMinutes": 7,
+                  "steps": [
+                    {
+                      "instruction": "沿东湖路步行206米左转",
+                      "road": "东湖路",
+                      "distanceMeters": 206,
+                      "durationMinutes": null,
+                      "orientation": null,
+                      "action": "左转",
+                      "assistantAction": null
+                    },
+                    {
+                      "instruction": "步行20米到达目的地",
+                      "road": null,
+                      "distanceMeters": 20,
+                      "durationMinutes": null,
+                      "orientation": null,
+                      "action": null,
+                      "assistantAction": "到达目的地"
+                    },
+                    {
+                      "instruction": "步行1米右转",
+                      "road": null,
+                      "distanceMeters": 1,
+                      "durationMinutes": null,
+                      "orientation": null,
+                      "action": "右转",
+                      "assistantAction": null
+                    },
+                    {
+                      "instruction": "步行118米到达省博湖北日报",
+                      "road": null,
+                      "distanceMeters": 118,
+                      "durationMinutes": null,
+                      "orientation": null,
+                      "action": null,
+                      "assistantAction": "到达省博湖北日报"
+                    }
+                  ]
+                },
+                "buslines": [
+                  {
+                    "name": "轨道交通8号线(军运村--金潭路)",
+                    "departureStop": "省博湖北日报",
+                    "arrivalStop": "岳家嘴",
+                    "distanceMeters": 2752,
+                    "durationMinutes": 9,
+                    "viaStops": [
+                      "梨园"
+                    ]
+                  }
+                ],
+                "railway": null,
+                "entrance": "D口",
+                "exit": null
+              },
+              {
+                "kind": "transit",
+                "walking": {
+                  "kind": "walking",
+                  "origin": "114.361107,30.576923",
+                  "destination": "114.362007,30.577110",
+                  "distanceMeters": 52,
+                  "durationMinutes": 4,
+                  "steps": [
+                    {
+                      "instruction": "步行123米到达岳家嘴",
+                      "road": null,
+                      "distanceMeters": 123,
+                      "durationMinutes": null,
+                      "orientation": null,
+                      "action": null,
+                      "assistantAction": "到达岳家嘴"
+                    }
+                  ]
+                },
+                "buslines": [
+                  {
+                    "name": "轨道交通4号线(柏林--武汉火车站)",
+                    "departureStop": "岳家嘴",
+                    "arrivalStop": "武汉火车站",
+                    "distanceMeters": 8140,
+                    "durationMinutes": 17,
+                    "viaStops": [
+                      "铁机路",
+                      "罗家港",
+                      "园林路",
+                      "仁和路",
+                      "工业四路",
+                      "杨春湖"
+                    ]
+                  }
+                ],
+                "railway": null,
+                "entrance": null,
+                "exit": "西出口"
+              },
+              {
+                "kind": "walking",
+                "walking": {
+                  "kind": "walking",
+                  "origin": "114.424370,30.607378",
+                  "destination": "114.424294,30.606966",
+                  "distanceMeters": 180,
+                  "durationMinutes": 4,
+                  "steps": [
+                    {
+                      "instruction": "步行71米",
+                      "road": null,
+                      "distanceMeters": 71,
+                      "durationMinutes": null,
+                      "orientation": null,
+                      "action": null,
+                      "assistantAction": null
+                    },
+                    {
+                      "instruction": "步行1米到达目的地",
+                      "road": null,
+                      "distanceMeters": 1,
+                      "durationMinutes": null,
+                      "orientation": null,
+                      "action": null,
+                      "assistantAction": "到达目的地"
+                    },
+                    {
+                      "instruction": "步行6米直行上阶梯",
+                      "road": null,
+                      "distanceMeters": 6,
+                      "durationMinutes": null,
+                      "orientation": null,
+                      "action": "直行",
+                      "assistantAction": "上阶梯"
+                    },
+                    {
+                      "instruction": "步行43米左转出阶梯",
+                      "road": null,
+                      "distanceMeters": 43,
+                      "durationMinutes": null,
+                      "orientation": null,
+                      "action": "左转",
+                      "assistantAction": "出阶梯"
+                    },
+                    {
+                      "instruction": "步行46米左转上阶梯",
+                      "road": null,
+                      "distanceMeters": 46,
+                      "durationMinutes": null,
+                      "orientation": null,
+                      "action": "左转",
+                      "assistantAction": "上阶梯"
+                    },
+                    {
+                      "instruction": "步行14米到达目的地",
+                      "road": null,
+                      "distanceMeters": 14,
+                      "durationMinutes": null,
+                      "orientation": null,
+                      "action": null,
+                      "assistantAction": "到达目的地"
+                    }
+                  ]
+                },
+                "buslines": [],
+                "railway": null,
+                "entrance": null,
+                "exit": null
+              }
+            ]
+          },
+          "cacheHit": false,
+          "tool": "maps_direction_transit_integrated",
+          "note": "路线按查询时估计，已留衔接缓冲；未来班次和景区内部步行另计。"
+        },
+        {
+          "id": "packed-dinner",
+          "kind": "meal",
+          "startAt": "2026-10-18T14:45:00+08:00",
+          "endAt": "2026-10-18T15:00:00+08:00",
+          "title": "购买返程简餐与饮水，车上用餐",
+          "costCents": 3000,
+          "costStatus": "estimate",
+          "source": "助手排程与费用预留；不是报价",
+          "queriedAt": "2026-10-16T02:09:01.541Z",
+          "description": "30元为预留。这里只记录购买时段和费用，用餐发生在列车途中，不另造与列车冲突的独立活动。具体商户未查。"
+        },
+        {
+          "id": "boarding-2",
+          "kind": "rest",
+          "startAt": "2026-10-18T15:00:00+08:00",
+          "endAt": "2026-10-18T15:48:00+08:00",
+          "title": "武汉站安检候车与检票",
+          "costCents": 0,
+          "costStatus": "known",
+          "source": "助手排程与费用预留；不是报价",
+          "queriedAt": "2026-10-16T02:09:01.541Z",
+          "note": "计划14:45到站，距开车63分钟；排队或天气延误优先删东湖，不压缩这一缓冲。"
+        },
+        {
+          "id": "return",
+          "kind": "train",
+          "startAt": "2026-10-18T15:48:00+08:00",
+          "endAt": "2026-10-18T19:55:00+08:00",
+          "title": "G533 武汉 → 广州白云",
+          "costCents": 51500,
+          "costStatus": "known",
+          "source": "12306 MCP 0.3.10，2026-10-16 10:05查询",
+          "queriedAt": "2026-10-16T02:05:56.398Z",
+          "bookingStatus": "required-unconfirmed",
+          "description": "查询时二等座有票，未购买。"
+        },
+        {
+          "id": "exit-2",
+          "kind": "transfer",
+          "startAt": "2026-10-18T19:55:00+08:00",
+          "endAt": "2026-10-18T20:20:00+08:00",
+          "title": "广州白云站出站、衔接回家",
+          "costCents": 0,
+          "costStatus": "known",
+          "source": "助手排程与费用预留；不是报价",
+          "queriedAt": "2026-10-16T02:09:01.541Z",
+          "description": "出站25分钟为排程预留；具体回家路线未核实。"
+        }
+      ]
+    }
+  ],
+  "weather": {
+    "city": "武汉市",
+    "forecasts": [
+      {
+        "date": "2026-10-16",
+        "week": "5",
+        "dayweather": "小雨",
+        "nightweather": "阴",
+        "daytemp": "24",
+        "nighttemp": "19",
+        "daywind": "东南",
+        "nightwind": "东南",
+        "daypower": "1-3",
+        "nightpower": "1-3",
+        "daytemp_float": "24.0",
+        "nighttemp_float": "19.0"
+      },
+      {
+        "date": "2026-10-17",
+        "week": "6",
+        "dayweather": "小雨",
+        "nightweather": "大雨",
+        "daytemp": "32",
+        "nighttemp": "18",
+        "daywind": "南",
+        "nightwind": "南",
+        "daypower": "1-3",
+        "nightpower": "1-3",
+        "daytemp_float": "32.0",
+        "nighttemp_float": "18.0"
+      },
+      {
+        "date": "2026-10-18",
+        "week": "7",
+        "dayweather": "小雨",
+        "nightweather": "小雨",
+        "daytemp": "20",
+        "nighttemp": "16",
+        "daywind": "北",
+        "nightwind": "北",
+        "daypower": "1-3",
+        "nightpower": "1-3",
+        "daytemp_float": "20.0",
+        "nighttemp_float": "16.0"
+      },
+      {
+        "date": "2026-10-19",
+        "week": "1",
+        "dayweather": "小雨",
+        "nightweather": "小雨",
+        "daytemp": "19",
+        "nighttemp": "16",
+        "daywind": "北",
+        "nightwind": "北",
+        "daypower": "1-3",
+        "nightpower": "1-3",
+        "daytemp_float": "19.0",
+        "nighttemp_float": "16.0"
+      }
+    ],
+    "source": "高德 MCP 0.0.8",
+    "queriedAt": "2026-10-16T02:09:01.541Z",
+    "cacheHit": false,
+    "tool": "maps_weather",
+    "notice": "仅适用于返回的预报日期，超出范围不作预测。"
+  },
+  "predeparture": [
+    "用户自行确认及购买所选往返车票；票价和余票为10月16日10:05快照。",
+    "核实并预约10月18日上午省博时段，若不成功需替换内容并重查路线。",
+    "核实10月17日黄鹤楼日场入园与临时公告。",
+    "按实际酒店房态、房价选定住宿；参考点未预订。",
+    "核实餐馆当日营业与菜单；早餐店营业文本非当日确认。",
+    "补充最近地铁站/地标或白云站到家估时，以核验22:00到家；不用精确门牌。"
+  ],
+  "notices": [
+    "预算1000元未满足：已知车票949元、黄鹤楼70元，合计1019元。含估算的草案1494元，暂超494元，住处接驳等仍未知。",
+    "雨天或想轻松时删除东湖，并在省博附近重新选择午餐和衔接；省博到武汉站查询约43分钟、路线步行695米。",
+    "17日预报小雨转大雨、18日小雨，天气可变；出发前再查。",
+    "18日19:55到站不等于22:00到家；按出站25分钟预留，还剩100分钟接驳时间，实际未核实。"
+  ],
+  "adjustments": [
+    "第二天不要东湖，多看一会儿博物馆，重新选午餐并查去车站的路线。",
+    "黄鹤楼只在外面看，重新查替代散步路线和费用。",
+    "午餐换成更适合一个人、花费低一点的店，重新核实前后路线。"
+  ],
+  "changeSummary": [
+    "预算不足继续交付完整两日参考计划，预算上限仍保持1000元。",
+    "出发和返程改为广州白云站示例；武汉站到达12:45、返程15:48，时间重新排布。",
+    "补查单人面馆和往返步行，取代默认整条烤鱼；保留已查其他餐饮候选。"
+  ]
+}

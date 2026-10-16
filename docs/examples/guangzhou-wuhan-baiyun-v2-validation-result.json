@@ -1,0 +1,114 @@
+{
+  "valid": false,
+  "feasible": false,
+  "errors": [
+    {
+      "code": "budget-exceeded",
+      "totalCents": 149400,
+      "budgetCents": 100000
+    }
+  ],
+  "warnings": [
+    {
+      "code": "cost-estimated",
+      "eventId": "breakfast-1"
+    },
+    {
+      "code": "booking-unconfirmed",
+      "eventId": "outbound"
+    },
+    {
+      "code": "cost-estimated",
+      "eventId": "station-hubu"
+    },
+    {
+      "code": "cost-estimated",
+      "eventId": "lunch-1"
+    },
+    {
+      "code": "opening-hours-unknown",
+      "eventId": "lunch-1"
+    },
+    {
+      "code": "booking-unconfirmed",
+      "eventId": "yellow-crane"
+    },
+    {
+      "code": "opening-hours-unknown",
+      "eventId": "yellow-crane"
+    },
+    {
+      "code": "booking-unconfirmed",
+      "eventId": "checkin-rest"
+    },
+    {
+      "code": "opening-hours-unknown",
+      "eventId": "checkin-rest"
+    },
+    {
+      "code": "cost-estimated",
+      "eventId": "dinner-1"
+    },
+    {
+      "code": "opening-hours-unknown",
+      "eventId": "dinner-1"
+    },
+    {
+      "code": "cost-estimated",
+      "eventId": "stay"
+    },
+    {
+      "code": "booking-unconfirmed",
+      "eventId": "stay"
+    },
+    {
+      "code": "opening-hours-unknown",
+      "eventId": "stay"
+    },
+    {
+      "code": "cost-estimated",
+      "eventId": "breakfast-2"
+    },
+    {
+      "code": "opening-hours-unknown",
+      "eventId": "breakfast-2"
+    },
+    {
+      "code": "cost-estimated",
+      "eventId": "hotel-museum"
+    },
+    {
+      "code": "booking-unconfirmed",
+      "eventId": "museum"
+    },
+    {
+      "code": "opening-hours-unknown",
+      "eventId": "eastlake"
+    },
+    {
+      "code": "cost-estimated",
+      "eventId": "lunch-2"
+    },
+    {
+      "code": "opening-hours-unknown",
+      "eventId": "lunch-2"
+    },
+    {
+      "code": "cost-estimated",
+      "eventId": "lunch-station"
+    },
+    {
+      "code": "cost-estimated",
+      "eventId": "packed-dinner"
+    },
+    {
+      "code": "booking-unconfirmed",
+      "eventId": "return"
+    },
+    {
+      "code": "home-arrival-unknown"
+    }
+  ],
+  "totalCostCents": 149400,
+  "knownCostCents": 149400
+}
